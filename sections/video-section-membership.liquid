@@ -1,0 +1,79 @@
+{{ 'mh-video.css' | asset_url | stylesheet_tag }}
+
+<div class="mh-video">
+  <div class="page-width responsive-page-width">
+    {% if section.settings.title != blank or section.settings.text != blank %}
+      <div class="mh-section-header video_header grid-flex grid-flex-grow medium-up--2-col">
+        {% if section.settings.title != blank %}
+          <div class="grid_item">
+            <h1 class="video_title section_title">
+              Vessel in 38 seconds
+            </h1>
+          </div>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="grid_item">
+            <div class="video_content section_content"></div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.video_iframe != blank %}
+      <div class="video-container">
+        <video
+          width="100%"
+          height=""
+          controls=""
+          playsinline=""
+          data-wf-ignore="true"
+          data-object-fit="cover"
+          poster="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Screen_Shot_2022-12-30_at_7.59.29_PM.png?v=1672444798">
+          <source src="https://cdn.shopify.com/videos/c/o/v/145d26452ba24815ae454bb7a5d1c5ba.mp4" data-wf-ignore="true">
+        </video>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  #shopify-section-video-section-membership > .mh-video {
+    background-color: {{ section.settings.bg_color }}
+    ;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Video-membership",
+    "tag": "section",
+    "class": "mh-video-section",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title",
+        "default": "Video"
+      }, {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p></p>"
+      }, {
+        "type": "html",
+        "id": "video_iframe",
+        "label": "Custom Video iframe"
+      }, {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Section background"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Video RG membership"
+      }
+    ]
+  }
+{% endschema %}

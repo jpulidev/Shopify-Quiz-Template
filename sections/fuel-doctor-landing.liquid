@@ -1,0 +1,1465 @@
+{% if page.handle == 'med'%}
+  <style>
+    .button-try-it {
+      display: none;
+    }
+    .menu-links-left {
+      display: none;
+    }
+    .gradient {
+      background: #C1DEBA;
+    }
+    .lg-show {
+      display: block;
+      text-align: right;
+    }
+    @media(min-width:1240px) and (max-width:1445px) {
+      .page-width {
+        max-width: 1203px;
+      }
+    }
+  </style>
+{% endif %}
+
+<style>
+
+  #section-score {
+    background: #FDF6ED;
+  }
+  #section-question-accordion {
+    background: #FDF6ED;
+  }
+  .section-slider-doctors {
+    padding-top: 3%;
+    padding-bottom:7%;
+        background: #FBF3EB;
+    position: relative;
+  }
+  .container-slider-doctors {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .wave-title {
+    max-width: 500px;
+  }
+  .bottles-supplement-img {
+    position: relative;
+    left: -62px;
+    top: -16px;
+  }
+  @media(min-width:1000px) {
+    #bottles-images-desktop {
+      display: grid;
+      justify-content: right;
+      align-items: center;
+    }
+  }
+  .ingredients-one {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .conteiner-text-one {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 82px;
+  }
+  .formulation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+  }
+  .ingredient-box {
+    background: #fff;
+    padding: 30px 34px;
+  }
+  .am-svg,
+  .pm-svg {
+    margin-bottom: 30px;
+    margin-top: 45px;
+  }
+  .conteiner-text-one > p {
+    width: 80%;
+  }
+  .ingredient-name-mg-container,
+  .description-container {
+    display: grid;
+    grid-template-columns: 82% 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ingredient-name-mg-container > div class="title-land-one" style='color:#fff;' {
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0;
+  }
+  .description-container > p {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: var(--font-banana-grotesk-normal-family);
+    color: #555553;
+  }
+  .ingredients-list-check {
+    padding-top: 10px;
+    padding-bottom: 19px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  .question-title {
+    font-size: 28px;
+    line-height: 40px;
+    font-family: 'Banana Grotesk Regular';
+  }
+  .question-headline {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    justify-content: center;
+    align-items: center;
+  }
+  .question-one {
+    padding-top: 49px;
+    padding-bottom: 49px;
+    border-top: 1px solid #D8D8D8;
+  }
+  .question-svg {
+    text-align: right;
+  }
+  .questions-description {
+    padding-top: 50px;
+    max-width: 95%;
+    font-size: 16px;
+    line-height: 30px;
+  }
+  .question-collapsed {
+    position: relative;
+    z-index: -1;
+    height: 0;
+    margin-top: -50px;
+    transition: all 1s;
+  }
+  .question-question-expanded {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    transition: all 1s;
+  }
+  .container-questions {
+    max-width: 910px;
+    margin: 0 auto;
+  }
+
+  #fuel-magnesium-glycinate {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+  #fuel-5-htp {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+  .description-container > button {
+    border: none;
+    background: no-repeat;
+    text-decoration: underline;
+    text-underline-position: under;
+    position: relative;
+    top: 10px;
+    left: -25px;
+    font-size: 16px;
+    line-height: 17px;
+  }
+
+  .supplements-all-bottles {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 120px;
+    margin-bottom: 120px;
+  }
+  .container-img-bottle > img {
+    max-width: 304px;
+    height: 330px;
+  }
+  .container-one-bottle > h2 {
+    font-size: 40px;
+    line-height: 55px;
+    max-width: 500px;
+  }
+  .learn-more-cta-bottle {
+    color: #fff;
+    background: #000;
+    display: grid;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    width: 168px;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+  }
+  .learn-more-cta-bottle:hover {
+    color: #000;
+    background: #fff;
+    border: 1px solid #000;
+  }
+  .wave-section {
+    background: #C1DEBA;
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  #quality-section {
+    padding-bottom: 153px;
+  }
+  .wave-container {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .wave-content,
+  .convenient-description,
+  .quality-description,
+  .questions-description {
+    font-family: 'Noe text';
+  }
+  .wave-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1040px;
+  }
+  .wave-title > span {
+    color: #fff;
+  }
+  .wave-content {
+    max-width: 372px;
+    margin: -31px auto 0;
+    position: relative;
+    top: 17px;
+  }
+  .wave-hand {
+    background: #fff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    position: relative;
+  }
+
+  .wave {
+    animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
+    animation-duration: 2.5s; /* Change to speed up or slow down */
+    animation-iteration-count: infinite; /* Never stop waving :) */
+    transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+    display: inline-block;
+  }
+  .quality-title {
+    margin-top: -26px;
+  }
+
+  @keyframes wave-animation {
+    0% {
+      transform: rotate(0.0deg)
+    }
+    10% {
+      transform: rotate(14.0deg)
+    } /* The following five values can be played with to make the waving more or less extreme */
+    20% {
+      transform: rotate(-8.0deg)
+    }
+    30% {
+      transform: rotate(14.0deg)
+    }
+    40% {
+      transform: rotate(-4.0deg)
+    }
+    50% {
+      transform: rotate(10.0deg)
+    }
+    60% {
+      transform: rotate(0.0deg)
+    } /* Reset for the last half to pause */
+    100% {
+      transform: rotate(0.0deg)
+    }
+  }
+  .convenient-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .convenient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1040px;
+  }
+
+  .convenient-description {
+    max-width: 362px;
+    margin-bottom: 64px;
+    position: relative;
+    top: -26px;
+  }
+  .convenient-price {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 29px;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    position: relative;
+    left: 9px;
+  }
+  .convenient-price-one > div class="title-land-one" style='color:#fff;' {
+    font-size: 28px;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  .convenient-price-two > div class="title-land-one" style='color:#fff;' {
+    font-size: 28px;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  .convenient-content {
+    text-align: center;
+    padding-top: 50px;
+  }
+  .convenient-price-btn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 13px;
+    gap: 22px;
+  }
+  .convenient-btn-amazon > button {
+    background: #fff;
+    border: none;
+    height: 60px;
+    width: 190px;
+    border-radius: 22px;
+  }
+  .convenient-btn-amazon>button:hover {
+    background: #000;
+    color: #fff;
+    border: 1px solid #ffff;
+  }
+
+  .convenient-btn-vessel > button {
+    background: #000;
+    border: none;
+    color: #fff;
+    height: 60px;
+    width: 190px;
+    border-radius: 22px;
+  }
+  .convenient-btn-vessel>button:hover {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+  .quality-description {
+    font-size: 16px;
+    max-width: 360px;
+    margin-bottom: 33px;
+    line-height: 30px;
+  }
+  .btn-quality-learn {
+    width: 168px;
+    height: 60px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    border-radius: 22px;
+  }
+  .btn-quality-learn-one {
+    width: 235px;
+    height: 60px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    border-radius: 22px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 18px;
+    position: relative;
+    top: 97px;
+    font-family: 'Banana Grotesk Medium';
+    z-index: 9999;
+  }
+
+  .grid-icons-svg {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 20px;
+    position: relative;
+    top: 23px;
+  }
+  .split-background {
+    position: absolute;
+    height: 712px;
+    background: linear-gradient(to bottom, #fdf6ed 0%,#fdf6ed 50%,#fff 50%,#fff 100%);
+    width: 100px;
+    left: 0;
+    margin-top: -119px;
+    z-index: -1;
+  }
+  .split-background-two {
+    position: absolute;
+    height: 712px;
+    background: linear-gradient(to bottom, #fff 0%,#fff 50%,#fdf6ed 50%,#fdf6ed 100%);
+    width: 100px;
+    left: 0;
+    margin-top: -119px;
+    z-index: -1;
+  }
+  .day-guarantee > h4 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .map-image-section > img {
+    width: 600px;
+    position: absolute;
+    right: 0;
+  }
+
+  .am-pm-formula {
+    max-width: 470px;
+    margin-top: 0;
+    margin-bottom: 19px;
+  }
+  .personalized-supplement {
+    width: 610px;
+    position: absolute;
+    right: 0;
+    margin-top: -370px;
+  }
+  .see-works-supplement > span {
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0;
+    position: relative;
+    top: -41px;
+  }
+  .personalized-section-supplement-two {
+    text-align: center;
+  }
+  .see-more-btn-desktop {
+    text-align: center;
+    padding-top: 32px;
+        position: relative;
+    z-index: 1;
+    background: #c2deba;
+    height: 231px;
+    margin-bottom: -133px;
+    margin-top: 15px;
+    width: 110%;
+    left: -10px;
+  }
+  .expanded_desktop {
+      top: 23px;
+      height: 370px;
+       transition: all 2s;
+    }
+    .collapsed_desktop {
+      margin-bottom: 0;
+      transition: all 2s;
+    }
+
+  @media screen and (max-width:1000px) {
+    .conteiner-text-one {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .see-more-btn-desktop {
+      display: none;
+    }
+    .formulation {
+      grid-template-columns: 1fr;
+      gap: 5px;
+    }
+    .ingredient-name-mg-container > div class="title-land-one" style='color:#fff;' {
+      font-size: 16px;
+      line-height: 17px;
+      margin: 0;
+    }
+    .bottles-supplement-img {
+      position: relative;
+      left: 0;
+    }
+    .description-container > p {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    #section-score {
+      padding-bottom: 2px;
+    }
+    #section-score > .convenient-container > .convenient-grid > .convenient-grid-one {
+      grid-row: 1;
+      margin-bottom: -104px;
+    }
+    #section-score > .convenient-container {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-top: -7px;
+    }
+    .see-works-supplement {
+      padding-left: 20px;
+    }
+    .am-svg > svg {
+      max-width: 90vw;
+    }
+    .pm-svg > svg {
+      max-width: 90vw;
+    }
+    .ingredients-one {
+      padding: 20px;
+    }
+    .description-container > button {
+      font-size: 12px;
+      line-height: 13px;
+      left: 0;
+    }
+    .supplements-all-bottles {
+      grid-template-columns: 1fr;
+      margin-top: 60px;
+      text-align: center;
+    }
+    .container-img-bottle > img {
+      display: none;
+    }
+    .container-one-bottle > img {
+      display: block !important;
+      max-width: 250px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 25px;
+    }
+    .learn-more-cta-bottle {
+      margin: 0 auto;
+    }
+    .container-one-bottle > h2 {
+      text-align: left;
+      padding-left: 10px;
+      font-size: 18px;
+      line-height: 27px;
+      max-width: 280px;
+    }
+    .ingredients-list-check {
+      padding-top: 10px;
+      padding-bottom: 8px;
+      margin-bottom: 9px;
+    }
+    #supplement-bottle-section > .wave-container {
+      margin-top: -52px;
+    }
+
+    .wave-section {
+      background: #C1DEBA;
+      margin-left: 0;
+      padding: 30px;
+    }
+    .wave-one {
+      margin-bottom: 108px;
+    }
+    .wave-grid {
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+    .wave-hand {
+      margin: 0 auto;
+    }
+    .wave-title {
+      max-width: 270px;
+    }
+    .wave-content {
+      max-width: 372px;
+      margin: 0;
+      padding-top: 0;
+      font-size: 16px;
+      line-height: 30px;
+      position: relative;
+      top: 17px;
+    }
+    .supplements-all-bottles {
+      margin-bottom: 40px;
+    }
+    .convenient-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    #hand-conteiner {
+      padding-bottom: 0;
+    }
+    .convenient-container {
+      padding-top: 20px;
+      padding-bottom: 65px;
+      margin: 30px;
+    }
+
+    .convenient-btn-amazon > button {
+      height: 56px;
+      width: 123px;
+    }
+    .convenient-btn-vessel > button {
+      height: 56px;
+      width: 123px;
+    }
+    .convenient-description {
+      max-width: 322px;
+      margin-bottom: 0;
+      position: relative;
+      top: 0;
+      font-size: 16px;
+      line-height: 30px;
+    }
+    .description-section-two {
+      max-width: 154px;
+    }
+
+    .day-guarantee {
+      display: none;
+    }
+    .convenient-content > #personalized-supplement-hand {
+      max-width: 216px;
+      margin-top: -336px;
+    }
+    .convenient-price-one > div class="title-land-one" style='color:#fff;' {
+      font-size: 20px;
+      margin: 0;
+      padding-bottom: 4px;
+    }
+    .convenient-price {
+      padding-top: 10px;
+      padding-bottom: 20px;
+    }
+    .day-guarantee-mobile {
+      display: block !important;
+      display: block !important;
+      max-width: 250px;
+      margin: 0 auto;
+      position: relative;
+      top: 40px;
+    }
+    .btn-quality-learn,
+    .grid-icons-svg {
+      display: none !important;
+    }
+    .wave-title {
+      padding-top: 40px;
+    }
+    .mobile-grid-icons {
+      display: block !important;
+    }
+    .fda-svg {
+      position: relative;
+      top: -23px;
+      left: 36px;
+          max-width: 250px;
+    }
+    .mobile-grid-icons {
+      text-align: center;
+    }
+    .split-background {
+      display: none;
+    }
+    .map-image-section {
+      display: none;
+    }
+    .map-second-text-section > img {
+      display: block !important;
+    }
+    .map-second-text-section {
+      display: block !important;
+      margin-top: 40px;
+    }
+    .split-background-two {
+      display: none;
+    }
+    .wave-grid-two > img {
+      display: none;
+    }
+    .am-pm-formula-img {
+      display: block !important;
+      position: absolute;
+      right: 0;
+      width: 138px;
+      margin-top: -334px;
+    }
+    .mobile-formula-description {
+      max-width: 160px;
+      padding-top: 22px;
+    }
+    .btn-quality-learn-one {
+      top: 57px;
+      margin: 0 auto;
+    }
+    #quality-take-quiz {
+      display: none;
+    }
+    .see-more-btn > svg {
+      background: #c2deba;
+      height: 222px;
+      width: 100%;
+      position: relative;
+      z-index: 999;
+    }
+    .expanded {
+      margin-bottom: -213px;
+      transition: all 2s;
+      overflow: hidden;
+      height: 600px;
+    }
+    .collapsed {
+      margin-bottom: 0;
+      transition: all 1s;
+    }
+    #quality-section {
+      padding-bottom: 0;
+      margin-bottom: -7px;
+    }
+    .first-question-grid {
+      border-top: none;
+    }
+    .question-title {
+      font-size: 18px;
+      line-height: 24px;
+      max-width: 205px;
+    }
+  }
+   .landing-section-one {
+  margin-top: 120px;
+ }
+ .container-grid-one {
+      max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 650px 200px;
+    margin-bottom: 85px;
+ }
+ .title-land-one {
+      font-size: 53px;
+    line-height: 67px;
+    font-family: 'Banana Grotesk Medium';
+ }
+ .text-land-one {
+  font-size: 16px;
+    line-height: 30px;
+    margin-top: 39px;
+    max-width: 629px;
+    font-family: 'Noe Text';
+ }
+ .take-the-quiz-btn {
+  font-family: 'Banana Grotesk Regular';
+    font-size: 16px;
+    line-height: 30px;
+    text-decoration: none;
+    color: #fff;
+    background: #161514;
+    min-width: 235px;
+    display: grid;
+    max-width: 292px;
+    text-align: center;
+    align-items: center;
+    height: 60px;
+    margin-top: 47px;
+    border-radius: 25px;
+ }
+ .two-bottles-landing {
+      position: absolute;
+    margin-top: 22px;
+ }
+ .landing-section-two {
+  background: #FBF3EB;
+    padding-top: 60px;
+    text-align: center;
+    padding-bottom: 60px;
+ }
+ .title-section-two {
+      font-size: 53px;
+    line-height: 40px;
+    font-family: 'Banana Grotesk Regular';
+    margin-bottom: 40px;
+ }
+ .grid-One-section {
+      max-width: 600px;
+ }
+ .title-section-three {
+  text-align: center;
+    margin-top: 60px;
+    font-size: 53px;
+    font-family: 'Banana Grotesk Regular';
+    line-height: 67px;
+    margin-bottom: 31px;
+ }
+ .subtitle-section-three {
+
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 39px;
+    font-family: 'Noe Text';
+
+ }
+ .landing-section-four {
+      background: #fff;
+    padding-top: 80px;
+    padding-bottom: 90px;
+ }
+ .container-four-desktop {
+      max-width: 1000px;
+    margin: 0 auto;
+ }
+ .track-section {
+      background: #FBF3EB;
+    margin-top: 80px;
+    text-align: center;
+ }
+ .track-image {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 139px;
+    margin-top: -201px;
+        margin-bottom: -10px;
+ }
+
+ .how-it-work-section>a {
+  cursor: pointer;
+ }
+ .track-section-mobile>a {
+  cursor: pointer;
+ }
+ .doctors-subtitle {
+  margin-top: -26px;
+    margin-bottom: 27px;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: 'Noe text';
+ }
+
+@media (max-width:500px) {
+   .two-bottles-landing {
+    position: absolute;
+    top: 71px;
+    right:4px;
+    height: 238px;
+    object-fit: contain;
+    width: 167px;
+  }
+}
+@media (min-width:501px) and (max-width:1040px) {
+   .two-bottles-landing {
+       position: absolute;
+    margin-top: 63px;
+    top: 0;
+    right: 0;
+  }
+}
+
+ @media screen and (max-width:1040px) {
+  .benefits-section {
+    display: none;
+  }
+  .benefits-section-mobile {
+    display: block!important;
+  }
+  .container-grid-one {
+    grid-template-columns: 1fr;
+    margin-left: 32px;
+  }
+  .title-land-one {
+        font-size: 24px;
+    line-height: 34px;
+    font-family: 'Banana Grotesk Light';
+    max-width: 178px;
+  }
+  .text-land-one {
+        font-size: 13px;
+    line-height: 26px;
+    margin-top: 20px;
+    max-width: 261px;
+    font-family: 'Noe Text';
+  }
+  .multivitamins-section-mobile {
+     display: block!important;
+         margin-top: 40px;
+    margin-bottom: 26px;
+  }
+  .title-section-three, .subtitle-section-three, .multivitamins-section {
+    display:none;
+
+  }
+  .container-four-desktop,.track-section {
+    display:none;
+  }
+  .track-section-mobile {
+    display: block!important;
+  }
+  .landing-section-four {
+    padding-top: 15px;
+    display:none;
+  }
+  .doctors-subtitle {
+        margin-top: 0px;
+        margin-left: 32px;
+        font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .title-section-two {
+       margin-bottom: 19px;
+    font-size: 30px!important;
+    font-family: 'Banana Grotesk Regular';
+ }
+ }
+
+#sentence {
+overflow: hidden;
+    padding: 0px;
+    list-style: none;
+    margin: 0px;
+    text-align:left;
+    margin-top: -100px;
+    position: absolute;
+    margin-left: 392px;
+    height: 100px;
+    width:300px;
+}
+
+#adjList {
+	overflow: visible !important;
+	text-align: left;
+	display: inline;
+	position: relative;
+	height: 70px;
+}
+
+.slide-in {
+  color:#fff!important;
+  
+}
+
+.adj {
+	white-space: nowrap;
+	list-style: none;
+	position: absolute;
+	line-height: .3em;
+	transform: translateY(60px);
+  color:transparent
+}
+
+
+
+$speed: 5.9s;
+
+.slide-in {
+	transform: translateY(0);
+	transition: $speed;
+}
+
+.slide-out {
+
+	transition: $speed;
+  overflow-y: hidden;
+	max-height: 500px; /* approximate max height */
+
+	transition-property: all;
+	transition-duration: .9s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	color: white;
+	padding: 10px 5px;
+	background: none;
+	font-weight: normal;
+	font-size: 1em;
+	border-bottom: 2px solid white;
+	margin-right: 30px;
+	
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+.overflow {
+	overflow: visible !important;
+	border: 1px solid red;
+}
+
+.border {
+	border: 1px soild red;
+}
+
+@media (min-width:1000px) {
+  #slider-landing-text {
+    position: absolute;
+    margin-top: -68px;
+    margin-left: 427px;
+
+  }
+}
+
+@media (max-width:1040px) {
+  #sentence {
+    margin-top: -79px!important;
+    position: absolute!important;
+    margin-left: 66px!important;
+  }
+}
+
+ @media (max-width:1000px) {
+    #quality-mobile, .doctors-heading {
+          font-family: "Banana Grotesk Regular"!important;
+    line-height: 45px!important;
+    font-size: 30px!important;
+    }
+    .doctors-heading {
+      margin-bottom: 14px;
+    }
+    .question-svg>svg {
+      width: 60px;
+    }
+    #slider-landing-text {
+    margin-top: -35px;
+    margin-left: 105px;
+    width: 200px;
+  }
+  }
+
+@media (min-width:1000px) {
+  .multivitamins-section {
+    margin-bottom: -112px;
+  }
+}
+
+.get-started-today {
+  display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.get-started-container {
+  background: #fff;
+    max-width: 888px;
+    margin: 0 auto;
+}
+.get-started-container {
+      background: #ffffffc4;
+    max-width: 888px;
+    margin: 0 auto;
+    border-radius: 24px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.title-get-started {
+  font-size: 53px;
+    font-family: "Banana Grotesk Regular";
+    line-height: 67px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.description-get-started {
+      text-align: center;
+    font-family: 'Noe Text Regular';
+    font-size: 16px;
+    max-width: 685px;
+    margin: 0 auto;
+}
+.grid-conteiner-get-started {
+    margin-left: 75px;
+    margin-right: 75px;
+    margin-bottom: 57px;
+}
+.cta-create-account {
+      display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.discount-get-started {
+      display: grid;
+    justify-content: end;
+    margin-top: -37px;
+    margin-bottom: -19px;
+}
+
+@media (max-width:1000px) {
+  .grid-conteiner-get-started {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+  .get-started-section {
+    margin-bottom: -164px;
+    height: 600px;
+  }
+  .title-get-started {
+    font-family: "Banana Grotesk Regular"!important;
+    line-height: 45px!important;
+    font-size: 30px!important;
+  }
+  .get-started-today {
+        margin-left: 18px;
+        margin-right: 18px;
+  }
+  .discount-get-started {
+    margin-top: -82px;
+    margin-bottom: 4px;
+  }
+  .get-started-container {
+    padding: 7%;
+  }
+}
+@media (min-width:1000px){
+#MainContent {
+  margin-top: 85px!important;
+}
+.give-section > img {
+  top: 188px!important;
+}
+}
+@media (max-width:999px) {
+  #MainContent {
+ margin-top: 155px!important;
+}
+}
+</style>
+
+<div class="landing-section-one">
+  <div class="container-one">
+    <div class="container-grid-one">
+      <div class="grid-One-section">
+        <div class="title-land-one">Convenient, affordable, precisely personalized <span style="color:#fff;">supplement program</span>
+        </div>
+       <div class="text-land-one">Give your patients the best supplement experience with all the ingredients at the perfect dosage in one capsule, no pill organizers or buying individual ingredients.</div>
+      <a href="https://forms.gle/6aAYTFo2dBh4kLWbA" class="take-the-quiz-btn">Create Free Account</a>
+      </div>
+          <div class="grid-Two-section">
+      <img class="two-bottles-landing"  src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_545.png?v=1669136778"  width="428" height="454" />
+    </div>
+    </div>
+  </div>
+</div>
+<div class="landing-section-two">
+  <div class="container-two-desktop">
+    <div class="title-section-two">Benefits</div>
+    <div class="benefits-section">
+      <img class="benefits-landing"  src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_535_1.png?v=1670164628"  width="1032" height="135" />
+    </div>
+     <div class="benefits-section-mobile" style="display:none;text-align:center;">
+      <img class="benefits-landing-mobile"  src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_536_1.png?v=1670164766"  width="300" height="377" />
+    </div>
+  </div>
+</div>
+<div class="landing-section-three">
+  <div class="container-three-desktop">
+    <div class="title-section-three" style="text-align:center;">One pill to replace them all</div>
+    <div class="subtitle-section-three" style="text-align:center;margin-bottom: -93px;">Things just got personal. Say goodbye to pill organizers, and multivitamins.<br> This is the most convenient way to fuel your body and mind.</div>
+    <div class="multivitamins-section">
+      <img class="multivitamins-landing"  src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Mask_group_10.png?v=1670379858"  width="100%" height="100%" style="padding-left:4%;" />
+    </div>
+     <div class="multivitamins-section-mobile" style="display:none;text-align:center;">
+      <img class="multivitamins-landing-mobile"  src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_557_1.png?v=1670165755"  width="100%" height="100%" />
+    </div>
+  </div>
+</div>
+<div class="landing-section-four">
+  <div class="container-four-desktop"> 
+   <div class="title-section-three" style="text-align:center;margin-top: 0px;">How it works</div>
+    <div class="how-it-work-section">
+      <a href="https://forms.gle/6aAYTFo2dBh4kLWbA">
+         <img class="how-image"  src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Frame_1.png?v=1670380409"  width="100%" height="100%" />
+      </a>
+    </div>
+  </div>
+  
+</div>
+
+<section class="wave-section" id="quality-section">
+  <div class="split-background"></div>
+  <div class="wave-container">
+    <div class="wave-grid" style="align-items: baseline;">
+      <div class="wave-grid-one">
+        <h1 class="wave-title quality-title" id="quality-mobile" style="font-family: 'Banana Grotesk Regular';">
+          Quality without compromise
+        </h1>
+        <p class="quality-description">
+          Vessel’s team of doctors and nutritionists source the highest quality ingredients so you can meet your goals and feel your best.
+        </p>
+        <a href="https://forms.gle/6aAYTFo2dBh4kLWbA" class="btn-quality-learn-one" id="quality-take-quiz" style="top:0px;margin-top: 70px;">Create Free Account</a>
+      </div>
+      <div class="wave-grid-two">
+        <div class="wave-content" style="max-width: 100%;
+                                                                                                                margin: 0;">
+          <div class="fda-svg" style="margin-top: 23px;">
+            {% render 'fda-svg' %}
+          </div>
+          <div class="grid-icons-svg expanded_desktop" id="expand-contract-desktop">
+            <div class="vegan-svg">
+              {%render 'vegan-svg'%}
+            </div>
+            <div class="vegetarian-svg">
+              {%render 'vegan-two-svg'%}
+            </div>
+            <div class="whole-svg">
+              {%render 'whole-svg'%}
+            </div>
+            <div class="gluten-svg">
+              {%render 'gluten-svg'%}
+            </div>
+             <div class="chelated-svg">
+              {%render 'chelated-svg'%}
+            </div>
+             <div class="methylated-svg">
+              {%render 'methylated-svg'%}
+            </div>
+             <div class="biovailable-svg" >
+              {%render 'biovailable-svg'%}
+            </div>
+            <div class="non-flush-svg" >
+              {%render 'non-flush-svg'%}
+            </div>   
+            <div class="soyfree-svg">
+              {%render 'soyfree-svg'%}
+            </div>
+            <div class="natural-svg">
+              {%render 'natural-svg'%}
+            </div>
+            <div class="trans-sourced-svg" style="    grid-column: span 2;
+    text-align: center;">
+              {%render 'trans-sourced-svg'%}
+            </div>
+           
+          </div>
+          <div class="see-more-btn-desktop" onclick="expandContractDesktop()">
+            <div class="expanded-icons"></div>  
+            {% render 'see-more-svg'%}
+            {% render 'see-less-svg'%}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-grid-icons" style="display:none;">
+        <div class="expanded-icons expanded" id="expand-contract">
+          {% render 'mobile-grid-icons'%}
+        </div>
+
+        <div class="see-more-btn" onclick="expandContract()">
+          {% render 'see-more-svg'%}
+          {% render 'see-less-svg'%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section class="section-slider-doctors">
+  <div class="container-slider-doctors">
+    <div class="convenient-title">
+      <h1 class="doctors-heading" style="font-family: 'Banana Grotesk Regular';">Build by doctors</h1>
+      <p class="doctors-subtitle">for their patients and families</p>
+    </div>
+    {% include 'doctor-slider' %}
+  </div>
+  </div>
+</section>
+
+<div class="get-started-section" style="background: url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_550.png?v=1670383256);
+    background-size: cover;
+    background-repeat: no-repeat;height:600px;">
+  <div class="get-started-today">
+    <div class="get-started-container">
+      <div class="grid-conteiner-get-started">
+        <div class="discount-get-started">
+          <svg width="133" height="133" viewBox="0 0 133 133" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="66.5" cy="66.5" r="66.5" fill="#C5DBBB"/>
+        <path d="M39.5927 77.6C46.4327 77.6 50.5127 73.92 50.5127 68.48C50.5127 63.4 47.1127 59.84 41.4727 59.84C39.1927 59.84 37.2727 60.6 35.8727 61.44L36.1127 52.88C39.8327 52.88 44.1927 52.96 45.9527 52.96C47.7127 52.96 48.4327 52.72 48.6327 50.68L49.0327 46.48H48.5127L47.3927 48.2C46.7527 49.08 46.3127 49.12 44.5127 49.12C42.7127 49.12 38.6327 49.16 34.1927 49.04L33.8727 63.6H34.3527C35.5927 62.68 37.3127 62.12 39.1127 62.12C43.5527 62.12 45.8327 64.84 45.8327 68.52C45.8327 73.12 42.9527 75.96 39.4727 75.96C38.9527 75.96 38.3527 76 37.7527 75.88C37.3127 75.76 37.2327 75.68 37.0727 75.36L34.2727 69.68H33.7927L31.9927 76.32C34.2327 77.24 36.8727 77.6 39.5927 77.6ZM65.1533 49.88C68.5933 49.88 70.9933 53.6 70.9933 63.04C70.9933 72.36 68.5933 75.96 65.1533 75.96C61.7133 75.96 59.3133 72.4 59.3133 62.96C59.3133 53.56 61.7133 49.88 65.1533 49.88ZM65.1533 48.28C59.1133 48.28 54.5133 53.32 54.5133 62.96C54.5133 73 59.1133 77.6 65.1533 77.6C71.5533 77.6 75.8333 72.96 75.8333 63.04C75.8333 53 71.1933 48.28 65.1533 48.28ZM101.766 63.68C103.366 63.68 104.286 65.56 104.286 69.92C104.286 74.24 103.366 76 101.766 76C100.166 76 99.2461 74.2 99.2461 69.88C99.2461 65.56 100.166 63.68 101.766 63.68ZM101.766 62.4C98.0861 62.4 95.5661 64.92 95.5661 69.92C95.5661 75 98.1261 77.32 101.766 77.32C105.566 77.32 107.966 75.04 107.966 69.92C107.966 64.8 105.446 62.4 101.766 62.4ZM86.0061 49.84C87.6061 49.84 88.5261 51.72 88.5261 56.08C88.5261 60.4 87.6061 62.16 86.0061 62.16C84.4061 62.16 83.4861 60.4 83.4861 56.04C83.4861 51.72 84.4061 49.84 86.0061 49.84ZM86.0061 48.56C82.3261 48.56 79.8061 51.08 79.8061 56.08C79.8061 61.16 82.3661 63.48 86.0061 63.48C89.8061 63.48 92.2061 61.2 92.2061 56.08C92.2061 50.96 89.6861 48.56 86.0061 48.56ZM103.886 49.24L102.406 48.28L84.4461 76.6L85.9661 77.6L103.886 49.24Z" fill="#161514"/>
+        <path d="M34.7019 36V24.8H41.5339V26.176H36.2219V29.456H40.4459V30.832H36.2219V34.624H41.6779V36H34.7019ZM45.0813 36.16C44.5959 36.16 44.1719 36.0613 43.8093 35.864C43.4466 35.6667 43.1639 35.3973 42.9613 35.056C42.7639 34.7147 42.6653 34.3253 42.6653 33.888C42.6653 33.4453 42.7613 33.0667 42.9533 32.752C43.1506 32.432 43.4119 32.168 43.7373 31.96C44.0679 31.7467 44.4359 31.5787 44.8413 31.456C45.2466 31.328 45.6653 31.2373 46.0973 31.184C46.5346 31.1253 46.9533 31.0933 47.3533 31.088C47.3533 30.3413 47.2066 29.8533 46.9133 29.624C46.6199 29.3947 46.1959 29.28 45.6413 29.28C45.3479 29.28 45.0333 29.3253 44.6973 29.416C44.3666 29.5067 43.9933 29.696 43.5773 29.984L43.3693 28.816C43.6839 28.576 44.0759 28.3813 44.5453 28.232C45.0146 28.0773 45.5079 28 46.0253 28C46.6866 28 47.2199 28.1173 47.6253 28.352C48.0306 28.5813 48.3266 28.9707 48.5133 29.52C48.6999 30.0693 48.7933 30.816 48.7933 31.76V33.36C48.7933 33.7333 48.8093 34.0427 48.8413 34.288C48.8786 34.528 48.9586 34.7093 49.0813 34.832C49.2093 34.9493 49.4119 35.008 49.6893 35.008H49.8333L49.6093 36.16H49.4973C49.0333 36.16 48.6733 36.1147 48.4173 36.024C48.1666 35.9333 47.9746 35.8027 47.8413 35.632C47.7079 35.4613 47.5879 35.2533 47.4813 35.008C47.1879 35.3493 46.8413 35.6267 46.4413 35.84C46.0413 36.0533 45.5879 36.16 45.0813 36.16ZM45.3533 35.008C45.7373 35.008 46.1079 34.912 46.4653 34.72C46.8279 34.528 47.1239 34.272 47.3533 33.952V32.08C46.5906 32.1067 45.9719 32.1813 45.4973 32.304C45.0279 32.4267 44.6839 32.6107 44.4653 32.856C44.2466 33.1013 44.1373 33.4187 44.1373 33.808C44.1373 34.2293 44.2493 34.536 44.4733 34.728C44.7026 34.9147 44.9959 35.008 45.3533 35.008ZM50.9448 36V28.16H52.1288L52.3048 29.456C52.7048 28.96 53.0861 28.5947 53.4488 28.36C53.8168 28.12 54.2088 28 54.6248 28C54.7581 28 54.8808 28.016 54.9928 28.048L54.8488 29.632C54.7794 29.616 54.7048 29.6053 54.6248 29.6C54.5501 29.5893 54.4648 29.584 54.3688 29.584C53.9528 29.584 53.5688 29.6773 53.2168 29.864C52.8701 30.0453 52.6248 30.2453 52.4808 30.464V36H50.9448ZM56.0073 36V28.16H57.1273L57.4153 29.664L56.8553 29.424C57.3833 28.8373 57.8979 28.4533 58.3993 28.272C58.9059 28.0907 59.3993 28 59.8793 28C61.0259 28 61.8446 28.3307 62.3353 28.992C62.8313 29.6533 63.0793 30.5493 63.0793 31.68V36H61.6393V31.68C61.6393 30.848 61.4846 30.24 61.1753 29.856C60.8659 29.472 60.3379 29.28 59.5913 29.28C59.0633 29.28 58.5779 29.3973 58.1353 29.632C57.6979 29.8613 57.4099 30.2293 57.2713 30.736L57.4473 29.856V36H56.0073ZM71.3545 36.16C70.7412 36.16 70.2185 36.0373 69.7865 35.792C69.3545 35.5413 69.0238 35.1627 68.7945 34.656C68.5705 34.1493 68.4585 33.504 68.4585 32.72V28.16H69.8985V32.32C69.8985 33.152 70.0398 33.7867 70.3225 34.224C70.6105 34.6613 71.0772 34.88 71.7225 34.88C72.1652 34.88 72.5758 34.7733 72.9545 34.56C73.3332 34.3467 73.5945 34.0053 73.7385 33.536L73.5305 34.32V28.16H74.9705V36H73.6905L73.4025 34.464L73.7865 34.72C73.5252 35.2053 73.2052 35.568 72.8265 35.808C72.4532 36.0427 71.9625 36.16 71.3545 36.16ZM76.9291 39.872V28.16H78.0491L78.3051 29.952L77.9051 29.664C78.2358 29.152 78.6438 28.7467 79.1291 28.448C79.6145 28.1493 80.2091 28 80.9131 28C81.6278 28 82.2411 28.1813 82.7531 28.544C83.2651 28.9067 83.6571 29.3973 83.9291 30.016C84.2011 30.6293 84.3371 31.3173 84.3371 32.08C84.3371 32.8427 84.2091 33.5333 83.9531 34.152C83.6971 34.7653 83.3158 35.2533 82.8091 35.616C82.3025 35.9787 81.6705 36.16 80.9131 36.16C80.2891 36.16 79.7238 36.032 79.2171 35.776C78.7158 35.5147 78.3531 35.1253 78.1291 34.608L78.3691 34.32V39.872H76.9291ZM80.6411 34.88C81.3398 34.88 81.8838 34.6347 82.2731 34.144C82.6678 33.648 82.8651 32.96 82.8651 32.08C82.8651 31.2 82.6678 30.5147 82.2731 30.024C81.8838 29.528 81.3398 29.28 80.6411 29.28C80.2091 29.28 79.8145 29.384 79.4571 29.592C79.1051 29.7947 78.8225 30.104 78.6091 30.52C78.3958 30.9307 78.2891 31.4507 78.2891 32.08C78.2891 32.736 78.3958 33.2693 78.6091 33.68C78.8225 34.0907 79.1051 34.3947 79.4571 34.592C79.8145 34.784 80.2091 34.88 80.6411 34.88ZM92.1331 36.16C91.6371 36.16 91.2398 36.0693 90.9411 35.888C90.6425 35.7067 90.4238 35.4747 90.2851 35.192C90.1518 34.904 90.0851 34.6027 90.0851 34.288V29.28H88.7411L88.8691 28.16H90.0851V26.224L91.5251 26.08V28.16H93.5891V29.28H91.5251V33.408C91.5251 33.9093 91.5545 34.272 91.6131 34.496C91.6718 34.72 91.8158 34.8613 92.0451 34.92C92.2798 34.9787 92.6558 35.008 93.1731 35.008H93.5411L93.4291 36.16H92.1331ZM98.1813 36.16C97.3599 36.16 96.6586 35.9787 96.0773 35.616C95.5013 35.248 95.0586 34.7573 94.7493 34.144C94.4453 33.5253 94.2933 32.8373 94.2933 32.08C94.2933 31.3227 94.4453 30.6373 94.7493 30.024C95.0586 29.4053 95.5013 28.9147 96.0773 28.552C96.6586 28.184 97.3599 28 98.1813 28C98.9973 28 99.6959 28.184 100.277 28.552C100.859 28.9147 101.301 29.4053 101.605 30.024C101.915 30.6373 102.069 31.3227 102.069 32.08C102.069 32.8373 101.915 33.5253 101.605 34.144C101.301 34.7573 100.859 35.248 100.277 35.616C99.6959 35.9787 98.9973 36.16 98.1813 36.16ZM98.1813 34.88C98.9599 34.88 99.5573 34.6347 99.9733 34.144C100.389 33.648 100.597 32.96 100.597 32.08C100.597 31.2 100.389 30.5147 99.9733 30.024C99.5573 29.528 98.9599 29.28 98.1813 29.28C97.4079 29.28 96.8106 29.528 96.3893 30.024C95.9733 30.5147 95.7653 31.2 95.7653 32.08C95.7653 32.96 95.9733 33.648 96.3893 34.144C96.8106 34.6347 97.4079 34.88 98.1813 34.88Z" fill="#161514"/>
+        <path d="M30.6854 100.16C29.8 100.16 29.056 99.9813 28.4534 99.624C27.856 99.2613 27.4027 98.776 27.0934 98.168C26.7894 97.5547 26.6374 96.8747 26.6374 96.128C26.6374 95.3493 26.784 94.648 27.0774 94.024C27.376 93.4 27.832 92.9067 28.4454 92.544C29.0587 92.1813 29.8427 92 30.7974 92C31.208 92 31.5947 92.0427 31.9574 92.128C32.3254 92.208 32.6534 92.32 32.9414 92.464L32.7174 93.728C32.424 93.5893 32.112 93.48 31.7814 93.4C31.456 93.32 31.1174 93.28 30.7654 93.28C29.9014 93.28 29.2427 93.5253 28.7894 94.016C28.336 94.5067 28.1094 95.1893 28.1094 96.064C28.1094 96.9173 28.3254 97.6027 28.7574 98.12C29.1894 98.6373 29.848 98.896 30.7334 98.896C31.096 98.896 31.4427 98.8533 31.7734 98.768C32.1094 98.6827 32.4294 98.5653 32.7334 98.416L32.9254 99.568C32.712 99.7173 32.4 99.8533 31.9894 99.976C31.5787 100.099 31.144 100.16 30.6854 100.16ZM37.6656 100.16C36.8443 100.16 36.143 99.9787 35.5616 99.616C34.9856 99.248 34.543 98.7573 34.2336 98.144C33.9296 97.5253 33.7776 96.8373 33.7776 96.08C33.7776 95.3227 33.9296 94.6373 34.2336 94.024C34.543 93.4053 34.9856 92.9147 35.5616 92.552C36.143 92.184 36.8443 92 37.6656 92C38.4816 92 39.1803 92.184 39.7616 92.552C40.343 92.9147 40.7856 93.4053 41.0896 94.024C41.399 94.6373 41.5536 95.3227 41.5536 96.08C41.5536 96.8373 41.399 97.5253 41.0896 98.144C40.7856 98.7573 40.343 99.248 39.7616 99.616C39.1803 99.9787 38.4816 100.16 37.6656 100.16ZM37.6656 98.88C38.4443 98.88 39.0416 98.6347 39.4576 98.144C39.8736 97.648 40.0816 96.96 40.0816 96.08C40.0816 95.2 39.8736 94.5147 39.4576 94.024C39.0416 93.528 38.4443 93.28 37.6656 93.28C36.8923 93.28 36.295 93.528 35.8736 94.024C35.4576 94.5147 35.2496 95.2 35.2496 96.08C35.2496 96.96 35.4576 97.648 35.8736 98.144C36.295 98.6347 36.8923 98.88 37.6656 98.88ZM43.0385 100V92.16H44.1585L44.4465 93.664L43.9025 93.408C44.3932 92.88 44.8705 92.5147 45.3345 92.312C45.7985 92.104 46.2865 92 46.7985 92C47.1825 92 47.5505 92.064 47.9025 92.192C48.2598 92.3147 48.5798 92.5333 48.8625 92.848C49.1505 93.1573 49.3798 93.5893 49.5505 94.144L49.1505 93.968C49.3852 93.36 49.7452 92.88 50.2305 92.528C50.7158 92.176 51.3692 92 52.1905 92C52.8465 92 53.3985 92.1227 53.8465 92.368C54.2945 92.608 54.6305 92.9787 54.8545 93.48C55.0838 93.976 55.1985 94.608 55.1985 95.376V100H53.7585V95.392C53.7585 94.656 53.6145 94.12 53.3265 93.784C53.0385 93.448 52.5692 93.28 51.9185 93.28C51.4598 93.28 51.0918 93.352 50.8145 93.496C50.5372 93.6347 50.3265 93.816 50.1825 94.04C50.0438 94.264 49.9505 94.5013 49.9025 94.752C49.8598 95.0027 49.8385 95.2373 49.8385 95.456V100H48.3985V95.68C48.3985 95.04 48.3212 94.5467 48.1665 94.2C48.0118 93.8533 47.7958 93.6133 47.5185 93.48C47.2412 93.3467 46.9212 93.28 46.5585 93.28C46.0305 93.28 45.5585 93.3973 45.1425 93.632C44.7265 93.8613 44.4465 94.2293 44.3025 94.736L44.4785 93.952V100H43.0385ZM57.0698 100V92.16H58.1898L58.4778 93.664L57.9338 93.408C58.4244 92.88 58.9018 92.5147 59.3658 92.312C59.8298 92.104 60.3178 92 60.8298 92C61.2138 92 61.5818 92.064 61.9338 92.192C62.2911 92.3147 62.6111 92.5333 62.8938 92.848C63.1818 93.1573 63.4111 93.5893 63.5818 94.144L63.1818 93.968C63.4164 93.36 63.7764 92.88 64.2618 92.528C64.7471 92.176 65.4004 92 66.2218 92C66.8778 92 67.4298 92.1227 67.8778 92.368C68.3258 92.608 68.6618 92.9787 68.8858 93.48C69.1151 93.976 69.2298 94.608 69.2298 95.376V100H67.7898V95.392C67.7898 94.656 67.6458 94.12 67.3578 93.784C67.0698 93.448 66.6004 93.28 65.9498 93.28C65.4911 93.28 65.1231 93.352 64.8458 93.496C64.5684 93.6347 64.3578 93.816 64.2138 94.04C64.0751 94.264 63.9818 94.5013 63.9338 94.752C63.8911 95.0027 63.8698 95.2373 63.8698 95.456V100H62.4298V95.68C62.4298 95.04 62.3524 94.5467 62.1978 94.2C62.0431 93.8533 61.8271 93.6133 61.5498 93.48C61.2724 93.3467 60.9524 93.28 60.5898 93.28C60.0618 93.28 59.5898 93.3973 59.1738 93.632C58.7578 93.8613 58.4778 94.2293 58.3338 94.736L58.5098 93.952V100H57.0698ZM71.101 100V92.16H72.541V100H71.101ZM71.101 90.4V88.8H72.541V90.4H71.101ZM76.7156 100.16C76.0223 100.16 75.4463 100.077 74.9876 99.912C74.5343 99.7467 74.2143 99.6 74.0276 99.472L74.2036 98.08C74.3743 98.2293 74.6756 98.4 75.1076 98.592C75.5396 98.784 76.0543 98.88 76.6516 98.88C77.1583 98.88 77.545 98.7947 77.8116 98.624C78.0836 98.4533 78.2196 98.2133 78.2196 97.904C78.2196 97.632 78.1316 97.4133 77.9556 97.248C77.785 97.0773 77.577 96.944 77.3316 96.848C77.0916 96.7467 76.865 96.6667 76.6516 96.608C76.2943 96.512 75.9236 96.392 75.5396 96.248C75.161 96.0987 74.841 95.8773 74.5796 95.584C74.3183 95.2907 74.1876 94.88 74.1876 94.352C74.1876 93.952 74.2836 93.5733 74.4756 93.216C74.6676 92.8533 74.9796 92.56 75.4116 92.336C75.8436 92.112 76.417 92 77.1316 92C77.6543 92 78.0783 92.056 78.4036 92.168C78.7343 92.2747 79.0196 92.3893 79.2596 92.512L79.0836 93.824C78.8543 93.632 78.5876 93.4693 78.2836 93.336C77.9796 93.2027 77.6063 93.136 77.1636 93.136C76.7156 93.136 76.3503 93.2213 76.0676 93.392C75.785 93.5573 75.6436 93.824 75.6436 94.192C75.6436 94.56 75.793 94.8213 76.0916 94.976C76.3956 95.1307 76.8543 95.3013 77.4676 95.488C77.6596 95.5413 77.881 95.6187 78.1316 95.72C78.3876 95.8213 78.6356 95.9573 78.8756 96.128C79.1156 96.2987 79.313 96.5227 79.4676 96.8C79.6276 97.072 79.7076 97.4133 79.7076 97.824C79.7076 98.1707 79.625 98.5253 79.4596 98.888C79.2943 99.2453 78.9956 99.5467 78.5636 99.792C78.1316 100.037 77.5156 100.16 76.7156 100.16ZM83.3406 100.16C82.6473 100.16 82.0713 100.077 81.6126 99.912C81.1593 99.7467 80.8393 99.6 80.6526 99.472L80.8286 98.08C80.9993 98.2293 81.3006 98.4 81.7326 98.592C82.1646 98.784 82.6793 98.88 83.2766 98.88C83.7833 98.88 84.17 98.7947 84.4366 98.624C84.7086 98.4533 84.8446 98.2133 84.8446 97.904C84.8446 97.632 84.7566 97.4133 84.5806 97.248C84.41 97.0773 84.202 96.944 83.9566 96.848C83.7166 96.7467 83.49 96.6667 83.2766 96.608C82.9193 96.512 82.5486 96.392 82.1646 96.248C81.786 96.0987 81.466 95.8773 81.2046 95.584C80.9433 95.2907 80.8126 94.88 80.8126 94.352C80.8126 93.952 80.9086 93.5733 81.1006 93.216C81.2926 92.8533 81.6046 92.56 82.0366 92.336C82.4686 92.112 83.042 92 83.7566 92C84.2793 92 84.7033 92.056 85.0286 92.168C85.3593 92.2747 85.6446 92.3893 85.8846 92.512L85.7086 93.824C85.4793 93.632 85.2126 93.4693 84.9086 93.336C84.6046 93.2027 84.2313 93.136 83.7886 93.136C83.3406 93.136 82.9753 93.2213 82.6926 93.392C82.41 93.5573 82.2686 93.824 82.2686 94.192C82.2686 94.56 82.418 94.8213 82.7166 94.976C83.0206 95.1307 83.4793 95.3013 84.0926 95.488C84.2846 95.5413 84.506 95.6187 84.7566 95.72C85.0126 95.8213 85.2606 95.9573 85.5006 96.128C85.7406 96.2987 85.938 96.5227 86.0926 96.8C86.2526 97.072 86.3326 97.4133 86.3326 97.824C86.3326 98.1707 86.25 98.5253 86.0846 98.888C85.9193 99.2453 85.6206 99.5467 85.1886 99.792C84.7566 100.037 84.1406 100.16 83.3406 100.16ZM87.7416 100V92.16H89.1816V100H87.7416ZM87.7416 90.4V88.8H89.1816V90.4H87.7416ZM94.5563 100.16C93.7349 100.16 93.0336 99.9787 92.4523 99.616C91.8763 99.248 91.4336 98.7573 91.1243 98.144C90.8203 97.5253 90.6683 96.8373 90.6683 96.08C90.6683 95.3227 90.8203 94.6373 91.1243 94.024C91.4336 93.4053 91.8763 92.9147 92.4523 92.552C93.0336 92.184 93.7349 92 94.5563 92C95.3723 92 96.0709 92.184 96.6523 92.552C97.2336 92.9147 97.6763 93.4053 97.9803 94.024C98.2896 94.6373 98.4443 95.3227 98.4443 96.08C98.4443 96.8373 98.2896 97.5253 97.9803 98.144C97.6763 98.7573 97.2336 99.248 96.6523 99.616C96.0709 99.9787 95.3723 100.16 94.5563 100.16ZM94.5563 98.88C95.3349 98.88 95.9323 98.6347 96.3483 98.144C96.7643 97.648 96.9723 96.96 96.9723 96.08C96.9723 95.2 96.7643 94.5147 96.3483 94.024C95.9323 93.528 95.3349 93.28 94.5563 93.28C93.7829 93.28 93.1856 93.528 92.7643 94.024C92.3483 94.5147 92.1403 95.2 92.1403 96.08C92.1403 96.96 92.3483 97.648 92.7643 98.144C93.1856 98.6347 93.7829 98.88 94.5563 98.88ZM99.9291 100V92.16H101.049L101.337 93.664L100.777 93.424C101.305 92.8373 101.82 92.4533 102.321 92.272C102.828 92.0907 103.321 92 103.801 92C104.948 92 105.766 92.3307 106.257 92.992C106.753 93.6533 107.001 94.5493 107.001 95.68V100H105.561V95.68C105.561 94.848 105.406 94.24 105.097 93.856C104.788 93.472 104.26 93.28 103.513 93.28C102.985 93.28 102.5 93.3973 102.057 93.632C101.62 93.8613 101.332 94.2293 101.193 94.736L101.369 93.856V100H99.9291Z" fill="#161514"/>
+        </svg>
+        
+        
+</div>
+       <div class="title-get-started">
+        Get started today
+       </div>
+       <div class="description-get-started">Sign up for free and save your patients money by getting all their supplements in one capsule, and save them the hassle of pill organizers. It’s a win-win that your patients will love.</div>
+       <div class="cta-create-account">
+         <a href="https://forms.gle/6aAYTFo2dBh4kLWbA" class="take-the-quiz-btn">Create Free Account</a>
+       </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+
+{% if customer %}
+{%else%}
+<script>
+    $('.header__icons').text('Sign In');
+    $(".header__icons").click(function(){
+    location.href='https://forms.gle/6aAYTFo2dBh4kLWbA';
+     });
+</script>
+<style>
+    .header__icons {
+        cursor: pointer;
+    }
+</style>
+{%endif%}
+
+
+<script>
+
+//$(".see-more-svg").toggle();      
+// $(".see-less-svg").toggle();
+
+let changeSignIn = document.querySelector('.header__icons');
+changeSignIn.textContent='Create Free Account';
+changeSignIn.href = "https://forms.gle/6aAYTFo2dBh4kLWbA";
+
+  $(".learn-more-cta-bottle").click(function() {
+
+    window.location = '/pages/manage-choose-membership';
+
+  });
+  $(".amazon-btn-fuel").click(function() {
+
+    window.location = '/pages/buy-amazon-fuel';
+
+  });
+  $(".vessel-btn-fuel").click(function() {
+
+    window.location = '/pages/manage-choose-membership';
+
+  });
+  function expandContract() {
+    let seeMore = document
+      .getElementById("expand-contract")
+      seeMore
+      .classList
+      .toggle('expanded')
+      seeMore
+      .classList
+      .toggle('collapsed')
+  }
+  function expandContractDesktop() {
+    let seeMore = document
+      .getElementById("expand-contract-desktop")
+      seeMore
+      .classList
+      .toggle('expanded_desktop')
+      
+      seeMore
+      .classList
+      .toggle('collapsed_desktop')
+  }
+  $(".see-more-btn-desktop").click(function(){
+     $(".see-less-svg").toggle();
+    $(".see-more-svg").toggle();
+   
+  });
+ $(".see-more-btn").click(function(){
+    $(".see-more-svg").toggle();
+    $(".see-less-svg").toggle();
+  });
+
+   //   $('.biovailable-svg').show();
+   // $('.non-flush-svg').show();
+   // $('.soyfree-svg').show();
+   // $('.natural-svg').show();
+   // $('.trans-sourced-svg').show();
+
+  function expandQuestion() {
+    let seeMore = document
+      .getElementById("question-first")
+      seeMore
+      .classList
+      .toggle('question-expanded')
+      seeMore
+      .classList
+      .toggle('question-collapsed')
+  }
+  function expandQuestionTwo() {
+    let seeMore = document
+      .getElementById("question-two")
+      seeMore
+      .classList
+      .toggle('question-expanded')
+      seeMore
+      .classList
+      .toggle('question-collapsed')
+  }
+  function expandQuestionThree() {
+    let seeMore = document
+      .getElementById("question-three")
+      seeMore
+      .classList
+      .toggle('question-expanded')
+      seeMore
+      .classList
+      .toggle('question-collapsed')
+  }
+  function expandQuestionFour() {
+    let seeMore = document
+      .getElementById("question-four")
+      seeMore
+      .classList
+      .toggle('question-expanded')
+      seeMore
+      .classList
+      .toggle('question-collapsed')
+  }
+  function expandQuestionFive() {
+    let seeMore = document
+      .getElementById("question-five")
+      seeMore
+      .classList
+      .toggle('question-expanded')
+      seeMore
+      .classList
+      .toggle('question-collapsed')
+  }
+  function expandQuestionSix() {
+    let seeMore = document
+      .getElementById("question-six")
+      seeMore
+      .classList
+      .toggle('question-expanded')
+      seeMore
+      .classList
+      .toggle('question-collapsed')
+  }
+  
+</script>
+
+{% schema %}
+  {
+    "name": "fue-landing",
+    "class": "fuel-landing",
+
+    "settings": [
+      {
+        "type": "text",
+        "id": "fuel-ingredients",
+        "placeholder": "title",
+        "default": "Your Vessel Ingredients",
+        "info": "Header title",
+        "label": "title header"
+      }
+    ]
+  }
+{% endschema %}

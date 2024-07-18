@@ -1,0 +1,179 @@
+{% assign progress_percent       = section.settings.progress_percent %}
+{% assign progress_percent_mob   = section.settings.progress_percent_mob %}
+{% assign first_progress_circle   = section.settings.first_progress_circle %}
+{% assign second_progress_circle = section.settings.second_progress_circle %}
+{% assign third_progress_circle  = section.settings.third_progress_circle %}
+{% assign title                  = section.settings.title %}
+{% assign image                  = section.settings.image %}
+{% assign image_mob              = section.settings.image_mob %}
+{% assign blocks                 = section.blocks %}
+
+<style>
+	.slide-preparing-section__content .step-header .progress-bar--preparing-section .progress-bar__line {
+		width: {{ progress_percent_mob }}% !important;
+	}
+
+	@media (min-width: 600px) {
+		.slide-preparing-section__content .step-header .progress-bar--preparing-section .progress-bar__line {
+			width: {{ progress_percent }}% !important;
+		}
+	}
+
+	{% for block in blocks %}
+		{% assign header_bg_img        = block.settings.header_bg_img %}
+		{% assign header_bg_img_mob    = block.settings.header_bg_img_mob %}
+
+		{% if header_bg_img != blank and header_bg_img_mob != blank %}
+			.slide__content .step-header.step-header--{{ block.id }} {
+				background-image: url("{{ header_bg_img_mob |  img_url: 'master' }}");
+			}
+
+			@media (min-width: 460px) {
+				.slide__content .step-header.step-header--{{ block.id }} {
+					background-image: url("{{ header_bg_img | img_url: 'master' }}");
+				}
+			}
+		{% endif %}
+	{% endfor %}
+
+	{%- for block in blocks -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-preparing-section__content .step-header__preparing-section[data-type="{{ header_title_lower }}"] {
+			display: flex !important;
+		}
+	{%- endfor -%}
+</style>
+
+<div class="slide__content slide-preparing-section__content">
+	{% for block in blocks %}
+		{% assign header_title = block.settings.header_title %}
+
+		<header class="step-header step-header__preparing-section step-header--{{ block.id }}" data-type="{{ header_title | downcase }}">
+			{%comment%}
+			<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			{%endcomment%}
+			<span class="step-header__title">{{ header_title }}</span>
+			<div class="progress-bar progress-bar--preparing-section">
+				<div class="progress-bar__line"></div>
+				<span class="progress-bar__circle {% if first_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if second_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if third_progress_circle %}active{% endif %}"></span>
+			</div>
+		</header>
+	{% endfor %}
+	<div class="step-content step-preparing-content">
+		<div class="step-preparing-content__inner">
+			{% if image != blank and image_mob != blank %}
+				<div class="step-preparing-content__img">
+					<picture>
+						<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+						<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+						<img src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+					</picture>
+				</div>
+			{% endif %}
+			{% if title != blank %}
+				<div class="step-preparing-content__title">{{ title }}</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+<div class="preparing-bar">
+	<div class="preparing-line"></div>
+</div>
+
+{% schema %}
+{
+	"name": "Step Preparing results",
+	"tag": "div",
+	"class": "swiper-slide slider__slide slider__slide-preparing",
+	"settings": [
+		{
+			"type": "header",
+			"content": "PROGRESS BAR"
+		},
+		{
+			"type": "range",
+			"id": "progress_percent",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent",
+			"default": 100
+		},
+		{
+			"type": "range",
+			"id": "progress_percent_mob",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent (mobile)",
+			"default": 100
+		},
+		{
+			"type": "checkbox",
+			"id": "first_progress_circle",
+			"label": "The first progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "second_progress_circle",
+			"label": "The second progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "third_progress_circle",
+			"label": "The third progress circle active?",
+			"default": true
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mob",
+			"label": "Image (mobile)"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "cards",
+			"name": "Header type",
+			"settings": [
+				{
+					"type": "header",
+					"content": "HEADER"
+				},
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Header title"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img",
+					"label": "Header background image"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img_mob",
+					"label": "Header background image (mobile)"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

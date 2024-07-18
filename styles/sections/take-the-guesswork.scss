@@ -1,0 +1,108 @@
+.take-section {
+    padding-top: 60px;
+   font-family: 'Banana Grotesk Medium';
+   font-size: 40px;
+   line-height: 55px;
+   text-align: center;
+   max-width: 400px;
+   margin: 0 auto; 
+}
+.take-container {
+    max-width: 1100px;
+    margin: auto;
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 371px 1fr;
+    grid-gap: 66px;
+    text-align: center;
+    align-items: baseline;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+.take-title {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    font-family: 'Banana Grotesk Medium';
+}
+.take-container-group {
+    font-size: 16px;
+    line-height: 22px;
+    font-family: 'Banana Grotesk Regular';
+    padding: 25px;
+}
+.take-column {
+    padding-bottom: 16px;
+}
+.hero-slider-text-js.slick-initialized.slick-slider{
+    position: relative;
+    max-width: 255px;
+    overflow: hidden;
+    display: inline-block;
+    top: 16px;
+}
+
+@media screen and (max-width:1000px) {
+    .take-container {
+        grid-template-columns: 1fr;
+        padding-top: 0px;
+        padding-bottom: 46px;
+        grid-gap: 0px;
+    }
+    .take-container-group {
+        margin-right: 5%;
+        padding: 0 31px;
+    }
+    .take-section {
+        font-size: 28px;
+        line-height: 41px;
+        text-align: center;
+        max-width: 285px;
+        margin: 0 auto;
+        padding-top: 46px;
+        padding-bottom: 15px;
+    }
+
+    .take-container-group {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        text-align: left;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .take-container-group>.take-title{  
+        font-family: 'Banana Grotesk Medium'!important;
+    }
+    .take-container-group>p{
+        grid-column: 2;
+        font-size: 13px;
+        font-family: 'Banana Grotesk Regular';
+        line-height: 22px;
+    }
+    .take-column{
+        background: #fff;
+        border-radius: 50px;
+    }
+    .take-title{
+        font-size: 18px!important;
+        position: relative;
+        top: 18px;
+    }
+    .take-column {
+        padding-bottom: 16px;
+        display: grid;
+        justify-content: center;
+        position: relative;
+        top: 40px;
+        left: 22px;
+        height: 60px;
+        width: 60px;
+    }
+    video::-webkit-media-controls-start-playback-button {
+        display: none !important;
+      }
+      .custom-video-controls {
+        z-index: 2147483647;
+      }
+}

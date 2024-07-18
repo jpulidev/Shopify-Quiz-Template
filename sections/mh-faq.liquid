@@ -1,0 +1,121 @@
+{{ 'mh-faq.css' | asset_url | stylesheet_tag }}
+
+<div class="mh-faq">
+    <div class="page-width responsive-page-width">
+        <div class="grid-flex grid-flex-grow">
+            {% if section.settings.title != blank or section.settings.text != blank %}
+            <div class="grid_item mh-faq-header medium-up--one-third">
+                <div class="mh-section-header">
+                    {% if section.settings.title != blank %}
+                    <h1 class="section_title">{{ section.settings.title }}</h1>
+                    {% endif %}
+        
+                    {% if section.settings.text != blank %}
+                    <div class="section_content">
+                        {{ section.settings.text }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="grid_item mh-faq-container medium-up--two-thirds">
+                {% if section.blocks.size > 0 %}
+                <div class="accordion-container" id="Accordion">
+                    {% for block in section.blocks %}
+                    <div class="dropdown">
+                        <div class="accordion">
+                            {% if block.settings.dropdown_label != blank %}
+                            <button class="accordion_label h2-title">
+                                <span>{{ block.settings.dropdown_label }}</span>
+                                <img class="expand-icon" src="{{ 'expand.png' | asset_url }}" alt="">
+                            </button>
+                            {% endif %}
+    
+                            {% if block.settings.dropdown_content != blank %}
+                            <div class="accordion_content mh-paragraph">
+                                {{ block.settings.dropdown_content }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #shopify-section-{{ section.id }} .mh-faq {
+        background-color: {{ section.settings.bg_color }};
+    }
+</style>
+
+{% schema %}
+{
+    "name": "FAQ",
+    "tag": "section",
+    "class": "mh-faq-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "FAQs"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "dropdown",
+            "name": "Dropdown",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "dropdown_label",
+                    "label": "Question",
+                    "default": "Dropdown question!"
+                },
+                {
+                    "type": "richtext",
+                    "id": "dropdown_content",
+                    "label": "Answer",
+                    "default": "<p>Add details on availability, style, or even provide a review.</p>"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Text",
+            "name": "FAQ by RG",
+            "blocks": [
+                {
+                    "type": "dropdown"
+                },
+                {
+                    "type": "dropdown"
+                },
+                {
+                    "type": "dropdown"
+                },
+                {
+                    "type": "dropdown"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

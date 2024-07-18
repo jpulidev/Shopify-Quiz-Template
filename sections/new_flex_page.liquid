@@ -1,0 +1,467 @@
+<div class="new-flex-page-container">
+<div class="page-flex-tab1">
+  <p class="flex-page-new-vessel-one">{{section.settings.top_text}}</p> 
+  <p class="flex-page-description">{{section.settings.top_text_span}}</p>
+</div>
+<div class="page-flex-tab2">
+  <div class="flex-icon-one">
+    <div class="icon-svg-flex">{% render 'flex-svg-one' %}</div>
+    <div class="icon-text-flex">
+      <div class="icon-title">{{section.settings.bottom_text}}</div>
+      <div class="icon-description">{{section.settings.bottom_text_description}}</div>
+    </div>
+  </div> 
+  <div class="flex-icon-one">
+    <div class="icon-svg-flex">{% render 'flex-svg-two' %}</div>
+    <div class="icon-text-flex">
+      <div class="icon-title">{{section.settings.bottom_text_two}}</div>
+      <div class="icon-description">{{section.settings.bottom_text_description_two}}</div>
+    </div>
+  </div> 
+  <div class="flex-icon-one">
+    <div class="icon-svg-flex">{% render 'flex-svg-last' %}</div>
+    <div class="icon-text-flex">
+      <div class="icon-title">{{section.settings.bottom_text_last}}</div>
+      <div class="icon-description">{{section.settings.bottom_text_description_last}}</div>
+    </div>
+  </div> 
+</div>
+ </div>
+ 
+ {% assign productOne = section.settings.product_selection %}
+ {% assign productTwo = section.settings.product_selection_two %}
+ 
+ 
+ <div class="flex-vessel-v2Section flex-container-block">
+    
+ <div class="flex-page-block">
+    <p class="flex-page-title-one">{{ section.settings.card_number }}
+        {% if section.settings.popular_ribbon == blank %}
+        {%else%}
+        <span class="most-popular-ribbon-flex">{{section.settings.popular_ribbon}}</span>
+        {%endif%}
+    </p>
+    <p class="flex-membership-months">
+      {{ section.settings.card_months }}
+    </p>
+    <p class="mobile-flex-title" style="display:none;">{{ section.settings.card_number }}  {{ section.settings.card_months }}</p>
+    <div class="price-flex page-flex-price">
+        {% for product in collections['Flex'].products %}
+        {% if product.handle == productOne %}
+            {% for variant in product.variants %} 
+                   {% if variant.title contains 'Flex / (Monthly Membership)' %}   
+                      <div class="price-flex-container-flex">
+                        <span class="money-span">$</span>  {{variant.price | divided_by: 100.00 | json}} <span class="month-text">/ month</span>
+                        </div>  
+                        {% if section.settings.discount_ribbon == blank %}
+                        <span class="price-discount-ribbon"></span>
+                     
+                        {%else%}
+                        <span class="price-discount-ribbon">{{section.settings.discount_ribbon}}</span>
+                        {%endif%}
+                        {% for allocation in variant.selling_plan_allocations %}
+                             {% assign selling_id = allocation.selling_plan.id  %}
+                            {% endfor %}
+                            {%endif%}  
+                      {% endfor %}   
+            {%endif%}                          
+           {% endfor %}
+    </div>  
+    <button class="add-to-cart-flex-page button flex-page-btn" data-cart="{{ section.settings.variant_id }}" data-selling="{{selling_id}}">{{ section.settings.title_buy_now }} <div class="loader-me"></div> </button> 
+    
+ </div> 
+ <div class="flex-page-block block-two">
+    <p class="flex-page-title-one">{{ section.settings.card_number_two }}
+        {% if section.settings.popular_ribbon_two == blank %}
+        {%else%}
+        <span class="most-popular-ribbon-flex">{{section.settings.popular_ribbon_two}}</span>
+        {%endif%}
+    </p>
+    <p class="flex-membership-months">
+      {{ section.settings.card_months_two }}
+    </p>
+    <p class="mobile-flex-title" style="display:none;">
+      {% if section.settings.popular_ribbon_two == blank %}
+      {%else%}
+      <span class="most-popular-ribbon-flex">{{section.settings.popular_ribbon_two}}</span>
+      {%endif%}
+      {{ section.settings.card_number_two }}  {{ section.settings.card_months_two }}</p>
+    <div class="price-flex page-flex-price">
+        {% for product in collections['Flex'].products %}
+          {% if product.handle == productTwo %}    
+                   {% for variant in product.variants %} 
+                        
+                   <div class="price-flex-container-flex" data-variant-id="{{variant.id}}" data-product-price="{{variant.price | divided_by: 100.00 | json}}">
+                         <span class="money-span">$</span> 9.95 <span class="month-text">/ month</span>
+                        </div> 
+                        <div class="message-flex">{{ section.settings.message_flex }}</div>
+                        {% if section.settings.discount_ribbon_two == blank %}
+                        
+                        {%else%}
+                        <span class="price-discount-ribbon">{{section.settings.discount_ribbon_two}}</span>
+                        {%endif%}
+                        {% for allocation in variant.selling_plan_allocations %}
+                        {% assign selling_id_two = allocation.selling_plan.id  %}
+                       {% endfor %}
+                    
+                 {% endfor %}    
+            {%endif%}                          
+           {% endfor %}
+    </div>   
+    <button class="add-to-cart-flex-page button flex-page-btn" data-cart="{{ section.settings.variant_id_two }}" data-selling="{{selling_id_two}}">{{ section.settings.title_buy_now_two }} <div class="loader-me-two"></div></button>
+       
+ </div> 
+      
+ </div>
+ 
+
+ {% for item in cart.items %}       
+          {% if item.product.handle contains 'pre-order-bloom' %}
+          <script>
+            console.log('{{item.product.title}}');
+           // $('[data-cart="41532525478074"]').text('Added to Checkout');
+           // $('[data-cart="41532525478074"]').prop( "disabled", true );
+          </script>
+           {%else%}
+          {% endif %}
+ {% endfor %}
+
+ {% for item in cart.items  %}
+          
+ {% if item.product.handle contains 'flex-12-months' %}
+ <script>
+  console.log('{{item.product.title}}');
+  //$('[data-cart="41511917748410"]').text('Added to Checkout');
+  //$('[data-cart="41511917748410"]').prop( "disabled", true );
+</script>
+    {%else%}
+    {% endif %}    
+{% endfor %}
+
+
+ {% if page.handle == 'flex'%}
+ <style>
+  body,#MainContent {
+    background: #FDF6ED!important;
+  }
+  .announcement-bar-open {
+    display: none;
+  }
+  #shopify-section-header {
+    margin-top: 0px!important;
+}
+.header-wrapper {
+  background: #FDF6ED!important;
+}
+.menu-links-left,.lg-show {
+  display: none;
+}
+.header--top-left {
+  grid-template-columns: 43% 1fr!important;
+}
+.header__heading-link {
+  grid-column: 2;
+}
+.button-try-it {
+  width: 113px;
+}
+
+@media screen and (min-width:100px) {
+  .menu-drawer-container {
+    display:flex!important;
+  }
+}
+
+.loader-me {
+  display:none;
+  border: 6px solid #f0eaea;
+  border-radius: 50%;
+  border-top: 6px solid #000000;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  position: relative;
+  left: 30px;
+}
+.loader-me-two {
+  display:none;
+  border: 6px solid #f0eaea;
+  border-radius: 50%;
+  border-top: 6px solid #000000;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  position: relative;
+  left: 30px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+ </style>
+ {%endif%}
+
+ <script>
+
+$('[data-cart="41511917748410"]').click(function(){
+
+let addedCart = document.querySelector('[data-cart="41511917748410"]');
+
+$('.loader-me-two').css('display','block');
+})
+$('[data-cart="41532525478074"]').click(function(){
+
+let addedCart = document.querySelector('[data-cart="41511917748410"]');
+
+$('.loader-me').show();
+})
+
+     $(".add-to-cart-flex-page").click(function(){
+ 
+ let variantId = $(this).data('cart'); 
+ let sellingPlan = $(this).data('selling');
+ let qty = 1;
+ console.log(variantId);
+ console.log(sellingPlan);  
+ console.log(qty);     
+
+     function addItemToCart() {
+     data = {
+          "id": variantId,
+          "quantity": qty,
+          "selling_plan": sellingPlan
+        }
+      
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/clear.js',
+        dataType: 'json'
+      });  
+
+      setTimeout(function() { 
+        jQuery.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: data,
+        dataType: 'json',
+        success: function() {
+          window.location = '/checkout';
+        }
+      });
+    }, 500);
+
+     
+      //window.location = '/checkout';
+    }
+    addItemToCart();
+    
+});
+
+let logoheader = $('.header__heading-link>img');
+logoheader[0].srcset='{{section.settings.logo-img-header | img_url: 'original'}}';
+$('.button-try-it').remove();
+//let btnHeader = $('.button-try-it');
+//btnHeader[0].href='{{section.settings.url_buy_now}}';
+
+function goToCheckout() {
+  window.location.href = "https://vesselhealth.com/checkout";
+}
+
+ </script>
+
+ {% schema %}
+ {
+     "name": "Flex-Page",
+     "settings": [
+         {
+             "type": "html",
+             "id": "top_text",
+             "label": "Top text",
+             "default": "The flexibility to test when you want"
+         },
+         {
+             "type": "html",
+             "id": "top_text_span",
+             "label": "Top text span",
+             "default": "Get full access to the app for a low monthly fee, then buy test cards when you need them."
+         },
+         {
+             "type": "richtext",
+             "id": "bottom_text",
+             "label": "Bottom text",
+             "default": "<p>Get full access</p>"
+         },
+         {
+          "type": "richtext",
+          "id": "bottom_text_description",
+          "label": "Bottom text",
+          "default": "<p>to the Vessel app</p>"
+        },
+         {
+          "type": "richtext",
+          "id": "bottom_text_two",
+          "label": "Bottom text two",
+          "default": "<p>Unlimeted chat</p>"
+         },
+         {
+          "type": "richtext",
+          "id": "bottom_text_description_two",
+          "label": "Bottom text description two",
+          "default": "<p>with your health coach</p>"
+        },
+         {
+          "type": "richtext",
+          "id": "bottom_text_last",
+          "label": "Bottom text last",
+          "default": "<p>Buy test cards</p>"
+         },
+         {
+          "type": "richtext",
+          "id": "bottom_text_description_last",
+          "label": "Bottom text description last",
+          "default": "<p>as you need them as low as $10 each plus shipping.</p>"
+         },
+          {
+            "type": "product",
+            "id": "product_selection",
+            "info": "Select Product",
+            "label": "Select Product"
+          },
+          {
+            "type": "text",
+            "id": "card_number",
+            "placeholder": "Cards",
+            "default": "1 card",
+            "info": "Title Info Card Vessel",
+            "label": "Cards Number"
+          },
+          {
+            "type": "text",
+            "id": "card_months",
+            "placeholder": "Cards",
+            "default": "Monthly Membership",
+            "info": "description Info Card Vessel",
+            "label": "Cards Number"
+          },
+          {
+            "type": "text",
+            "id": "popular_ribbon",
+            "placeholder": "Popular",
+            "info": "Most Popular",
+            "label": "Most Popular"
+          },
+          {
+            "type": "text",
+            "id": "discount_ribbon",
+            "placeholder": "Popular",
+            "info": "Save $20",
+            "label": "Save Discount"
+          },
+          {
+           "type": "text",
+           "id": "variant_id",
+           "placeholder": "variant_id",
+           "default": "41532525478074",
+           "label": "Variant Id block",
+           "info": "Variant ID input"
+          },
+          {
+            "type": "text",
+            "id": "title_buy_now",
+            "placeholder": "buy",
+            "default": "Buy Now",
+            "info": "Buy Now",
+            "label": "Buy Now"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_cards_two",
+            "label": "Product Image"
+          },
+          {
+            "type": "product",
+            "id": "product_selection_two",
+            "info": "Select Product",
+            "label": "Select Product"
+          },
+          {
+            "type": "text",
+            "id": "card_number_two",
+            "placeholder": "Cards",
+            "default": "Flex annual membership",
+            "info": "Title Info Card Vessel",
+            "label": "Cards Number"
+          },
+          {
+            "type": "text",
+            "id": "card_months_two",
+            "placeholder": "Cards",
+            "default": "Annual membership",
+            "info": "description Info Card Vessel",
+            "label": "Cards Number"
+          },
+          {
+            "type": "text",
+            "id": "popular_ribbon_two",
+            "placeholder": "Popular",
+            "info": "Most Popular",
+            "label": "Most Popular"
+          },
+          {
+            "type": "text",
+            "id": "discount_ribbon_two",
+            "placeholder": "Popular",
+            "info": "Save $20",
+            "label": "Save Discount"
+          },
+          {
+            "type": "richtext",
+            "id": "message_flex",
+            "label": "message",
+            "default": "<p>When you prepay $119.95 for the year</p>"
+           },
+          {
+           "type": "text",
+           "id": "variant_id_two",
+           "placeholder": "variant_id",
+           "default": "41532525510842",
+           "label": "Variant Id block",
+           "info": "Variant ID input"
+          },
+          {
+            "type": "text",
+            "id": "title_buy_now_two",
+            "placeholder": "buy",
+            "default": "Buy Now",
+            "info": "Buy Now",
+            "label": "Buy Now"
+          },
+          {
+            "type": "image_picker",
+            "id": "logo-img-header",
+            "label": "image"
+          },
+          {
+            "type": "url",
+            "id": "url_buy_now",
+            "label": "Buy Now btn"
+          }
+          
+     ],
+     "presets": [
+         {
+             "category": "app",
+             "name":"New Flex Page"
+         }
+     ]
+ }
+ {% endschema %}

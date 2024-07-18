@@ -1,0 +1,49 @@
+{{'vessel-health.css' | asset_url | stylesheet_tag}}
+{{'feedback.css' | asset_url | stylesheet_tag}}
+<div class="section-2 feedback wf-section">
+    <div class="container-26 feedback w-container">
+        <div class="div-block-166">
+            <h1 class="heading feedback">We</h1>
+            <img src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5f46c1b73f1d4cea373f60f5_heart-feedback.png" loading="lazy" width="40" alt="" class="image-41">
+            <h1 class="heading feedback">feedback</h1>
+        </div>
+        <p class="paragraph feedback">{{section.settings.text}}</p>
+        <p class="paragraph feedback mobile">{{section.settings.mobile_text}}</p>
+        <img src="{{section.settings.image | img_url: 'original'}}" loading="lazy" class="image-40">
+        <img src="{{section.settings.mobile_image | img_url: 'original'}}" loading="lazy" class="image-40 mobile">
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Feedback Header",
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "text",
+            "id": "mobile_text",
+            "label": "Mobile Text"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Feedback",
+            "name":"Feedback header"
+        }
+    ]
+}
+{% endschema %}

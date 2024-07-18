@@ -1,0 +1,108 @@
+<style>
+  .rg-review-wrap{
+    padding-bottom: 7rem;
+  }
+  .review-content{
+    background: #fff;
+    padding: 2% 6%;
+    margin-bottom: 5rem;
+  }
+  .quote-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .quote{
+    padding-left: 80px;
+  }
+</style>
+
+
+<div class="rg-review-wrap color-scheme-accent-2 color-accent-2 gradient">
+  <div class="page-width">
+    
+    <div class="grid grid--1-col grid--2-col" style="    align-items: center;">
+      <div class="grid__item">
+        <h2 class="h1">{{ section.settings.title }}</h2>
+      </div>
+      <div class="grid__item">
+        <p>{{ section.settings.text }}</p>
+      </div>
+    </div>
+
+
+    <div class="rg-review-content">
+
+      {% for block in section.blocks %}
+        
+        <div class="review-content review-content-{{ forloop.index }}" {%- if forloop.index > 5 -%} style="display: none" {%- endif -%}>
+          <div class="quote position-relative">
+            <div class="quote-img">
+              <img width="34" src="{{ 'quote.png' | asset_url }}" alt="">
+            </div>
+            <p>{{ block.settings.text }}</p>
+            <h4 class="h2" style="margin-bottom: 0">{{ block.settings.name }}</h4>
+            <p>{{ block.settings.position }}</p>
+          </div>
+        </div>
+      {% endfor %}
+
+
+      <div class="center">
+        <a href="#" class="show-review-js button button--primary">See more Reviews</a>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "Review",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Does Vessel really work?"
+    },
+    {
+      "id": "text",
+      "type": "text",
+      "label": "Text",
+      "default": "We'll let our members take it from here."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Add review",
+      "settings": [
+        {
+          "id": "text",
+          "type": "textarea",
+       		"label": "Text",
+       		"default": "I started using Vessel last week, and I was able to change some of my eating habits, start eating some healthier foods, some fresh fruits and change my workout routine a little bit. I saw my wellness score go up. It went from a 60-something to an 82 within a week which is actually really cool … I’ve been able to see my energy go up a lot within a week as well and I’m really excited to keep using."
+        },
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Name",
+          "default": "Nicole S."
+        },
+        {
+          "id": "position",
+          "type": "text",
+          "label": "position",
+          "default": "Pittsburg, PA"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

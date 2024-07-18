@@ -1,0 +1,57 @@
+<div class="page-width">
+    <h3>FAQ</h3>
+    <div class="content">
+        {% for block in section.blocks %}
+            <div class="grid grid--1-col grid--2-col-tablet">
+                <div class="grid__item">
+                    <h2 class="mt-0">{{block.settings.title}}</h2>
+                </div>
+                <div class="grid__item">
+                    {{block.settings.text}}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<style>
+    #shopify-section-{{section.id}} {
+        background: {{section.settings.bg_color}};
+    }
+</style>
+{% schema %}
+{
+    "name": "faq section",
+    "class": "faqs-section specksection",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background color"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "faq item",
+            "type": "faq",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "faq",
+            "name":"Faq section"
+        }
+    ]
+}
+{% endschema %}

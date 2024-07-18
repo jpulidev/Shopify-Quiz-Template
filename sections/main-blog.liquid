@@ -1,0 +1,108 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+
+{%- paginate blog.articles by 6 -%}
+  <div class="page-width">
+    <div class="d-flex">
+        <div class="content">
+          {% if blog.articles.size > 0 %}
+            {% assign article = blog.articles[0] %}
+            {% if article != blank %}
+            <div class="top-article">
+              <div class="article--item">
+                <a href="{{article.url}}" class="article--link">
+                  <h4 class="pre">{{blog.title}}</h4>
+                  <h2>{{article.title}}</h2>
+                  {{article.excerpt}}
+                </a>
+                  
+                  <a href="/pages/{{article.author | handleize }}" class="author">
+                      <img src="https://assets-global.website-files.com/6100458938069cf141a3e966/617b1b3f39a7b1edcb83530b_61265c3bd4786ccd27cf5bad_vesselIMG.jpeg" loading="lazy" alt="" class="authorimg">
+                      {{article.author}}
+                  </a>
+              </div>
+            </div>
+            {% endif %}
+            
+            <div class="articles">
+              {%- for article in blog.articles -%}
+                  {% if forloop.index != 1 %}
+                    <div class="article--item">
+                      <a href="{{article.url}}" class="article--link">
+                        <h4 class="pre">{{blog.title}}</h4>
+                        <h2>{{article.title}}</h2>
+                        {{article.excerpt}}
+                      </a>
+                      <a href="/pages/{{article.author | handleize }}" class="author">
+                          <img src="https://assets-global.website-files.com/6100458938069cf141a3e966/617b1b3f39a7b1edcb83530b_61265c3bd4786ccd27cf5bad_vesselIMG.jpeg" loading="lazy" alt="" class="authorimg">
+                          {{article.author}}
+                      </a>
+                    </div>
+                  {% endif %}
+              {% endfor %}
+              {%- if paginate.pages > 1 -%}
+                {%- render 'pagination', paginate: paginate -%}
+              {%- endif -%}
+            </div>
+          {% else %}
+            <p class="alert">No items found.</p>
+          {% endif %}
+            
+        </div>
+        <div class="sidebar">
+            <div class="top-side-column">
+              {% assign link = section.settings.sidebar_link %}
+              <a href="{{link}}">
+                  <img src="{{section.settings.bg_image | img_url: 'original'}}">
+              </a>
+            </div>
+        </div>
+    </div>
+    
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "blog-content-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top side bar"
+    },
+    {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background image"
+    },
+    {
+        "type": "url",
+        "id": "sidebar_link",
+        "label": "Sidebar link"
+    },
+    {
+        "type": "checkbox",
+        "id": "related_story",
+        "label": "Related story"
+    },
+    {
+        "type": "header",
+        "content": "Bottom side bar"
+    },
+    {
+        "type": "checkbox",
+        "id": "show_bottom",
+        "label": "Show bottom sidebar"
+    },
+    {
+        "type": "article",
+        "id": "top_article",
+        "label": "Top article"
+    }
+  ]
+}
+{% endschema %}

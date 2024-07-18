@@ -1,0 +1,102 @@
+<style>
+  .four-icons-grid {
+    display: grid;
+    grid-template-columns: 1fr 98px;
+  }
+  .grid-one {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 98px;
+    padding: 60px 68px 60px 142px;
+    background: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .grid-one-container {
+    background: #fff;
+  }
+  .icons-heading {
+    font-size: 22px;
+    line-height: 28px;
+    font-family: 'Banana Grotesk Medium';
+    margin-bottom: 8px;
+  }
+  .icon-description-field {
+    font-size: 13px;
+    line-height: 20px;
+    font-family: 'Noe text';
+    max-width: 170px;
+  }
+  .learn-more-icons > a {
+    font-size: 13px;
+    line-height: 20px;
+    font-family: 'Banana Grotesk Light';
+    color: #000;
+    text-underline-offset: 4px;
+  }
+  .grid-two-bg {
+    background: linear-gradient(to top, #FDF6ED 40%, transparent 40%);
+  }
+  .icons-container {
+    max-width: 170px;
+  }
+  @media(max-width:1000px) {
+    .grid-one {
+      grid-template-columns: 1fr;
+      gap: 50px;
+      padding: 60px 13px 40px 77px;
+    }
+    .four-icons-grid {
+      grid-template-columns: 1fr 30px;
+    }
+    .grid-two-bg {
+      background: linear-gradient(to top, #FDF6ED 57%, #fff 62%, transparent 62%);
+    }
+  }
+</style>
+
+<div class="four-icons-container">
+  <div class="four-icons-grid">
+    <div class="grid-one-container">
+      <div class="grid-one">
+        <div class="icons-container">
+          <div class="icon-svg-space">{% include 'test-card-svg2' %}</div>
+          <div class="icons-heading">
+            Unlimited chat <br> with nutritionist</div>
+          <div class="icon-description-field">Get your wellness questions answered instantly.</div>
+        </div>
+        <div class="icons-container">
+          <div class="icon-svg-space">
+            <img srcset="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Icon_10.png?v=1668778923" width="60" height="60">
+          </div>
+          <div class="icons-heading">Easily Pause or <br> Cancel</div>
+          <div class="icon-description-field">Anytime with just a click.</div>
+        </div>
+        <div class="icons-container">
+          <div class="icon-svg-space">{% include 'test-card-svg3' %}</div>
+          <div class="icons-heading">30-day <br> Guarantee</div>
+          <div class="icon-description-field">Don't love it? It's on us.</div>
+        </div>
+        <div class="icons-container">
+          <div class="icon-svg-space">{% include 'test-card-svg4' %}</div>
+          <div class="icons-heading">Get Healthy, <br> Give Healthy</div>
+          <div class="icon-description-field">Every card you buy gives <br> a child nutrition.</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-two-bg"></div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "four-icons-section",
+    "class": "intros-class",
+
+    "settings": []
+  }
+{% endschema %}

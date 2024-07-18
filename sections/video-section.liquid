@@ -1,0 +1,99 @@
+<section class="video-section-container">
+  <div class="video-container-two">  
+          <div class="video-text">
+              <p class="split-title">{{section.settings.title}}</p>
+              <p class="split-description">{{section.settings.description}}</p>
+          </div>
+        <div class="video-grid-two">
+          
+          <video class="video-hp-two" autoplay muted loop playsinline style="width:100%;height:100%;">
+              <source src="{{section.settings.cta_url}}" type="video/mp4">
+         
+            </video>
+            
+      </div>
+      <div class="image-video">
+        <img 
+        class="full-video-img lazyloaded lazy2 blur-up" 
+        data-sizes="auto"
+        loading="lazy" 
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+     data-src="{{section.settings.video_image | img_url: '2600x'}}" 
+        data-mobsrc="{{section.settings.video_image | img_url: '2600x'}}">   
+      </div>
+  </div>
+</section>
+
+<style>
+.image-video {
+  text-align: center;
+  padding-top: 35px;
+}
+  @media screen and (min-width:1000px) {
+      .video-grid-two{
+       display:none;
+    }
+  }
+  @media screen and (max-width:999px) {
+      .full-video-img {
+          display:none;
+      }
+      .video-hp {
+    display:none!important;
+   }
+  }
+  @media screen and (max-width:1300px) {
+    .full-video-img {
+      max-width: 95vw;
+    }
+  }
+  @media screen and (min-width:1301px) {
+    .full-video-img {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+  }
+
+</style>
+
+{% schema %}
+{
+"name": "Video Section HP",
+"class": "video_section_hp",
+"tag": "section",
+"settings": [
+{
+  "type": "image_picker",
+  "id": "video_image",
+  "label": "Image Full Width",
+  "info": "Image Video Full width"
+},
+{
+  "type": "text",
+  "id": "title",
+  "placeholder": "title section",
+  "default": "A wellness program made just for you",
+  "label": "title",
+  "info": "Title Info"
+},
+{
+  "type": "text",
+  "id": "description",
+  "placeholder": "description",
+  "default": "Each day, we'll recommend lessons and activities based on your goals, behaviors, and wellness card results. Your personalized program is designed by doctors and nutritionists to help you feel a difference in as little as 17 days.",
+  "label": "description",
+  "info": "Description Info"
+},
+{
+  "type": "url",
+  "id": "cta_url",
+  "label": "Video Url Label"
+}
+],
+"presets": [
+  {
+    "name": "Video Section HP"
+  }
+]
+}
+{% endschema %}

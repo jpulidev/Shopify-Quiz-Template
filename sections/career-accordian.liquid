@@ -1,0 +1,82 @@
+<div id="job-openings" class="job-opening wf-section">
+    <div class="container-18 w-container">
+        <h2 class="heading">{{section.settings.title}}</h2>
+        {{section.settings.text}}
+        <div class="qs-list">
+            <div class="div-block-98">
+                {% for block in section.blocks %}
+                    <div class="div-block-97">
+                        <div data-w-id="135693d3-c8f1-0dd9-7724-01b701f24ac0" class="accordion-trigger w-clearfix">
+                            <p class="paragraph-18 number">0{{forloop.index}}</p>
+                            <h3 class="heading-46">{{block.settings.title}}<br></h3><img
+                                src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5e8e593fa9f643546f8179f4_expand.png"
+                                style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                alt="" class="expand-icon">
+                        </div>
+                        <div class="p-qs w-clearfix accordion-content">
+                            <div class="paragraph">
+                                {{block.settings.text}}
+                            </div>
+                            {% if block.settings.button_title != blank %}
+                            <a href="{{block.settings.link}}" target="_blank" class="dark-bt job w-button">{{block.settings.button_title}}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Career accordian",
+    "class": "career-accordian",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "accordian",
+            "type": "accorian",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },   
+                { 
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Text"
+                },
+                {
+                    "type": "text",
+                    "id": "button_title",
+                    "label": "Button title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+   "presets": [
+       {
+           "category": "career",
+           "name":"Career accordian"
+       }
+   ]
+}
+{% endschema %}

@@ -1,0 +1,121 @@
+{% assign bg_img     = section.settings.bg_img %}
+{% assign bg_img_mob = section.settings.bg_img_mob %}
+{% if page.handle == 'new-quiz-membership' %}
+{% assign number     = section.settings.number_V2 %}
+{% assign title      = section.settings.title_V2 %}
+{% assign text       = section.settings.text_V2 %}
+{% assign btn_text   = section.settings.btn_text_V2 %}
+{%else%}
+{% assign number     = section.settings.number %}
+{% assign title      = section.settings.title %}
+{% assign text       = section.settings.text %}
+{% assign btn_text   = section.settings.btn_text %}
+{%endif%}
+
+
+{% if bg_img != blank and bg_img_mob != blank %}
+	<style>
+		.quiz--wrapper #quiz-slider .slider__wrapper .slider__slide4 {
+			background-image: url("{{ bg_img_mob | img_url: 'master' }}");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		@media (min-width: 600px) {
+			.quiz--wrapper #quiz-slider .slider__wrapper .slider__slide4 {
+				background-image: url("{{ bg_img | img_url: 'master' }}");
+			}
+		}
+	</style>
+{% endif %}
+
+<div class="slide__content slide__content-full-w">
+	<div class="slide__content-wrapper">
+		<header class="step-header">
+			<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			{% comment %}<span class="step-header__title">Sleep</span>{% endcomment %}
+		</header>
+		<div class="step-content step4-intro-content">
+			{% if number != blank %}
+				<span class="step4-intro-content__number">{{ number }}</span>
+			{% endif %}
+			{% if title != blank %}
+				<h3 class="step4-intro-content__title">{{ title }}</h3>
+			{% endif %}
+			{% if text != blank %}
+				<p class="step4-intro-content__text">{{ text }}</p>
+			{% endif %}
+			<div class="step-btn">
+				<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+			</div>
+		</div>
+	</div>
+	<div class="step-btn step4-btn">
+		<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+	</div>
+</div>
+{% schema %}
+{
+	"name": "Step 4",
+	"tag": "div",
+	"class": "swiper-slide slider__slide slider__slide4",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "bg_img",
+			"label": "Background image"
+		},
+		{
+			"type": "image_picker",
+			"id": "bg_img_mob",
+			"label": "Mobile background image"
+		},
+		{
+			"type": "text",
+			"id": "number",
+			"label": "Number"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Next"
+		},
+		{
+			"type": "text",
+			"id": "number_V2",
+			"label": "Number V2",
+			"default": "01"
+		},
+		{
+			"type": "text",
+			"id": "title_V2",
+			"label": "Title V2",
+			"default": "Goals"
+		},
+		{
+			"type": "textarea",
+			"id": "text_V2",
+			"label": "Text V2",
+			"default": "Tell us about your wellness goals so we can create a custom program just for you."
+		},
+		{
+			"type": "text",
+			"id": "btn_text_V2",
+			"label": "Button text V2",
+			"default": "Next"
+		}
+    ]
+}
+{% endschema %}

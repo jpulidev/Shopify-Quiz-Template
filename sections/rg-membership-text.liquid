@@ -1,0 +1,89 @@
+{{ 'rg-membership.css' | asset_url | stylesheet_tag }}
+
+<div class="membership-section-bottom wf-section">
+  <div class="container-28">
+    <div class="page-width responsive-page-width">
+
+      <div class="customer-testimonials-wrapper" style="padding-top: 100px;">
+        <div class="grid-flex grid-flex-grow medium-up--one-half">
+          <div class="column-29 grid_item">
+            <h1 class="heading-90">{{section.settings.title}}</h1>
+            {% for block in section.blocks %}
+              {% if forloop.index == 1 %}
+                <div class="testimonial-wrap paragraph"><img
+                  src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5e8e14cb5d4b89179295a5cf_quote.png"
+                  loading="lazy" alt="" class="testiquote">
+                  {{block.settings.text}}
+                  <h3 class="testimonial-name">{{block.settings.name}}</h3>
+                  <div>{{block.settings.location}}</div>
+                </div>
+              {% endif %}
+            {% endfor %}
+            
+          </div>
+          <div class="column-30 grid_item">
+            {% for block in section.blocks %}
+              {% if forloop.index != 1 %}
+                <div class="testimonial-wrap paragraph"><img
+                  src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5e8e14cb5d4b89179295a5cf_quote.png"
+                  loading="lazy" alt="" class="testiquote">
+                  {{block.settings.text}}
+                  <h3 class="testimonial-name">{{block.settings.name}}</h3>
+                  <div>{{block.settings.location}}</div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flex-grow-1 {
+      flex-grow: 1;
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Membership text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Customer<br>Testimonials<br>"
+    }
+  ],
+  "blocks": [
+      {
+        "name": "text",
+        "type": "text",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+          },
+          {
+            "type": "text",
+            "id": "location",
+            "label": "Location"
+          }
+        ]
+      }
+  ]
+}
+{% endschema %}

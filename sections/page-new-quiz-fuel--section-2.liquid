@@ -1,0 +1,111 @@
+{% assign image     = section.settings.image %}
+{% assign image_mob = section.settings.image_mob %}
+{% assign title     = section.settings.title %}
+{% assign text      = section.settings.text %}
+{% assign btn_text  = section.settings.btn_text %}
+
+<div class="slide__content">
+	<header class="step-header-fuel">
+		<a href="https://vesselhealth.com" data-prev-page class="quiz-btn-back back-home">{% render 'black-back-arrow' %}</a>
+        <a href="https://vesselhealth.com"> {% render 'logo-quiz-header' %}</a>
+       
+		{% comment %}<span class="step-header__title">Sleep</span>{% endcomment %}
+	</header>
+	<div class="step-content step1-intro-content">
+        {% if title != blank %}
+			<h3 class="step1-intro-content__title_fuel" style="text-align:left;">{{ title }}</h3>
+		{% endif %}
+		{% if text != blank %}
+			<p class="step1-intro-content__text_fuel" style="text-align:left;">{{ text }}</p>
+		{% endif %}
+		{% if image != blank and image_mob != blank %}
+			<picture>
+				<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+				<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 1200px)">
+				<img class="step1-intro-content__img_fuel" src="{{ image | img_url: '1600x' }}" alt="{{ image.alt | escape }}">
+			</picture>
+		{% endif %}
+		
+	</div>
+	<div class="step-btn step-btn--cust">
+		<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+	</div>
+</div>
+
+<style>
+    .step1-intro-content__title_fuel{
+        text-align: left;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 43px;
+    margin: 0 0 8px;
+    font-family: Banana Grotesk Medium,sans-serif;
+    font-style: normal;
+    color: #161514;
+    }
+
+    .step1-intro-content__text_fuel{
+     margin: 0;
+    font-family: Noe Text Regular,sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    color: #555553;
+    }
+
+    #quiz-slider .swiper-wrapper .slider__slide .slide__content .step-content.step1-intro-content .step1-intro-content__img_fuel {
+    display: block;
+    object-fit: contain;
+    width: 375px;
+    height: 494px;
+    margin: 0px auto -123px;
+    }
+    .step-header-fuel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin: 5%;
+    }
+
+</style>    
+
+{% schema %}
+{
+	"name": "Step 1",
+	"tag": "div",
+	"class": "swiper-slide slider__slide slider__slide--100vh",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mob",
+			"label": "Mobile image"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Get started"
+		}
+    ]
+}
+{% endschema %}

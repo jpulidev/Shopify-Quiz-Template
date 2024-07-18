@@ -1,0 +1,249 @@
+{% assign btn_text = section.settings.btn_text %}
+{% assign reviews  = section.blocks | where: 'type', 'reviews' %}
+{% assign contents = section.blocks | where: 'type', 'contents' %}
+{% assign blocks   = section.blocks %}
+
+<style>
+	{%- for block in blocks -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-reviews-section__content .step-reviews-content[data-type="{{ header_title_lower }}"] {
+			display: block !important;
+		}
+	{%- endfor -%}
+</style>
+
+<div class="slide__content slide-reviews-section__content">
+	<div class="slide-reviews-section__content-container" style="max-width: 460px; margin: 0 auto;">
+		<header class="step-header">
+			<button data-prev-page data-next-page-preparing class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+		</header>
+		{% for block in contents %}
+			{% assign header_title = block.settings.header_title %}
+			{% assign title        = block.settings.title %}
+			{% assign label        = block.settings.label %}
+			{% assign text         = block.settings.text %}
+			{% assign graph_title  = block.settings.graph_title %}
+			{% assign image        = block.settings.image %}
+			{% assign image_mob    = block.settings.image_mob %}
+			{% assign graph_text   = block.settings.graph_text %}
+
+			<div class="step-content step-reviews-content" data-type="{{ header_title | downcase }}">
+				{% if title != blank %}
+					<h3 class="step-reviews-content__title">
+						{{ title }}
+						{% if label != blank %}
+							<span class="label">{{ label }}</span>
+						{% endif %}
+					</h3>
+				{% endif %}
+				{% if text != blank %}
+					<p class="step-reviews-content__text">{{ text }}</p>
+				{% endif %}
+				<div class="step-reviews-content__graph">
+					{% if graph_title != blank %}
+						<p class="step-reviews-content__graph-title">{{ graph_title }}</p>
+					{% endif %}
+					{% if image != blank and image_mob != blank %}
+						<div class="step-reviews-content__graph-img">
+							<picture>
+								<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+								<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+								<img src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+							</picture>
+
+							{% if graph_text != blank %}
+								<p class="step-reviews-content__graph-text">{{ graph_text }}</p>
+							{% endif %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+		<div class="step-btn step-reviews-btn">
+			<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+		</div>
+	</div>
+
+	<div class="slide-reviews-section__content-slider">
+		<div class="swiper slide-reviews-section-slider">
+			<div class="swiper-wrapper slide-reviews-section-slider__wrapper">
+				{% for block in reviews %}
+					{% assign reviewer_photo   = block.settings.reviewer_photo %}
+					{% assign reviewer_name    = block.settings.reviewer_name %}
+					{% assign reviewer_info    = block.settings.reviewer_info %}
+					{% assign quote_icon       = block.settings.quote_icon %}
+					{% assign reviewer_message = block.settings.reviewer_message %}
+
+					<div class="swiper-slide slide-reviews-section-slide">
+						<div class="slide-reviews-section-slide__inner">
+							<div class="message-block">
+								<img class="quote-icon" src="{{ quote_icon | img_url: 'master' }}" alt="">
+								<p class="message">{{ reviewer_message }}</p>
+							</div>
+							<div class="reviewer-block">
+								<img class="reviewer-block__img" src="{{ reviewer_photo | img_url: 'master' }}" alt="{{ reviewer_photo.alt | escape }}">
+								<div class="reviewer-block__info">
+									<p class="name">{{ reviewer_name }}</p>
+									<p class="bio">{{ reviewer_info }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="swiper-pagination slide-reviews-section-slider__pagination"></div>
+		</div>
+
+		<div class="reviews-section-slider-btn-next">
+			<svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M2 4C3.10457 4 4 3.10457 4 2C4 0.895431 3.10457 0 2 0C0.895431 0 0 0.895431 0 2C0 3.10457 0.895431 4 2 4ZM12 10C12 11.1046 11.1046 12 10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10ZM4 18C4 19.1046 3.10457 20 2 20C0.895431 20 0 19.1046 0 18C0 16.8954 0.895431 16 2 16C3.10457 16 4 16.8954 4 18Z" fill="#161514"/>
+			</svg>
+		</div>
+		<div class="reviews-section-slider-btn-prev">
+			<svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M10 4C8.89543 4 8 3.10457 8 2C8 0.895431 8.89543 0 10 0C11.1046 0 12 0.895431 12 2C12 3.10457 11.1046 4 10 4ZM0 10C0 11.1046 0.895431 12 2 12C3.10457 12 4 11.1046 4 10C4 8.89543 3.10457 8 2 8C0.895431 8 0 8.89543 0 10ZM8 18C8 19.1046 8.89543 20 10 20C11.1046 20 12 19.1046 12 18C12 16.8954 11.1046 16 10 16C8.89543 16 8 16.8954 8 18Z" fill="#161514"/>
+			</svg>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const stepReviewSlider = new Swiper(".slide-reviews-section-slider", {
+			slidesPerView: 1,
+			spaceBetween: 20,
+			navigation: {
+				nextEl: ".reviews-section-slider-btn-next",
+				prevEl: ".reviews-section-slider-btn-prev",
+			},
+			pagination: {
+				el: ".slide-reviews-section-slider__pagination",
+				clickable: true
+			},
+			breakpoints: {
+				500: {
+					slidesPerView: 1,
+					spaceBetween: 20,
+				},
+				690: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				1050: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				}
+			}
+		});
+
+		let maxHeight = 0;
+
+		setTimeout(() => {
+			$('.slide-reviews-section-slide__inner .message-block').each(function(){
+				let thisH = $(this).height();
+				if (thisH > maxHeight) { maxHeight = thisH; }
+			});
+
+			$('.slide-reviews-section-slide__inner .message-block').height(maxHeight);
+		}, 1000)
+	})
+</script>
+
+{% schema %}
+{
+	"name": "Step Reviews (week 3)",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Continue"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "contents",
+			"name": "goal content",
+			"settings": [
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Main goal",
+					"info": "For example sleep or body or calm..."
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "label",
+					"label": "Title label",
+					"default": "3-4 weeks"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text"
+				},
+				{
+					"type": "text",
+					"id": "graph_title",
+					"label": "Graph title",
+					"default": "3 weeks"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Graph image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_mob",
+					"label": "Graph image (mobile)"
+				},
+				{
+					"type": "textarea",
+					"id": "graph_text",
+					"label": "Graph text"
+				}
+			]
+		},
+		{
+			"type": "reviews",
+			"name": "review",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "reviewer_photo",
+					"label": "Reviewer's photo"
+				},
+				{
+					"type": "text",
+					"id": "reviewer_name",
+					"label": "Reviewer's name"
+				},
+				{
+					"type": "textarea",
+					"id": "reviewer_info",
+					"label": "Reviewer's info"
+				},
+				{
+					"type": "image_picker",
+					"id": "quote_icon",
+					"label": "Quote icon"
+				},
+				{
+					"type": "textarea",
+					"id": "reviewer_message",
+					"label": "Reviewer's message"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

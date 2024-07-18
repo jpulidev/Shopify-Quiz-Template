@@ -1,0 +1,107 @@
+{% assign btn_text  = section.settings.btn_text %}
+{% assign blocks    = section.blocks %}
+
+<style>
+	{%- for block in blocks -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-guarantee-section__content .step-guarantee-content[data-type="{{ header_title_lower }}"] {
+			display: block !important;
+		}
+	{%- endfor -%}
+</style>
+
+<div class="slide__content slide-guarantee-section__content">
+	<header class="step-header">
+		<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+	</header>
+	{% for block in blocks %}
+		{% assign header_title   = block.settings.header_title %}
+		{% assign image          = block.settings.image %}
+		{% assign image_mob      = block.settings.image_mob %}
+		{% assign title          = block.settings.title %}
+		{% assign text           = block.settings.text %}
+		{% assign guarantee_list = block.settings.guarantee_list | split: '||' %}
+
+		<div class="step-content step-guarantee-content" data-type="{{ header_title | downcase }}">
+			{% if image != blank and image_mob != blank %}
+				<picture>
+					<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+					<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+					<img class="step-guarantee-content__img" src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+				</picture>
+			{% endif %}
+			{% if title != blank %}
+				<h3 class="step-guarantee-content__title">{{ title }}</h3>
+			{% endif %}
+			{% if text != blank %}
+				<p class="step-guarantee-content__text">{{ text }}</p>
+			{% endif %}
+			<ul class="step-guarantee-content__list">
+				{% for item in guarantee_list %}
+					<li class="list-item">{{ item }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endfor %}
+	<div class="step-btn">
+		<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+	</div>
+</div>
+
+
+{% schema %}
+{
+	"name": "Step Guarantee",
+	"tag": "div",
+	"class": "swiper-slide slider__slide slider__slide-guarantee",
+	"settings": [
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Next"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "goal content",
+			"settings": [
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Main goal",
+					"info": "For example sleep or body or calm..."
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_mob",
+					"label": "Image (mobile)"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text"
+				},
+				{
+					"type": "textarea",
+					"id": "guarantee_list",
+					"label": "Guarantee list",
+					"info": "Elemets of list are devided by '||'"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

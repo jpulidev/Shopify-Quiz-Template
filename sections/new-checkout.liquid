@@ -1,0 +1,894 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" crossorigin="anonymous"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    var showCardButton;
+    var shouldUserSeeToSControl = true;
+</script>
+
+<!-- Start VWO SmartCode -->
+<script src="https://dev.visualwebsiteoptimizer.com/lib/549378.js"></script>
+<!-- End VWO SmartCode -->
+
+<script>
+
+    shouldUserSeeToSControl = true;
+
+</script>
+
+<script>
+
+    showCardButton = false;
+
+    var pricesAndSubTime = {
+        once_month_monthly: {
+            price: 20,
+            subs_time: null
+        },
+        once_month_6month: {
+            price: 16,
+            subs_time: 6
+        },
+        once_month_12month: {
+            price: 14,
+            subs_time: 12
+        },
+
+        once_week_monthly: {
+            price: 50,
+            subs_time: null
+        },
+        once_week_6month: {
+            price: 40,
+            subs_time: 6,
+        },
+        once_week_12month: {
+            price: 35,
+            subs_time: 12,
+        },
+
+        once_day_monthly: {
+            price: 350,
+            subs_time: null,
+        },
+        once_day_6month: {
+            price: 280,
+            subs_time: 6,
+        },
+        once_day_12month: {
+            price: 245,
+            subs_time: 12,
+        },
+    }
+
+    $(document).ready(function () {
+        if(shouldUserSeeToSControl) {
+            $('.variable-terms').show()
+        } else {
+            $('.regular-terms').show()
+        }
+    })
+
+    function showTermsText() {
+        if(sessionStorage.getItem('6_month_terms')) {
+            $('.terms_text .six-month').show()
+        } else {
+            $('.terms_text .one-month').show()
+        }
+    }
+
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    function getFullDate() {
+        var d = new Date();
+        var n = d.toLocaleString('en-US', { timeZone: 'America/New_York' });
+        var f = new Date(n);
+        var day = f.getDate();
+        var date = f.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2})
+        var month = (f.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
+        var year = f.getFullYear();
+        var fulldate = year+'-'+month+'-'+date;
+        return { fulldate: fulldate, day: day };
+    }
+
+    if(getParameterByName('promoCode')) {
+        sessionStorage.setItem("promo", getParameterByName('promoCode'))
+    }
+
+    if(
+        (getParameterByName('product_id') && getParameterByName('variant_id'))
+    ) {
+        $(document).ready(function() {
+            var variantId = getParameterByName('variant_id');
+            var productId = getParameterByName('product_id');
+            var applied_pg = getParameterByName('pg');
+            var fulldate = getFullDate().fulldate;
+            var day = getFullDate().day;
+
+            $.ajax({
+                url: ENV.vessel_api() + 'v2/product',
+                type: 'get',
+            }).done(function(response) {
+                var products = response.products
+                var product = products.filter(function(p) { return p.shopify_variant_id === variantId && p.shopify_product_id === productId })[0]
+                if(product) {
+                    console.log(product);
+                    if(product.commitment_month == 6 || product.commitment_month == 12) {
+                        sessionStorage.setItem('6_month_terms', 'true')
+                    } else {
+                        sessionStorage.removeItem('6_month_terms')
+                    }
+                    showTermsText()
+
+                    // TODO: I dont know what is this for
+                    // if(applied_pg) {
+                    //     var activePrice = product.price.filter(function(p) { return p.price_group === parseInt(applied_pg) })[0]
+                    // } else {
+                    //     var activePrice = product.price.filter(function(p) { return p.end_date === null })[0];
+                    // }
+
+                    var activePrice = product.price.filter(function(p) { return p.end_date === null })[0];
+                    if(activePrice) {
+                        sessionStorage.setItem("productd", JSON.stringify({"fulldate":fulldate,"date":day,"price": activePrice.price, "product_id":productId, "variant_id":variantId,"facebook_id":variantId, "subs_time":product.commitment_month}));
+                        sessionStorage.setItem("productname", "wellness");
+                        window.postPurchaseObject = {
+                            "contact_id": localStorage.getItem('contactId')? parseInt(localStorage.getItem('contactId')) : null,
+                            "price_group": activePrice.price_group,
+                            "product_type": product.product_type,
+                            "product_id": product.id
+                        }
+                        sessionStorage.setItem('postPurchaseObject', JSON.stringify(window.postPurchaseObject))
+                        getFirstToken()
+                        // getCustomerId()
+                        logBaseEvents()
+                        if(ENV.wellness_cards().product_id == window.postPurchaseObject.product_id) {
+                            sessionStorage.setItem('productname', 'wellness')
+                        } else {
+                            sessionStorage.setItem('productname', 'supplement')
+                        }
+                        if(sessionStorage.getItem('paymentType')) {
+                            handlePaymentTypeSelect(sessionStorage.getItem('paymentType'))
+                        }
+
+                    } else {
+                        $('.loading').fadeOut();
+                        $('.failed span').text('Product not found!');
+                        failed();
+                    }
+                } else {
+                    $('.loading').fadeOut();
+                    $('.failed span').text('Product not found!');
+                    failed();
+                }
+            }).fail(function(response) {
+                $('.loading').fadeOut();
+                $('.failed span').text('Checkout failed');
+                failed();
+            });
+        })
+
+    } else {
+        $(document).ready(function() {
+            if(sessionStorage.getItem('postPurchaseObject')) {
+                window.postPurchaseObject = JSON.parse(sessionStorage.getItem('postPurchaseObject'))
+                window.postPurchaseObject['contact_id'] = localStorage.getItem('contactId')? parseInt(localStorage.getItem('contactId')) : null
+            }
+            showTermsText()
+
+            if(!sessionStorage.getItem("productd")) {
+                var variantId = ENV.wellness_cards().variants['once_week_6month']
+                var productId = ENV.wellness_cards().product_id
+                window.location.href = window.location.origin + window.location.pathname + '?product_id=' + productId + '&variant_id=' + variantId
+                console.log('no session storage');
+            }
+        })
+    }
+</script>
+<script>
+    window.customerToken = localStorage.getItem("token");
+    var no_shopify_user = localStorage.getItem("no_shopify_user");
+</script>
+
+<!-- main styles -->
+<link rel="stylesheet" href="{{ 'checkout.css' | asset_url }}">
+
+<div id="data-token-container"></div>
+<div class="checkout_wrap">
+    <div class="notification">
+        <div class="success">
+            <img class="exd" src="https://cdn.shopify.com/s/files/1/0304/4347/0981/files/Icon.png?v=1592573075"/>
+            <span></span>
+            <img class="close" src="https://cdn.shopify.com/s/files/1/0304/4347/0981/files/close-black.png?v=1592573462"/>
+        </div>
+        <div class="failed">
+            <img class="exd" src="https://cdn.shopify.com/s/files/1/0304/4347/0981/t/3/assets/failed.png?v=1598459554"/>
+            <span></span>
+            <img class="close" src="https://cdn.shopify.com/s/files/1/0304/4347/0981/files/close-black.png?v=1592573462"/>
+        </div>
+    </div>
+    <div class="no_product">
+        <h2>You have no items to checkout</h2>
+    </div>
+    <div class="checkout">
+        {% include 'loading' %}
+        <div class="checkout-step-container" id="checkout-step-1">
+            <div class="express-checkout-title-container section-title-container js-not-for-replacement">
+                <div class="flex-between">
+                    <h2 class="section-title express-checkout-title">
+                        <div class="d-inline-flex">
+                            <span class="step-number-margin prevent-shrink">
+                                1.
+                            </span>
+                            <span class="checkout-with-title-text">
+                                Checkout with: <span class="selected-payment-type js-for-card-button"></span>
+                            </span>
+                        </div>
+                    </h2>
+                    <div class="edit-button-container js-payment-type-selected">
+                        <div class="d-flex">
+                            <div class="reset-selected-express-method">Change</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-title-container js-for-replacement">
+                <h2 class="section-title">
+                    <div class="d-inline-flex">
+                        <span class="step-number-margin prevent-shrink">
+                            1.
+                        </span>
+                        <span>
+                            Sign in
+                        </span>
+                    </div>
+                </h2>
+            </div>
+            <div class="step-content step-content-padding">
+                <div class="js-not-for-replacement">
+                    <div class="express-checkout-container js-payment-type-not-selected">
+                        <div class="d-flex express-checkout-buttons">
+                            <div class="apple-pay-button-container button-margin-right">
+                                <div class="pay_apple_pay">
+                                    <div class="apple-pay-button pay-button-size"> </div>
+                                </div>
+                            </div>
+                            <div class="pay_google_pay button-margin-right">
+                                <div class="pay-button-size">
+                                    <div id="google-pay-button"></div>
+                                </div>
+                            </div>
+                            <div class="pay-button-size button-margin-right">
+                                <div id="paypal-button"></div>
+                            </div>
+                            <div class="pay-button-size pay-with-card-container" style="display: none;">
+                                <div id="pay-with-card-button">
+                                    <img src="{{ 'credit-card.svg' | asset_url }}" alt="">
+                                    Card
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="js-for-card-button">
+                    {% unless customer %}
+                        <div class="js-payment-type-not-selected">
+                            <div class="hide-card-button" style="display: none;">
+                                <div class="or-container">
+                                    <div class="or-text">
+                                        or
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% include 'loading' %}
+                        {% include 'checkout-user-forms' %}
+                        {% include 'checkout-login' %}
+                        {% include 'checkout-register' %}
+                    {% endunless %}
+                </div>
+            </div>
+            <div class="step-content-collapsed step-content-padding">
+                {% if customer %}
+                    <div class="">
+                        {% include 'loading' %}
+                        <div class="flex-between">
+                            <div class="login_email">
+                                <div>You're logged in as:</div>
+                                <div class="current_useremail">{{ customer.email }}</div>
+                            </div>
+                            <button class="log-out_checkout" data-type="" data-customer="{{ customer.id }}" address-id="" style="background: #000;
+                            width: 100px;
+                            text-align: center;
+                            color: #fff;
+                            text-decoration: none;
+                            border: none;
+                            padding: 15px 30px;
+                            border-radius: 22px;">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="checkout-step-container" id="checkout-step-2">
+            <div class="flex-between section-title-container">
+                <h2 class="section-title">
+                    <div class="d-inline-flex">
+                        <span class="step-number-margin prevent-shrink">
+                            2.
+                        </span>
+                        <span>
+                            Shipping Address
+                        </span>
+                    </div>
+                </h2>
+            </div>
+            <div class="step-content step-content-padding">
+                <div class="">
+                    <div class="current-address-form-container">
+                        <form id="add_new_address" class="add_new_address">
+                            <div class="multi_column name">
+                                <div class="f_name input_wrap">
+                                    <input type="text" name="first_name" error-message="First name is required"
+                                           value="{{ customer.first_name }}" id="f_name" class=" field required"
+                                           placeholder="First Name"/>
+                                </div>
+                                <div class="l_name input_wrap">
+                                    <input type="text" name="last_name" error-message="Last name is required"
+                                           value="{{ customer.last_name }}" id="l_name" class=" field required"
+                                           placeholder="Last Name"/>
+                                </div>
+                            </div>
+                            <div class="multi_column name">
+                                <div class="address input_wrap">
+                                    <input type="text" name="address1" error-message="Address is required"
+                                           value="{{ form.address1 }}" id="address_one" class=" field required"
+                                           placeholder="Address"/>
+                                </div>
+                            </div>
+                            <div class="multi_column name">
+                                <div class="address_2 input_wrap">
+                                    <input type="text" name="address2" value="{{ form.address2 }}" id="address_two"
+                                           class=" field" placeholder="Apt., Suite., etc.,"/>
+                                </div>
+                                <div class="city input_wrap">
+                                    <input type="text" name="city" error-message="City is required"
+                                           value="{{ form.city }}" id="city" class=" field required"
+                                           placeholder="City"/>
+                                </div>
+                            </div>
+                            <div class="multi_column name">
+                                <div class="country input_wrap">
+                                    {% include 'address-country' %}
+                                </div>
+                                <div class="state input_wrap">
+                                    <select type="text" name="province" id="state" class="field required" placeholder="State"></select>
+                                </div>
+                            </div>
+                            <div class="multi_column name">
+                                <div class="zip input_wrap">
+                                    <input type="text" name="zip" error-message="Zip code is required"
+                                           value="{{ form.zip }}" id="zip" class=" field required"
+                                           placeholder="Zip Code"/>
+                                </div>
+                                <div class="phone input_wrap">
+                                    <input type="text" name="phone" error-message="Phone number is required"
+                                           value="{{ form.phone }}" id="phone" class=" field"
+                                           placeholder="Phone Number"/>
+                                </div>
+                            </div>
+                            <input type="hidden" name="customerid" value="{{ customer.id }}"/>
+                            <div class="submit">
+                                <div class="d-flex multi_column">
+                                    <button class="" id="express_option">Pay Now</button>
+                                    <button class="button-p add_address_submit" data-type="edit_card_form">Continue</button>
+                                </div>
+                                <div class="validate_address">
+                                    The address you have entered is not valid.
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-show-when-passed">
+                <div class="step-content-collapsed step-content-padding">
+                    <div class="flex-between align-items-start">
+                        <div class="current-address-details-container">
+                            <div class="address-wrapper">
+
+                            </div>
+                        </div>
+                        <div class="step-content-collapsed">
+                            <span class="checkout-step-edit" onclick="moveToStep(2)">
+                                Edit
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-step-container" id="checkout-step-3">
+            <div class="section-title-container">
+                <h2 class="section-title">
+                    <div class="d-inline-flex">
+                        <span class="step-number-margin prevent-shrink">
+                            3.
+                        </span>
+                        <span>
+                            Complete checkout
+                        </span>
+                    </div>
+                </h2>
+            </div>
+            <div class="mobile-only">
+                <div class="order-details-container">
+                    <div class="flex-between align-items-start">
+                        <div class="">
+                            <div class="order-title"></div>
+                            <div class="order-subtitle"></div>
+                            <div class="prop_list"></div>
+                            <div class="is_multivitamin_list"></div>
+                        </div>
+                        <div class="">
+                            <div class="order-image"></div>
+                            <div class="order-price"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-promo-code">
+                    <div class="flex-between align-items-start order-have-promo-code">
+                        <div>
+                            Have a Promo code?
+                            <div class="code-value">
+
+                            </div>
+                        </div>
+                        <div class="open-promo-code-form">
+                            <div class="order-promo-code-edit" style="display: none;">Edit</div>
+                            <img src="{{ 'arrow-down.svg' | asset_url }}" alt="">
+                        </div>
+                    </div>
+                    <div class="order-promo-code-form" style="display: none;">
+                        <input type="text" name="discount" value="" id="discount" class="required field" placeholder="Promo Code"/>
+                        <button class="button-p apply_discount" data-location="order-promo-code-form">Apply</button>
+                    </div>
+                </div>
+                <div class="complete-checkout-step-order-summary" style="display: none;">
+                    <div class="flex-between part-subtotal">
+                        <span>Subtotal</span>
+                        <span class="value"></span>
+                    </div>
+                    <div class="flex-between part-discount" style="display: none;">
+                        <span>Discount</span>
+                        <span class="value"></span>
+                    </div>
+                    <div class="flex-between part-shipping">
+                        <span>Shipping</span>
+                        <span class="value">Free</span>
+                    </div>
+                    <div class="flex-between part-taxes">
+                        <span>Taxes</span>
+                        <span class="value"></span>
+                    </div>
+                    <div class="flex-between part-total">
+                        <span>Today's Total</span>
+                        <div class="">
+                            <span class="currency">USD</span>
+                            <span class="value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-content step-content-padding">
+                <div class="">
+                    <div class="js-not-for-replacement">
+                        <div class="js-existing-payment" style="display: none;">
+                            <button class="button-p purchase-with-existing-payment" style="background:#000;">
+                                Pay Now
+                            </button>
+                        </div>
+                        <div class="js-not-existing-payment">
+                            <div class="js-not-card-payment">
+                                <div class="mobile-only">
+                                    <div class="" style="display: none !important">
+                                        <div class="checkout-step-payment-type">
+                                            <img class="PAYPAL" style="display: none;" src="{{ 'paypal_logo.png' | asset_url}}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button-p send-to-recharge">
+                                    Pay Now
+                                </button>
+                            </div>
+                            <div class="sec_buy js-card-payment">
+                                {% include 'loading' %}
+                                <div class="stripe">
+                                    <div class="checkout-complete-credit-card flex-between desktop">
+                                        <div class="">
+                                            <span class="card-funding-text">Credit Card & Billing Zip Code</span>
+                                        </div>
+                                        <img class="pay_logo" width="251" height="16" src="{{ 'credit_logos.png' | asset_img_url: '500x' }}"/>
+                                    </div>
+                                    <div class="payment-wraper pay_stripe">
+                                        <form action="/" method="post" id="payment-form">
+                                            <div class="form-row">
+                                                <!--label for="card-element">Credit or debit card</label-->
+                                                <div id="card-element">
+                                                    <!-- A Stripe Element will be inserted here. -->
+                                                </div>
+                                                <!-- Used to display form errors. -->
+                                                <div id="card-errors" role="alert"></div>
+                                            </div>
+                                            <div class="submit">
+                                                <button class="button-p">Pay Now</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% include 'checkout-terms' %}
+                    </div>
+                    <div class="second_buy" style="display:none;">
+                        <div class="edit_card_form" style="display:none;">
+                            <iframe src="https://shopifysubscriptions.com/customer_portal_payment_source_form/{{ customer.metafields.subscriptions.customer_string }}/payment_source"></iframe>
+                        </div>
+                        <div class="info_card_wrap">
+                            <div class="info_pay_wrap">
+                                <span class="">Payment Method</span>
+                                <span class="card_info">Ending in ****<span class="number_card"></span></span>
+                                <span class="edit_card" data-type="" data-customer="" address-id="">Edit Card</span>
+                            </div>
+                            <div class="submit">
+                                <button class="button-p buy_now" data-type="" data-customer="" address-id="">Pay Now
+                                </button>
+                            </div>
+                            {% include 'checkout-terms' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order_details">
+        <h2 class="section-title order-summary-title">
+            Order Summary
+        </h2>
+        <div class="product_wrap">
+            <div class="white-bg-right"></div>
+            <div class="row item_detail">
+                <div class="flex-between align-items-start w-100">
+                    <div class="d-flex">
+                        <div class="item_image">
+                            <img src=""/>
+                        </div>
+                        <div class="item_desc">
+                            <h3></h3>
+                            <p class="variant_title"></p>
+                            <div class="prop_list"></div>
+                            <div class="is_multivitamin_list"></div>
+                        </div>
+                    </div>
+                    <div class="item_price">
+                        $<span class="amount"></span>
+                    </div>
+                </div>
+                {% include 'loading' %}
+            </div>
+            <div class="row item_detail promo">
+                {% include 'loading' %}
+                <span class="already_promo" style="display:none">Existing promo code not applicable with this purchase. Manage changes in your <a
+                            class="edit_settings" href="{{ shop.url }}/account?view=settings">settings</a>.</span>
+                <div class="have_promo">
+                    Have a Promo Code?
+                    <div class="">
+                        <img src="{{ 'arrow-down.svg' | asset_url }}" alt="">
+                        <div class="edit promos">Edit</div>
+                    </div>
+                </div>
+                <span class="applied"></span>
+                <div class="input_promo">
+                    <div class="input_promo_first">
+                        <input type="text" name="discount" value="" id="discount" class="required field"
+                               placeholder="Promo Code"/>
+                        <button class="button-p apply_discount" data-location="promo">Apply</button>
+                    </div>
+                    <div class="input_promo_second">
+                        <input type="text" name="discount_sec" value="" id="discount_sec" class="required field"
+                               placeholder="Promo Code"/>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top"></div>
+            <div class="row add_fees">
+                {% include 'loading' %}
+                <div class="fee subtotal">
+                    <div class="fee_title">Subtotal</div>
+                    <div class="fee_price">$<span class="amount"></span></div>
+                </div>
+                <div class="fee discount">
+                    <div class="fee_title">Discount</div>
+                    <div class="fee_price">-</div>
+                </div>
+                <div class="fee shipping">
+                    <div class="fee_title">Shipping</div>
+                    <div class="fee_price">Free</div>
+                </div>
+                <div class="fee taxes">
+                    <div class="fee_title">Taxes</div>
+                    <div class="fee_price">$0.00</div>
+                </div>
+            </div>
+            <div class="border-top"></div>
+            <div class="total_due">
+                <div class="total_title">Today's Total</div>
+                <div class="total_price"><span class="currency">USD</span>$<span class="amount"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="edit_section" style="display:none;">
+    <div class="replacement_ineligible">
+        <div class="close_pop"></div>
+        <div class="replacement_ineligible_content">
+            <img src="{{ 'Check.png' | asset_url }}"/>
+            <h2>This card replacement offer already redeemed</h2>
+            <p><a href="mailto:wegotyou@vesselhealth.com" class="contact-for-help" target="_blank"
+                  rel="noopener noreferrer">Contact Support</a> for further assistance.</p>
+            <p><a href="/account"><u>Go to account</u></a></p>
+        </div>
+    </div>
+    <div class="same_subs">
+        <div class="close_pop"></div>
+        <div class="same_subs_content">
+            <img src="{{ 'Check.png' | asset_url }}"/>
+            <h2>Multiple wellness card membership types not allowed</h2>
+            <p>Modify your existing membership in your account.</p>
+            <button class="keep_subs">Go to my account</button>
+        </div>
+    </div>
+    <div class="reactive">
+        <div class="close_pop"></div>
+        <div class="same_subs_content">
+            <img src="{{ 'Check.png' | asset_url }}"/>
+            <h2>Previously purchased membership</h2>
+            <p>Reactivate your existing membership to manage it in your account.</p>
+            <button class="button-p reactive_subs">Reactivate membership</button>
+            <a href="/account">Cancel purchase</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.header-wrapper').css("background-color", "#fcf3eb");
+    $('.menu-top-left').hide();
+    
+    // Notification popup
+    function success() {
+        $(".success").animate({right: 20}, 500);
+        setTimeout(function () {
+            $(".success").animate({right: -500}, 500);
+        }, 3000);
+    }
+
+    function failed() {
+
+        sessionStorage.setItem("redirectto", "account")
+        $(".failed").animate({right: 20}, 500);
+        setTimeout(function () {
+            $(".failed").animate({right: -500}, 500);
+        }, 3000);
+    }
+
+    function successDone() {
+        $(".failed").animate({right: -500}, 500);
+    }
+
+    function failedDone() {
+        setTimeout(function () {
+            $(".failed").animate({right: 20}, 500);
+        }, 500);
+    }
+
+    function setUpRechargeAjaxTokens() {
+
+        $.ajaxSetup({
+            beforeSend: function (jqXHR, settings) {
+                if (settings.url.indexOf("/tools/recurring") !== -1) {
+                    settings.url += (settings.url.indexOf('?') === -1 ? '?' : '&') + 'token=' + window.customerToken;
+                }
+            }
+        });
+
+        // Update links with tokens
+        Array.prototype.slice.call(document.querySelectorAll('a'))
+            .forEach(function (el) {
+                var url = el.href;
+                if (url.indexOf("/tools/recurring") !== -1) {
+                    el.href += (url.indexOf('?') === -1 ? '?' : '&') + 'token=' + window.customerToken;
+                }
+            });
+
+        // Update forms with tokens
+        Array.prototype.slice.call(document.querySelectorAll('form'))
+            .forEach(function (form) {
+                if (form.action && form.action.indexOf("/tools/recurring") !== -1) {
+                    form.action += (form.action.indexOf('?') === -1 ? '?' : '&') + 'token=' + window.customerToken;
+                }
+            });
+
+        // Update inputs with tokens
+        Array.prototype.slice.call(document.querySelectorAll('input'))
+            .forEach(function (el) {
+                var url = el.value;
+                if (url.indexOf("/tools/recurring") !== -1) {
+                    el.value += (url.indexOf('?') === -1 ? '?' : '&') + 'token=' + window.customerToken;
+                }
+            });
+
+        // Watch for DOM changes and apply tokens as necessary
+        if (MutationObserver && !!document.getElementById('#ReCharge')) {
+            var callback = function (mutationsList, observer) {
+                mutationsList
+                    .filter(function (mutation) {
+                        return mutation.type === 'childList';
+                    }).forEach(function (mutation) {
+                    Array.prototype.slice.call(mutation.addedNodes)
+                        .filter(function (node) {
+                            return node.tagName === 'A';
+                        }).forEach(function (node) {
+                        var url = node.href;
+                        if (url.indexOf('/tools/recurring') !== -1) {
+                            node.href += (url.indexOf('?') === -1 ? '?' : '&') + 'token=' + window.customerToken;
+                        }
+                    })
+                });
+            };
+            var observer = new MutationObserver(callback);
+            observer.observe(document.querySelector('#ReCharge'), {
+                attributes: false,
+                childList: true,
+                subtree: true
+            });
+        }
+
+    }
+</script>
+<script>
+    window.checkoutFinalizeTimeout = null;
+</script>
+{% if customer %}
+    <script>
+        window.customerId = '{{customer.id}}';
+        window.customerEmail =  '{{customer.email}}';
+    </script>
+{% endif %}
+{% if shop.secure_url contains 'store-dev' %}
+    <script src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=Yv4sz6&shop=bloom-health-dev.myshopify.com"></script>
+{% else %}
+    <script src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=KjtQRr"></script>
+{% endif %}
+<script src="{{ 'checkout-amplitude.js' | asset_url}}"></script>
+<script src="{{ 'checkout-events.js' | asset_url}}"></script>
+
+<script src="{{ 'checkout.service.js' | asset_url}}"></script>
+<script src="{{ 'checkout-express-methods.js' | asset_url}}"></script>
+<script src="{{ 'checkout-handle-payment-sources.js' | asset_url}}"></script>
+<script src="{{ 'checkout.js' | asset_url}}"></script>
+<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="https://js.braintreegateway.com/web/3.70.0/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.70.0/js/google-payment.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.70.0/js/paypal-checkout.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.70.0/js/apple-pay.min.js"></script>
+
+<!--- Lucky Orange--->
+<script type='text/javascript'>
+    window.__lo_site_id = 249544;
+    (function () {
+        var wa = document.createElement('script');
+        wa.type = 'text/javascript';
+        wa.async = true;
+        wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wa, s);
+    })();
+</script>
+<!-- End Facebook Pixel Code -->
+<script async src="https://www.googletagmanager.com/gtag/js"></script>
+<script>
+    $(document).ready(function () {
+        let gaTracking = ENV.vessel_ga_tracking();
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', gaTracking);
+        var productd = sessionStorage.getItem("productd"); // get product data
+        var productObj = JSON.parse(productd);
+        gtag('event', 'begin_checkout', {
+            "items": [
+                {
+                    "id": productObj && productObj.product_id,
+                    "name": productObj && productObj.productTitle,
+                    "list_name": productObj && productObj.productTitle,
+                    "brand": "Vessel",
+                    "variant": productObj && productObj.variantTitle,
+                    "list_position": 1,
+                    "quantity": 1,
+                    "price": productObj && productObj.price
+                }
+            ],
+            "coupon": ""
+        });
+        gtag('event', 'set_checkout_option', {
+            "checkout_step": 2,
+            "checkout_option": "checkout",
+            "value": 2
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        if(ENV.checkout_redirection_page() == 'checkout' && false) {
+            sessionStorage.setItem('checkout_redirection', 'new-checkout');
+        }
+    })
+</script>
+
+{% schema %}
+{
+  "name": "New Checkout",
+  "class": "new-checkout--section",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Add Button",
+      "settings": [
+        {
+          "id": "link",
+          "type": "url",
+       		"label": "Button link"
+        },
+        {
+          "id": "linktext",
+          "type": "text",
+          "label": "Button text",
+          "default": "Click here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Checkout",
+      "category": "RG",
+      "blocks": [
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

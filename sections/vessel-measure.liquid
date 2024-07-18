@@ -1,0 +1,767 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="video-text">
+  <div class="split-title mobile-split-title">{{section.settings.title}}
+  </div>
+  <p class="split-description">{{section.settings.description}}
+  </p>
+</div>
+<div class="test-container">
+  <div class="column-impact">
+    {%- for block in section.blocks -%}
+      {% if block.type == 'column' %}
+        <div class="impact-column {{block.settings.impact}}">
+          <div class="impact-one">
+            <p>{{block.settings.title}}
+            </p>
+            <a class="learn-hide learn-hide-{{block.settings.impact}}" data-toggle="modal" data-target="#myModal-{{block.settings.impact}}">{{block.settings.learn}}
+            </a>
+          </div>
+          <div class="impact-img">
+            <div class="image-container">
+              <img class="lazyloaded lazy2 blur-up" data-sizes="auto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{block.settings.image_impact | img_url: '85x'}}" data-mobsrc="{{block.settings.image_impact | img_url: '85x'}}" alt="">
+            </div>
+          </div>
+        </div>
+      {%endif%}
+    {%endfor%}
+  </div>
+  <div class="testing-line">
+    <div class="svg-list magnesium_svg" style="display:none;top:18px;left:-30px;">{% render 'magnesiumsvg'%}
+    </div>
+    <div class="svg-list vitaminc_svg" style="display:none;top:40px;left:-30px;">{% render 'vitamincsvg'%}
+    </div>
+    <div class="svg-list ph_svg" style="display:none;">{% render 'phsvg'%}
+    </div>
+    <div class="svg-list hydration_svg" style="display:none;top: 51px;">{% render 'hydrationsvg'%}
+    </div>
+    <div class="svg-list ketoneacac_svg" style="display:none;top:36px;left:-30px;">{% render 'ketoneacac'%}
+    </div>
+    <div class="svg-list ketonea3hb_svg" style="display:none;top:36px;left:-30px;">{% render 'ketone3hb'%}
+    </div>
+    <div class="svg-list sleep_svg" style="display:none;top:-10px;">{% render 'sleepsvg'%}
+    </div>
+    <div class="svg-list energy_svg" style="display:none;top:-22px;">{% render 'energysvg'%}
+    </div>
+    <div class="svg-list mood_svg" style="display:none;top:-32px;">{% render 'moodsvg'%}
+    </div>
+    <div class="svg-list calm_svg" style="display:none;top:-23px;">{% render 'calmsvg'%}
+    </div>
+    <div class="svg-list immunity_svg" style="display:none;top:-23px;">{% render 'immunitysvg'%}
+    </div>
+    <div class="svg-list focus_svg" style="display:none;top:-23px;">{% render 'focussvg'%}
+    </div>
+    <div class="svg-list body_svg" style="display:none;top:-23px;">{% render 'bodysvg'%}
+    </div>
+    <div class="svg-list beauty_svg" style="display:none;top:32px;">{% render 'beautysvg'%}
+    </div>
+    <div class="svg-list endurance_svg" style="display:none;top:-23px;">{% render 'endurancesvg'%}
+    </div>
+    <div class="svg-list digestion_svg" style="display:none;top:14px;">{% render 'digestionsvg'%}
+    </div>
+    <div class="svg-list calcium_svg" style="display:none;top:52px;">{% render 'calciumsvg'%}
+    </div>
+    <div class="svg-list sodium_svg" style="display:none;top:-27px;left:-14px;">{% render 'sodiumsvg'%}
+    </div>
+  </div>
+  <div class="column-test">
+    {%- for block in section.blocks -%}
+      {% if block.type == 'text' %}
+        <div class="test-column {{block.settings.test}}">
+          <div class="test-one">
+            <p>{{block.settings.title_test}}
+              {% if block.settings.title_test == 'Calcium' or block.settings.title_test =='Sodium' or block.settings.title_test =='Urinary Tract'  %}
+                <span class="new-ribbon">New</span>
+              {%endif%}
+            </p>
+          </div>
+          <div class="impact-img">
+            <div class="image-container">
+              <img alt="" class="lazyloaded lazy2 blur-up" data-sizes="auto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{block.settings.image_test | img_url: '80x'}}" data-mobsrc="{{block.settings.image_test | img_url: '80x'}}">
+            </div>
+          </div>
+        </div>
+      {%endif%}
+    {%endfor%}
+  </div>
+  {% render 'sleep-modal'%}
+</div>
+<style>
+  .learn-hide {
+    display: none !important;
+  }
+</style>
+<script>
+  jQuery(function() {
+    jQuery('.sleep').click();
+  });
+
+  let sleep = document.querySelector('.sleep');
+  let test = document.querySelector('.Test');
+  let vitaminC = document.querySelector('.vitaminc');
+  let learnCta = document.querySelector('.learn-hide-sleep');
+
+
+  $(".sleep").click(function() {
+    $('.svg-list').hide();
+    $('.sleep_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.sodium').css("opacity", "1");
+    $('.sodium').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    sleep.style.opacity = '1';
+    sleep.style.transform = 'scale(1.1)';
+    $('.learn-hide').hide();
+    $('.learn-hide-sleep').show();
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/sleep-mobile.png?v=1655828965)");
+
+  });
+
+  $(".energy").click(function() {
+    $('.svg-list').hide();
+    $('.energy_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.ph').css("opacity", "1");
+    $('.ph').css("transform", "scale(1.1)");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.energy').css("opacity", "1");
+    $('.energy').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-energy').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/energy-mobile.png?v=1655829287)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+  });
+
+  $(".mood").click(function() {
+    $('.svg-list').hide();
+    $('.mood_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.sodium').css("opacity", "1");
+    $('.sodium').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.mood').css("opacity", "1");
+    $('.mood').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-mood').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/mood-mobile.png?v=1655829526)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+  });
+
+  $(".calm").click(function() {
+    $('.svg-list').hide();
+    $('.calm_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.calm').css("opacity", "1");
+    $('.calm').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-calm').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/calm-mobile.png?v=1655829671)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+  });
+
+  $(".immunity").click(function() {
+    $('.svg-list').hide();
+    $('.immunity_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.immunity').css("opacity", "1");
+    $('.immunity').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-immunity').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/immunity-mobile.png?v=1655829860)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+  });
+
+  $(".focus").click(function() {
+    $('.svg-list').hide();
+    $('.focus_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.sodium').css("opacity", "1");
+    $('.sodium').css("transform", "scale(1.1)");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.focus').css("opacity", "1");
+    $('.focus').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-focus').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/focus-mobile.png?v=1655830041)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".body").click(function() {
+    $('.svg-list').hide();
+    $('.body_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.sodium').css("opacity", "1");
+    $('.sodium').css("transform", "scale(1.1)");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.ph').css("opacity", "1");
+    $('.ph').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.body').css("opacity", "1");
+    $('.body').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-body').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/body-mobile.png?v=1655830326)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".beauty").click(function() {
+    $('.svg-list').hide();
+    $('.beauty_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.beauty').css("opacity", "1");
+    $('.beauty').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-beauty').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/beauty-mobile.png?v=1655830463)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".endurance").click(function() {
+    $('.svg-list').hide();
+    $('.endurance_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.sodium').css("opacity", "1");
+    $('.sodium').css("transform", "scale(1.1)");
+    $('.endurance').css("opacity", "1");
+    $('.endurance').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-beauty').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/endurance-mobile.png?v=1655830697)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".digestion").click(function() {
+    $('.svg-list').hide();
+    $('.digestion_svg').show();
+    $('.impact-column').css("opacity", "0.6");
+    $('.impact-column').css("transform", "none");
+    $('.test-column').css("transform", "scale(1)");
+    $('.test-column').css("opacity", "0.6");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.digestion').css("opacity", "1");
+    $('.digestion').css("transform", "scale(1.1)");
+    $('.learn-hide').hide();
+    $('.learn-hide-digestion').show();
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/digestion-mobile.png?v=1655830900)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+
+  });
+
+
+  $(".Test").click(function() {
+    $('.svg-list').hide();
+    $('.magnesium_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.Test').css("opacity", "1");
+    $('.Test').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.endurance').css("transform", "none");
+    $('.endurance').css("opacity", "0.6");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-endurance').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/magnesium-mobile.png?v=1655831152)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+
+  });
+
+  $(".vitaminc").click(function() {
+    $('.svg-list').hide();
+    $('.vitaminc_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.vitaminc').css("opacity", "1");
+    $('.vitaminc').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.endurance').css("transform", "none");
+    $('.endurance').css("opacity", "0.6");
+    $('.digestion').css("transform", "none");
+    $('.digestion').css("opacity", "0.6");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-endurance').css("display", "none");
+    $('.learn-hide-digestion').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/vitaminc-mobile.png?v=1655831468)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".ph").click(function() {
+    $('.svg-list').hide();
+    $('.ph_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "0.6");
+    $('.ph').css("opacity", "1");
+    $('.ph').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1)");
+    $('.body').css("transform", "scale(1.1)");
+    $('.body').css("opacity", "1");
+    $('.energy').css("transform", "scale(1.1)");
+    $('.energy').css("opacity", "1");
+    $('.learn-hide').css("display", "none");
+    $('.learn-hide-energy').css("display", "block");
+    $('.learn-hide-body').css("display", "block");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/ph-mobile.png?v=1655831711)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".hydration").click(function() {
+    $('.svg-list').hide();
+    $('.hydration_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.hydration').css("opacity", "1");
+    $('.hydration').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.immunity').css("transform", "none");
+    $('.immunity').css("opacity", "0.6");
+    $('.endurance').css("transform", "none");
+    $('.endurance').css("opacity", "0.6");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-endurance').css("display", "none");
+    $('.learn-hide-immunity').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/hydration-mobile.png?v=1655831905)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".ketoneacac").click(function() {
+    $('.svg-list').hide();
+    $('.ketonea3hb_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.ketoneacac').css("opacity", "1");
+    $('.ketoneacac').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.endurance').css("transform", "none");
+    $('.endurance').css("opacity", "0.6");
+    $('.digestion').css("opacity", "0.6");
+    $('.digestion').css("transform", "none");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-endurance').css("display", "none");
+    $('.learn-hide-digestion').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/ketones-mobile.png?v=1655832030)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+
+  $(".ketone3hb").click(function() {
+    $('.svg-list').hide();
+    $('.ketonea3hb_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.ketone3hb').css("opacity", "1");
+    $('.ketone3hb').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.endurance').css("transform", "none");
+    $('.endurance').css("opacity", "0.6");
+    $('.digestion').css("opacity", "0.6");
+    $('.digestion').css("transform", "none");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-endurance').css("display", "none");
+    $('.learn-hide-digestion').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").css("background-image", "none");
+
+  });
+  $(".calcium").click(function() {
+    $('.svg-list').hide();
+    $('.calcium_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.calcium').css("opacity", "1");
+    $('.calcium').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.energy').css("transform", "none");
+    $('.energy').css("opacity", "0.6");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-energy').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/calcium-mobile.png?v=1655832189)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+  $(".sodium").click(function() {
+    $('.svg-list').hide();
+    $('.sodium_svg').show();
+    $('.test-column').css("opacity", "0.6");
+    $('.test-column').css("transform", "scale(1)");
+    $('.impact-column').css("opacity", "1");
+    $('.sodium').css("opacity", "1");
+    $('.sodium').css("transform", "scale(1.1)");
+    $('.impact-column').css("transform", "scale(1.1)");
+    $('.energy').css("transform", "none");
+    $('.energy').css("opacity", "0.6");
+    $('.digestion').css("transform", "none");
+    $('.digestion').css("opacity", "0.6");
+    $('.beauty').css("transform", "none");
+    $('.beauty').css("opacity", "0.6");
+    $('.learn-hide').css("display", "block");
+    $('.learn-hide-energy').css("display", "none");
+    $('.learn-hide-beauty').css("display", "none");
+    $('.learn-hide-digestion').css("display", "none");
+    $(".testing-line").removeClass("testing-line-sleep");
+    $(".testing-line").addClass("testing-line-sleep");
+    $(".testing-line-sleep").css("background-image", "url(https://cdn.shopify.com/s/files/1/0603/3122/9370/files/sodium-mobile.png?v=1655832489)");
+    $(".testing-line-sleep").css("background-position-y", "0px");
+    $(".testing-line-sleep").css("background-position-x", "0px");
+
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "vessel measure",
+    "class": "vessel-measure",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "placeholder": "section title",
+        "default": "What You Can Measure",
+        "label": "title",
+        "info": "title"
+      }, {
+        "type": "richtext",
+        "id": "description",
+        "default": "<p>Get the whole story with 10 tests—all backed by a third-party validated accuracy study.</p>",
+        "label": "description",
+        "info": "description"
+      }, {
+        "type": "image_picker",
+        "label": "Image",
+        "id": "image_line"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Impact Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "placeholder": "title impact",
+            "default": "Sleep",
+            "label": "title",
+            "info": "Title Impact"
+          },
+          {
+            "type": "text",
+            "id": "impact",
+            "placeholder": "impact",
+            "default": "impact",
+            "label": "type",
+            "info": "impact type"
+          },
+          {
+            "type": "text",
+            "id": "learn",
+            "placeholder": "learn title",
+            "default": "Learn more",
+            "label": "text",
+            "info": "Learn more"
+          },
+          {
+            "type": "url",
+            "id": "learn_link",
+            "label": "learn",
+            "label": "Learn more Link"
+          }, {
+            "type": "image_picker",
+            "label": "Image",
+            "id": "image_impact"
+          }
+        ]
+      }, {
+        "type": "text",
+        "name": "Test Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title_test",
+            "placeholder": "title test",
+            "default": "Magnesium",
+            "label": "test title",
+            "info": "Title test"
+          }, {
+            "type": "text",
+            "id": "test",
+            "placeholder": "test",
+            "default": "Test",
+            "label": "test type",
+            "info": "Type Test"
+          }, {
+            "type": "image_picker",
+            "label": "Image Test",
+            "id": "image_test"
+          }
+        ]
+      }, {
+        "type": "heading",
+        "name": "modal content",
+        "settings": [
+          {
+            "type": "image_picker",
+            "label": "Image Left",
+            "id": "image_left"
+          },
+          {
+            "type": "image_picker",
+            "label": "Image Box one",
+            "id": "image_heading"
+          },
+          {
+            "type": "image_picker",
+            "label": "Image box two",
+            "id": "image_heading_two"
+          },
+          {
+            "type": "text",
+            "id": "heading_modal",
+            "placeholder": "heading",
+            "default": "Sleep",
+            "label": "Modal heading",
+            "info": "Modal Heading"
+          }, {
+            "type": "text",
+            "id": "video_left_text",
+            "placeholder": "video text",
+            "default": "► Watch how Amy used Vessel to help her start sleeping better",
+            "label": "Video heading",
+            "info": "Video Heading"
+          }, {
+            "type": "text",
+            "id": "box_heading_one",
+            "placeholder": "Box heading",
+            "default": "Sleep + Magnesium",
+            "label": "Modal heading Info",
+            "info": "Box Heading One"
+          }, {
+            "type": "textarea",
+            "id": "box_description_one",
+            "placeholder": "description one",
+            "default": "Magnesium helps the body relax. This nutrient reduces stress and helps you sleep longer. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.",
+            "label": "Modal Decription One",
+            "info": "Description Box One"
+          }, {
+            "type": "richtext",
+            "id": "body_content_one",
+            "label": "Modal Body Info",
+            "default": "<p>Zinc, magnesium, vitamins C and E deficiency were risk factors of higher body per cent and central obesity. It is possible that some Indian men can benefit by increased intake of zinc, magnesium, vitamin C and vitamin E in conjunction with lifestyle changes. Read more  The results suggest that magnesium intake is associated with lower BMI, WC (waist circumference) and serum glucose in Mexican population. Read more  A 2015 analysis of data from the US National Health and Nutrition Examination Survey (NHANES 2001-2010) in 9,148 adults (mean age, 50 years) found a 32% lower risk of metabolic syndrome in those in the highest versus lowest quantile of magnesium intake (≥355 mg/day versus <197 mg/day) Read more  See all studies</p>"
+          }, {
+            "type": "text",
+            "id": "body_heading_one",
+            "placeholder": "body heading",
+            "default": "Magnesium Studies (8)",
+            "label": "Modal body heading",
+            "info": "Body Title"
+          }, {
+            "type": "textarea",
+            "id": "box_description_two",
+            "placeholder": "description one",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non.</p>",
+            "label": "Modal Decription Two",
+            "info": "Description Box Two"
+          }, {
+            "type": "text",
+            "id": "box_heading_two",
+            "placeholder": "Box heading",
+            "default": "Sleep + Vitamin C",
+            "label": "Modal Decription Two",
+            "info": "Box Heading Two"
+          }, {
+            "type": "text",
+            "id": "body_heading_two",
+            "placeholder": "body heading",
+            "default": "Vitaminc C Studies (6)",
+            "label": "Modal body title two",
+            "info": "Body Title two"
+          }, {
+            "type": "richtext",
+            "id": "body_content_two",
+            "label": "Modal body content Two",
+            "default": "<p>Zinc, magnesium, vitamins C and E deficiency were risk factors of higher body per cent and central obesity. It is possible that some Indian men can benefit by increased intake of zinc, magnesium, vitamin C and vitamin E in conjunction with lifestyle changes. Read more  The results suggest that magnesium intake is associated with lower BMI,</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Vessel Measure"
+      }
+    ]
+  }
+{% endschema %}

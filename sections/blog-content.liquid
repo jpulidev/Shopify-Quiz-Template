@@ -1,0 +1,126 @@
+<div class="page-width">
+    <div class="d-flex">
+        <div class="content">
+            <div class="top-article">
+                {% assign article = articles[section.settings.top_article] %}
+                <div class="article--item">
+                    <a href="{{article.url}}" class="article--link">
+                        <h4 class="pre">{{blog.title}}</h4>
+                        <h2>{{article.title}}</h2>
+                        {{article.excerpt}}
+                      </a>
+                    <a href="/pages/{{article.author | handleize }}" class="author">
+                        <img src="https://assets-global.website-files.com/6100458938069cf141a3e966/617b1b3f39a7b1edcb83530b_61265c3bd4786ccd27cf5bad_vesselIMG.jpeg" loading="lazy" alt="" class="authorimg">
+                        {{article.author}}
+                    </a>
+                </div>
+            </div>
+            <div class="articles pagination">
+                {% for block in section.blocks %}
+                    {% assign blog = blogs[block.settings.blog] %}
+                    {% assign page_items = 0 %}
+                    {% for article in blog.articles %}
+                        {% if page_items < 6 %}
+                        <div class="article--item">
+                            <a href="{{article.url}}" class="article--link">
+                                <h4 class="pre">{{blog.title}}</h4>
+                                <h2>{{article.title}}</h2>
+                                {{article.excerpt}}
+                            </a>
+                            <a href="/pages/{{article.author | handleize }}" class="author"> 
+                                <img src="https://assets-global.website-files.com/6100458938069cf141a3e966/617b1b3f39a7b1edcb83530b_61265c3bd4786ccd27cf5bad_vesselIMG.jpeg" loading="lazy" alt="" class="authorimg">
+                                {{article.author}}
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="article--item hide">
+                            <a href="{{article.url}}" class="article--link">
+                                <h4 class="pre">{{blog.title}}</h4>
+                                <h2>{{article.title}}</h2>
+                                {{article.excerpt}}
+                            </a>
+                            <a href="/pages/{{article.author | handleize }}" class="author">
+                                <img src="https://assets-global.website-files.com/6100458938069cf141a3e966/617b1b3f39a7b1edcb83530b_61265c3bd4786ccd27cf5bad_vesselIMG.jpeg" loading="lazy" alt="" class="authorimg">
+                                {{article.author}}
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% assign page_items = page_items | plus: 1 %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="load_more_content center">
+                <button class="button load_more_btn brown medium">Load more</button>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="top-side-column stickty-column">
+                {% assign link = section.settings.sidebar_link %}
+                <a href="{{link}}">
+                    <img src="{{section.settings.bg_image | img_url: 'original'}}">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% schema %}
+{
+    "name": "Blog content",
+    "class": "blog-content-section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Top side bar"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image",
+            "label": "Background image"
+        },
+        {
+            "type": "url",
+            "id": "sidebar_link",
+            "label": "Sidebar link"
+        },
+        {
+            "type": "checkbox",
+            "id": "related_story",
+            "label": "Related story"
+        },
+        {
+            "type": "header",
+            "content": "Bottom side bar"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_bottom",
+            "label": "Show bottom sidebar"
+        },
+        {
+            "type": "article",
+            "id": "top_article",
+            "label": "Top article"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "blog",
+            "type": "blog",
+            "settings": [
+                {
+                    "type": "blog",
+                    "id": "blog",
+                    "label": "Blog"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "blog",
+            "name":"Blog content"
+        }
+    ]
+}
+{% endschema %}

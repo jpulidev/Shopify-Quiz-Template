@@ -1,0 +1,136 @@
+{{ 'mh-image-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="img-banner">
+    <div class="banner_bg"></div>
+
+    <div class="img-banner_inner">
+        <div class="banner_img">
+            {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | escape }}">
+            {% else %}
+            <img src="{{ 'test-card.png' | asset_url }}" alt="">
+            {% endif %}
+        </div>
+
+        <div class="banner_content page-width">
+        {% if section.blocks.size > 0 %}
+            <div class="banner_content_inner">
+
+            {% for block in section.blocks %}
+            {% case block.type %}
+                {% when 'heading' %}
+                    {% if block.settings.title != blank %}
+                    <h1 class="banner_title">{{ block.settings.title }}</h1>
+                    {% endif %}
+
+                {% when 'text' %}
+                    {% if block.settings.text != blank %}
+                    <div class="banner_text">
+                        {{ block.settings.text }}
+                    </div>
+                    {% endif %}
+
+                {% when 'button' %}
+                    {% if block.settings.btn_label != blank and block.settings.btn_link != blank %}
+                    <a class="banner_btn" href="{{ block.settings.btn_link }}">{{ block.settings.btn_label }}</a>
+                    {% endif %}
+                    
+            {% endcase %}
+            {% endfor %}
+
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    #shopify-section-{{ section.id }} .banner_bg {
+        background-color: {{ section.settings.bg_color }};
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Image banner",
+    "tag": "section",
+    "class": "img-banner-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "header",
+            "content": "Color"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background",
+            "default": "#c5dbbb"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "heading",
+            "name": "Heading",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Heading",
+                    "default": "Image banner"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "name": "Text",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Text",
+                    "default": "<p>Give customers details about the banner image(s) or content on the template.</p>"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "name": "Button",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "btn_label",
+                    "label": "label",
+                    "default": "Button label"
+                },
+                {
+                    "type": "url",
+                    "id": "btn_link",
+                    "label": "Link",
+                    "info": "Button will not be visible if any of these fields are empty."
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+        "name": "Image banner by RG",
+        "blocks": [
+            {
+            "type": "heading"
+            },
+            {
+            "type": "text"
+            },
+            {
+            "type": "button"
+            }
+        ]
+        }
+    ]
+}
+{% endschema %}

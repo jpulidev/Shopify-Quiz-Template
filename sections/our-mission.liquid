@@ -1,0 +1,178 @@
+<div class="our-team wf-section">
+  <div class="container-4 w-container">
+    <div class="div-block-21">
+      <h2 class="heading data team">{{section.settings.title}}</h2>
+      <p class="paragraph why team">{{section.settings.text | strip_html}}</p>
+    </div>
+    <div class="div-block-45 w-clearfix rg-doctors-slider-content">
+      <div class="div-block-44 w-clearfix doctors-multi-slider">
+        <div class="div-block-26 slider-a" id="first-slide">
+          {% assign size = section.blocks.size | minus: 1 %}
+          {% assign seconde = section.blocks.size | minus: 2 %}
+          {% assign last_position = size | minus: 2 %}
+          <div class="div-block-28 grow" style="width: 100%; display: inline-block;"><img
+            src="{{section.blocks[seconde].settings.image | img_url: 'original'}}"
+            alt="" class="image-8 slide-img"></div>
+          <div class="div-block-28 grow" style="width: 100%; display: inline-block;"><img
+            src="{{section.blocks[size].settings.image | img_url: 'original'}}"
+            alt="" class="image-8 slide-img"></div>
+         
+          {% for block in section.blocks %}
+            {% if forloop.index0 < last_position %}
+              <div class="div-block-28 grow" style="width: 100%; display: inline-block;"><img
+                src="{{block.settings.image | img_url: 'original'}}"
+                alt="" class="image-8 slide-img"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="div-block-26 slider-b" id="second-slide">
+          {% assign size = section.blocks.size | minus: 1 %}
+          {% assign last_position = size | minus: 1 %}
+          <div class="div-block-28 grow" style="width: 100%; display: inline-block;"><img
+            src="{{section.blocks[size].settings.image | img_url: 'original'}}"
+            alt="" class="image-8 slide-img"></div>
+
+          {% for block in section.blocks %}
+            {% if forloop.index0 < last_position %}
+              <div class="div-block-28 grow" style="width: 100%; display: inline-block;"><img
+                src="{{block.settings.image | img_url: 'original'}}"
+                alt="" class="image-8 slide-img"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="div-block-26 slider-c" id="third-slide">
+          {% for block in section.blocks %}
+            <div class="div-block-28 grow" style="width: 100%; display: inline-block;"><img
+              src="{{block.settings.image | img_url: 'original'}}"
+              alt="" class="image-8 slide-img"></div>
+          {% endfor %}
+        </div>
+      </div>
+      <style>
+        .slider-a img, .slider-b img {
+          height: 300px;
+          object-fit: cover;
+        }
+        .slider-c img {
+          height: 350px;
+          object-fit: cover;
+        }
+      </style>
+      <div class="div-block-24">
+        <div class="doctor-slider-text div-block-25" id="forth-slide">
+          {% for block in section.blocks %}
+            <div id="text-slide" class="slide-content" style="width: 100%; display: inline-block;">
+              <h2 class="heading-4 backed">{{block.settings.name}}</h2>
+              <p class="paragraph">{{block.settings.job}}</p>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="doctors-slick-arrow mobile-doctor-arrows">
+          <img src="https://cdn.shopify.com/s/files/1/0304/4347/0981/files/Button_5.png?v=1655298878"
+            id="next" height="50" alt="" class="next-test">
+            <img src="https://cdn.shopify.com/s/files/1/0304/4347/0981/files/Button_6.png?v=1655298927"
+            id="prev" height="50" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cream-bg doctor"></div>
+</div>
+<style>
+  .slick-prev,
+  .slick-next {
+    display: none !important;
+  }
+
+  @-webkit-keyframes fadeInUpSD {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(100px);
+      transform: translateY(100px);
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+
+  @keyframes fadeInUpSD {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(100px);
+      transform: translateY(100px);
+    }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+
+  .fadeInUpSD {
+    -webkit-animation-name: fadeInUpSD;
+    animation-name: fadeInUpSD;
+  }
+
+  .slick-active .slide-content {
+    animation-name: fadeInUpSD;
+    animation-duration: 0.5s;
+    opacity: 1;
+    width: 100%;
+    padding: 10px 20px 30px 0;
+  }
+
+  @media screen and (max-width:1000px) {
+  .mobile-doctor-arrows {
+    justify-content: center;
+  }
+  }
+
+</style>
+
+
+{% schema %}
+{
+  "name": "Member section",
+  "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "The Vessel<br>team<br>"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      }
+  ],
+  "blocks": [
+    {
+      "name": "member",
+      "type": "member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "name"
+        }, 
+        {
+          "type": "text",
+          "id": "job",
+          "label": "Position"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

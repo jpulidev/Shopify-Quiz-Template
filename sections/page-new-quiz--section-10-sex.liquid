@@ -1,0 +1,178 @@
+{% assign progress_percent       = section.settings.progress_percent %}
+{% assign progress_percent_mob   = section.settings.progress_percent_mob %}
+{% assign first_progress_circle   = section.settings.first_progress_circle %}
+{% assign second_progress_circle = section.settings.second_progress_circle %}
+{% assign third_progress_circle  = section.settings.third_progress_circle %}
+{% assign blocks                 = section.blocks %}
+
+<style>
+	.slide__content--section10 .step-header .progress-bar--section10 .progress-bar__line {
+		width: {{ progress_percent_mob }}% !important;
+	}
+
+	@media (min-width: 600px) {
+		.slide__content--section10 .step-header .progress-bar--section10 .progress-bar__line {
+			width: {{ progress_percent }}% !important;
+		}
+	}
+
+	{% for block in blocks %}
+		{% assign header_bg_img        = block.settings.header_bg_img %}
+		{% assign header_bg_img_mob    = block.settings.header_bg_img_mob %}
+
+		{% if header_bg_img != blank and header_bg_img_mob != blank %}
+			.slide__content .step-header.step-header--{{ block.id }} {
+				background-image: url("{{ header_bg_img_mob |  img_url: 'master' }}");
+			}
+
+			@media (min-width: 460px) {
+				.slide__content .step-header.step-header--{{ block.id }} {
+					background-image: url("{{ header_bg_img | img_url: 'master' }}");
+				}
+			}
+		{% endif %}
+	{% endfor %}
+
+	 {%- for block in blocks -%}
+	{% assign header_title_lower  = block.settings.header_title | downcase %}
+	 #quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide__content--section10[data-type="{{ header_title_lower }}"] {
+		 display: block !important;
+	 }
+	{%- endfor -%}
+</style>
+
+{% for block in blocks %}
+	{% assign header_title           = block.settings.header_title %}
+	{% assign title                  = block.settings.title %}
+	{% assign text                   = block.settings.text %}
+	{% assign checkbox_list          = block.settings.checkbox_list | split: '||' %}
+	{% assign btn_text               = block.settings.btn_text %}
+
+	<div class="slide__content slide__content--section10" data-type="{{ header_title | downcase }}">
+		<header class="step-header step-header--{{ block.id }}">
+			<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			<span class="step-header__title">{{ header_title }}</span>
+			<div class="progress-bar progress-bar--section10">
+				<div class="progress-bar__line"></div>
+				<span class="progress-bar__circle {% if first_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if second_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if third_progress_circle %}active{% endif %}"></span>
+			</div>
+		</header>
+		<div class="step-content step10-checkboxes-content">
+			{% if title != blank %}
+				<h3 class="step7-checkboxes-content__title">{{ title }}</h3>
+			{% endif %}
+			{% if text != blank %}
+				<p class="step7-checkboxes-content__text step10-checkboxes-content__text">{{ text }}</p>
+			{% endif %}
+			<div class="step7-checkboxes-content__items step10-checkboxes-content__items">
+				{% for item in checkbox_list %}
+
+					<div class="step7-checkboxes-content__item">
+						<input type="radio" class="radio" id="{{ header_title | downcase | handleize }}-10-{{ item | handleize }}" value="{{ item | downcase | handleize }}" name="sex-type">
+						<label data-next-page for="{{ header_title | downcase | handleize }}-10-{{ item | handleize }}">{{ item }}</label>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endfor %}
+{% schema %}
+{
+	"name": "Step 10 (Sex)",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "header",
+			"content": "PROGRESS BAR"
+		},
+		{
+			"type": "range",
+			"id": "progress_percent",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent",
+			"default": 45
+		},
+		{
+			"type": "range",
+			"id": "progress_percent_mob",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent (mobile)",
+			"default": 46
+		},
+		{
+			"type": "checkbox",
+			"id": "first_progress_circle",
+			"label": "The first progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "second_progress_circle",
+			"label": "The second progress circle active?",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "third_progress_circle",
+			"label": "The third progress circle active?",
+			"default": false
+		}
+	],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "goal card",
+			"settings": [
+				{
+					"type": "header",
+					"content": "HEADER"
+				},
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Header title"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img",
+					"label": "Header background image"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img_mob",
+					"label": "Header background image (mobile)"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text"
+				},
+				{
+					"type": "header",
+					"content": "Checkboxes list"
+				},
+				{
+					"type": "textarea",
+					"id": "checkbox_list",
+					"label": "Radio list",
+					"info": "Elemets of list are devided by '||'"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

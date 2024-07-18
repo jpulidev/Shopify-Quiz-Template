@@ -1,0 +1,66 @@
+<script>
+  $(document).ready(function() {
+    window.location.href = "https://vesselhealth.com/";
+  });
+</script>
+{%comment%}
+  {% layout "quiz" %}
+
+  <div class="quiz--wrapper">
+  <!-- Slider main container -->
+  <div id="quiz-slider" class="swiper quiz__slider" data-main-type="" data-sex="" data-type-1="" data-type-2="" data-type-3="" style="background-color:#C1DEBA!important;">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper slider__wrapper">
+  <!-- Slides -->
+
+  {% section "page-new-quiz-fuel--section-2" %}
+
+  {% section "page-new-quiz--section-2" %}
+  {% section "page-new-quiz--section-3" %}
+  {% section "page-new-quiz--section-4" %}
+  {% section "page-new-quiz--section-5-three-checkboxes" %}
+  {% section "page-new-quiz--section-6-main-choice" %}
+  {% section "page-new-quiz--section-7" %}
+  {% section "page-new-quiz--section-8" %}
+  {% section "page-new-quiz--section-9" %}
+  {% section "page-new-quiz--section-10-sex" %}
+  {% section "page-new-quiz--section-11" %}
+  {% section "page-new-quiz--section-12-diet" %}
+  {% section "page-new-quiz--section-13-allergies" %}
+  {% section "page-new-quiz--section-14-sex-intro" %}
+  {% section "page-new-quiz--section-15" %}
+  {% section "page-new-quiz--section-15" %}
+  {% section "page-new-quiz--section-17" %}
+  {% section "page-new-quiz--section-test-1" %}
+  {% section "page-new-quiz--section-test-2" %}
+  {% section "page-new-quiz--section-test-3" %}
+  {% section "page-new-quiz--section-test-4" %}
+  {% section "page-new-quiz--section-test-5" %}
+  {% section "page-new-quiz--section-18" %}
+  {% section "page-new-quiz--section--coach" %}
+  {% section "page-new-quiz--section--account" %}
+  {% section "page-new-quiz--section--preparing" %}
+  {% section "page-new-quiz--section-ready" %}
+  {% section "page-new-quiz--section-reviews" %}
+  {% section "page-new-quiz--section-guarantee" %}
+  {% section "page-new-quiz--section-pdp" %}
+  {% section "page-new-quiz--section-membership" %}
+
+  {% section "page-new-quiz--section-disclaimer" %}
+
+
+  </div>
+  </div>
+  </div>
+
+  {% if page.handle contains 'fuel-quiz'%}
+  <style>
+  #quiz-slider .swiper-wrapper .slider__slide {
+  background-color:#C1DEBA!important;
+  }
+  #quiz-slider .swiper-wrapper .slider__slide .slide__content .step-content.step1-intro-content {
+  background-color:#C1DEBA!important;
+  }
+
+  </style>	
+  {% endif %}{%endcomment%}}}}

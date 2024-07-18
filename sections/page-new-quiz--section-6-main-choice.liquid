@@ -1,0 +1,96 @@
+{% if page.handle == 'new-quiz-membership' %}
+{% assign title    = section.settings.title_V2 %}
+{% assign text     = section.settings.text_V2 %}
+{%else%}
+{% assign title    = section.settings.title %}
+{% assign text     = section.settings.text %}
+{%endif%}
+
+{% assign blocks   = section.blocks %}
+
+<style>
+	{% for block in blocks %}
+	{% assign image = block.settings.image %}
+
+		{% if image != blank %}
+			.step-content.step6-main-choice-content .step6-main-choice-content__items .step6-main-choice-content__item.step6-main-choice-content__item--{{ block.id }} label {
+				background-image: url("{{ image | img_url: 'master' }}");
+			}
+		{% endif %}
+	{% endfor %}
+</style>
+
+<div class="slide__content">
+	<header class="step-header">
+		<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+		{% comment %}<span class="step-header__title">Sleep</span>{% endcomment %}
+	</header>
+	<div class="step-content step6-main-choice-content">
+		{% if title != blank %}
+			<h3 class="step6-main-choices-content__title">{{ title }}</h3>
+		{% endif %}
+		{% if text != blank %}
+			<p class="step6-main-choice-content__text">{{ text }}</p>
+		{% endif %}
+		<div class="step6-main-choice-content__items" data-radio-6>
+			{% for block in blocks %}
+				{% assign name = block.settings.name %}
+				{% assign lower_name = name | downcase %}
+
+				<div data-type="{{ lower_name }}" class="step6-main-choice-content__item step6-main-choice-content__item--{{ block.id }}">
+					<input type="radio" class="radio radio-input" id="radio-{{ lower_name }}"  value="{{ lower_name }}" name="main-type">
+					<label data-next-page class="radio-label" for="radio-{{ lower_name }}">{{ name }}</label>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% schema %}
+{
+	"name": "Step 6 (main choice)",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "title_V2",
+			"label": "Title V2",
+			"default": "Which goal do you want to start with?"
+		},
+		{
+			"type": "textarea",
+			"id": "text_V2",
+			"label": "Text V2",
+			"default": "Select a wellness goal to focus on first. Don’t worry, you can change this at any time!"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "item",
+			"settings": [
+				{
+					"type": "text",
+					"id": "name",
+					"label": "Name"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

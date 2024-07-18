@@ -1,0 +1,146 @@
+{{ 'rg-take-the-tour.css' | asset_url | stylesheet_tag }}
+
+<div class="section-sticky wf-section" id="take-our-tour">
+  <div class="section-sticky__wrap section-sticky__wrap-progress">
+    <div id="scan" class="section-triggers section-triggers__scroll-down">
+      <div id="sup" data-w-id="d57ea8c8-84e0-1bd2-fd18-a6ef9ff9250a" class="section-trigger section-trigger__2"></div>
+      <div id="life" data-w-id="bf5ef2ae-5454-dd23-572c-fd46c798f9ac" class="section-trigger section-trigger__3"></div>
+      <div id="plan" data-w-id="bf5ef2ae-5454-dd23-572c-fd46c798f9ad" class="section-trigger section-trigger__4"></div>
+      <div id="improve" data-w-id="4df37794-50e1-3eff-1d9c-db9e5f5dc763" class="section-trigger section-trigger__5"></div>
+    </div>
+
+    <div class="wrap__sticky sticky sticky-5">
+      <div class="div-block-41">
+        <div class="div-block-47">
+
+          <div class="container-7 tour-title w-container">
+            <div class="div-block-43">
+              {%- if section.settings.title != blank -%}
+                <h2 class="h1 tour">{{ section.settings.title }}</h2>
+              {%- endif -%}
+              {%- if section.settings.text != blank -%}
+                <p class="paragraph main">{{ section.settings.text }}</p>
+              {%- endif -%}
+
+            </div>
+          </div>
+
+          {% capture productlink %}
+          {% for block in section.blocks %}
+            <div class="div-block-7">
+              <a href="#" class="w-inline-block">
+                <div class="text-block{% if forloop.first == false %} active{% endif %}">
+                  <strong>{{ block.settings.title }}</strong>
+                </div>
+              </a>
+              <div class="div-block-8 {% if forloop.first == true %}active {{ block.settings.title | downcase }}-b{% endif %}"></div>
+            </div>
+          {% endfor %}
+          {% endcapture %}
+
+          <div class="tour-section w-container">
+
+            {% for block in section.blocks %}
+              <div class="{{ block.settings.title | downcase }}"{% unless forloop.first == true %} style="display: none" {% endunless %}>
+                <div class="div-block-9">
+
+                  <div class="scroll-menu">
+                    {{ productlink }}
+                  </div>
+
+                  {%- if block.settings.image != blank -%}
+                    <div class="scroll-img">
+                      <div class="div-block-48"></div>
+                      <div class="div-block-49"></div>
+                      <img src="{{ block.settings.image | img_url: 'master' }}" alt="" class="image-5">
+                    </div>
+                  {%- endif -%}
+
+                  <div class="scroll-text">
+                    {%- if block.settings.title != blank -%}
+                    <h2 class="heading-30">{{ block.settings.title }}</h2>
+                    {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                    <div class="paragraph">{{ block.settings.text }}</div>
+                    {%- endif -%}
+                    {%- if section.settings.title != blank -%}
+                      <a href=""></a>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="html-embed w-embed">
+      <style>
+        /*@media only screen and (min-width: 960px) {*/
+        .sticky {
+          position: -webkit-sticky !important;
+          position: sticky !important;
+        }
+        /*}*/
+      </style>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "RG Take the tour",
+  "tag": "section",
+  "class": "take-our-tour",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Take the tour"
+    },
+    {
+      "id": "text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "Let us show you the way to optimize your body and your mind."
+    },
+    {
+      "id": "nav",
+      "type": "textarea",
+      "label": "Nav List"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Add Item",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+       	  "label": "Image"
+        },
+        {
+          "id": "title",
+          "type": "text",
+       	  "label": "Title",
+       	  "default": "Results"
+        },
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Text",
+          "default": "<p>Take the guesswork out of your health. Vessel tests essential health metrics like nutrition, hydration, and stress levels to help you feel, look, and perform better</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG Take the tour",
+      "category": "RG"
+    }
+  ]
+}
+{% endschema %}

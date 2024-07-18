@@ -1,0 +1,190 @@
+{% assign product = all_products[section.settings.product] %}
+{% assign title = section.settings.title %}
+{% assign text  = section.settings.text %}
+
+{% assign variant_id_d  = section.settings.variant_id_d %}
+{% assign title_d  = section.settings.title_d %}
+{% assign subtitle_d  = section.settings.subtitle_d %}
+{% assign label_d  = section.settings.label_d %}
+{% assign price_d  = section.settings.price_d %}
+
+{% assign variant_id_w  = section.settings.variant_id_w %}
+{% assign title_w  = section.settings.title_w %}
+{% assign subtitle_w  = section.settings.subtitle_w %}
+{% assign label_w  = section.settings.label_w %}
+{% assign price_w  = section.settings.price_w %}
+
+{% assign variant_id_m  = section.settings.variant_id_m %}
+{% assign title_m  = section.settings.title_m %}
+{% assign subtitle_m  = section.settings.subtitle_m %}
+{% assign label_m  = section.settings.label_m %}
+{% assign price_m  = section.settings.price_m %}
+
+<div class="slide__content slide-pdp-section__content">
+	<header class="step-header">
+		<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+	</header>
+	<div class="step-content step-pdp-content">
+		{% if title != blank %}
+			<h3 class="step-pdp-content__title">{{ title }}</h3>
+		{% endif %}
+		{% if text != blank %}
+			<p class="step-pdp-content__text">{{ text }}</p>
+		{% endif %}
+
+		{% capture selling_plan_id  %}
+			{% for group in product.selling_plan_groups %}
+				{% for selling_plan in group.selling_plans %}
+					{{ selling_plan.id }}
+				{% endfor %}
+			{% endfor %}
+		{% endcapture %}
+
+		<div class="step-pdp-content__variants">
+			<div class="step-pdp-content__variant step-pdp-content__variant-{{ variant_id_m }}" data-product-variant data-variant-id="{{ variant_id_m }}" data-selling-plan-id="{{ selling_plan_id | strip_newlines | strip }}" data-frequency="{{ subtitle_m }}" data-price="{{ price_m }}">
+				<div class="step-pdp-content__variant-title">{{ title_m }}</div>
+				{% if subtitle_m != blank %}
+					<div class="step-pdp-content__variant-subtitle">{{ subtitle_m }}</div>
+				{% endif %}
+				{% if label_m != blank %}
+					<div class="label">{{ label_m }}</div>
+				{% endif %}
+			</div>
+			<div class="step-pdp-content__variant step-pdp-content__variant-{{ variant_id_w }}" data-product-variant data-variant-id="{{ variant_id_w }}" data-selling-plan-id="{{ selling_plan_id | strip_newlines | strip }}" data-frequency="{{ subtitle_w }}" data-price="{{ price_w }}">
+				<div class="step-pdp-content__variant-title">{{ title_w }}</div>
+				{% if subtitle_w != blank %}
+					<div class="step-pdp-content__variant-subtitle">{{ subtitle_w }}</div>
+				{% endif %}
+				{% if label_w != blank %}
+					<div class="label">{{ label_w }}</div>
+				{% endif %}
+			</div>
+			<div class="step-pdp-content__variant step-pdp-content__variant-{{ variant_id_d }}" data-product-variant data-variant-id="{{ variant_id_d }}" data-selling-plan-id="{{ selling_plan_id | strip_newlines | strip }}" data-frequency="{{ subtitle_d }}" data-price="{{ price_d }}">
+				<div class="step-pdp-content__variant-title">{{ title_d }}</div>
+				{% if subtitle_d != blank %}
+					<div class="step-pdp-content__variant-subtitle">{{ subtitle_d }}</div>
+				{% endif %}
+				{% if label_d != blank %}
+					<div class="label">{{ label_d }}</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% schema %}
+{
+	"name": "Step Select Product",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "product",
+			"id": "product",
+			"label": "Select Product"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"default": "How often would you like to check your levels?"
+		},
+		{
+			"type": "text",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "header",
+			"content": "Daily Variant"
+		},
+		{
+			"type": "text",
+			"id": "variant_id_d",
+			"label": "Variant ID"
+		},
+		{
+			"type": "text",
+			"id": "title_d",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "subtitle_d",
+			"label": "Subtitle"
+		},
+		{
+			"type": "text",
+			"id": "label_d",
+			"label": "Label"
+		},
+		{
+			"type": "text",
+			"id": "price_d",
+			"label": "Price",
+			"info": "Write without $ symbol"
+		},
+		{
+			"type": "header",
+			"content": "Weekly Variant"
+		},
+		{
+			"type": "text",
+			"id": "variant_id_w",
+			"label": "Variant ID"
+		},
+		{
+			"type": "text",
+			"id": "title_w",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "subtitle_w",
+			"label": "Subtitle"
+		},
+		{
+			"type": "text",
+			"id": "label_w",
+			"label": "Label"
+		},
+		{
+			"type": "text",
+			"id": "price_w",
+			"label": "Price",
+			"info": "Write without $ symbol"
+		},
+		{
+			"type": "header",
+			"content": "Monthly Variant"
+		},
+		{
+			"type": "text",
+			"id": "variant_id_m",
+			"label": "Variant ID"
+		},
+		{
+			"type": "text",
+			"id": "title_m",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "subtitle_m",
+			"label": "Subtitle"
+		},
+		{
+			"type": "text",
+			"id": "label_m",
+			"label": "Label"
+		},
+		{
+			"type": "text",
+			"id": "price_m",
+			"label": "Price",
+			"info": "Write without $ symbol"
+		}
+    ]
+}
+{% endschema %}

@@ -1,0 +1,50 @@
+<div class="our-mission wf-section">
+    <div class="container-25 w-container">
+        {% if section.settings.image != blank %}
+            <div class="div-block-111">
+                <img
+                src="{{section.settings.image | img_url: '2048x' }}"
+                sizes="(max-width: 479px) 100vw, (max-width: 767px) 41vw, (max-width: 991px) 314px, 420px"
+                srcset="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5e8f66043f3bfd1fbab3659c_Vessel_Website_Our-Mission_Image_v1-01-p-500.png 500w, https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5e8f66043f3bfd1fbab3659c_Vessel_Website_Our-Mission_Image_v1-01-p-800.png 800w, https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5e8f66043f3bfd1fbab3659c_Vessel_Website_Our-Mission_Image_v1-01.png 1042w"
+                alt="">
+            </div>
+            <div class="div-block-112">
+                <h2 class="heading">{{section.settings.title}}</h2>
+                <p class="paragraph">{{section.settings.text}}</p>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2 class="heading">{{section.settings.title}}</h2>
+                <p class="paragraph">{{section.settings.text}}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .our-mission p strong{
+        font-size: 24px;
+    }
+</style>
+{% schema %}
+{
+   "name": "Our mission image text",
+  "settings": [
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+    }
+  ]
+}
+{% endschema %}

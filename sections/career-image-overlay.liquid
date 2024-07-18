@@ -1,0 +1,55 @@
+<div class="find-your-better find-your-better-about wf-section">
+    <div class="find-you-better-container">
+        <div class="container-9 w-container">
+            <div class="div-block-32 w-clearfix">
+                <h2 class="white heading">{{section.settings.title}}</h2>
+                <p class="paragraph white">{{section.settings.text | strip_html}}</p>
+                <a href="{{section.settings.link}}" class="dark-bt white w-button">{{section.settings.button_text}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .find-your-better {
+        background-image: url({{section.settings.banner_image | img_url: '2048x' }});
+    }
+</style>
+{% schema %}
+{
+   "name": "Career image overlay",
+  "class": "career-image-overlay",
+  "settings": [
+     {
+         "type": "image_picker",
+         "id": "banner_image",
+         "label": "Banner image"
+     },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+    },
+    {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+    },
+    {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text"
+    }
+  ],
+ "presets": [
+     {
+         "category": "Career",
+         "name":"Career image overlay"
+     }
+ ]
+}
+{% endschema %}

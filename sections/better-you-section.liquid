@@ -1,0 +1,47 @@
+<style>
+  .better-you-container {
+    background: #fdf6ed;
+    padding-bottom: 80px;
+    padding-top: 61px;
+    text-align: center;
+  }
+  .better-you-heading {
+    font-family: 'Banana Grotesk Medium';
+    font-size: 53px;
+    line-height: 67px;
+    margin-bottom: 95px;
+  }
+  @media(max-width:1000px) {
+    .better-you-mobile {
+      display: block !important;
+      margin-left: 30px;
+    }
+    .better-you-heading,
+    .better-you-steps-container {
+      display: none;
+    }
+  }
+</style>
+
+<div class="better-you-container">
+  <div class="better-you-heading">
+    A Better You in Three Months
+  </div>
+  <div class="better-you-steps-container">
+    <div class="better-you-grid">
+      {% include 'steps-better'%}
+    </div>
+  </div>
+  <div class="better-you-mobile" style="display:none;">
+    <img srcset="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_27.png?v=1668454591" width="360" height="795">
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "better-you-section",
+    "class": "better-class",
+
+    "settings": []
+  }
+{% endschema %}

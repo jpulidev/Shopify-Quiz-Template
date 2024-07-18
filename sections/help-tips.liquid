@@ -1,0 +1,62 @@
+<section class="tips-section section">
+    <div class="w-container">
+      
+
+      <h2>Vessel Tips</h2>
+      <div class="tips-wrapper">
+        <div class="tip">
+          <img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/logo_ph.png?v=1665614363" loading="lazy" alt="" class="image-43">
+          <div class="tip-text">Vessel nutritional coaches are available to dive deeper and help you set food and wellness goals.</div>
+        </div>
+        <div class="tip second">
+          <img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/logo_ph.png?v=1665614363" loading="lazy" alt="" class="image-43">
+          <div class="tip-text">Vessel Fuel is a personalized daily supplement based on your monthly wellness results.</div>
+        </div>
+        <div class="tip">
+          <img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/logo_ph.png?v=1665614363" loading="lazy" alt="" class="image-43">
+          <div class="tip-text">You can pause your monthly subscription at any time by logging into your dashboard.</div>
+        </div>
+      </div>
+    </div>
+</section>  
+
+{% schema %}
+{
+    "name": "Help Tips",
+    "settings": [
+        {
+            "type": "header",
+            "content": "header"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "common topic",
+            "type": "topic",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "category": "help",
+        "name":"Help tips"
+      }
+    ]
+}
+{% endschema %}

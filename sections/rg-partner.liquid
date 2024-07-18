@@ -1,0 +1,158 @@
+<style>
+  .partner-accordion{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid hsla(0,0%,100%,.4);
+  }
+
+  .accordion-trigger{
+    cursor: pointer;
+  }
+
+  .accordion-trigger img{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .accordion-trigger.active img{
+    transform: rotate(45deg);
+  }
+  .accordion-content p{
+    margin: 0;
+  }
+  .accordion-content{
+    padding: 15px 0;
+  }
+  .partner-text {
+    margin-top: 160px;
+  }
+  @media screen and (max-width:1000px) {
+    .partner-text {
+      margin-top: 80px;
+    }
+    .accordion-img {
+      top: -17px!important;
+    }
+  }
+
+</style>
+
+
+<div class="rg-partner-wrap color-scheme-accent-2 color-accent-2 gradient">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item">
+        <h2 class="h1 partner-text " style="color: #fff">{{ section.settings.title }}</h2>
+      </div>
+    </div>
+
+    <div class="partner-content">
+      {%- for block in section.blocks -%}
+        <div class="partner-accordion">
+          <div class="accordion-trigger position-relative">
+            <div class="accordion-heading">
+              <h2 class="h2">{{ block.settings.title }}</h2>
+              <p>{{ block.settings.subTitle }}</p>
+            </div>
+            <img class="accordion-img" src="{{ 'expand.png' | asset_url }}" alt="">
+          </div>
+          <div class="accordion-content" style="display: none">
+            {{block.settings.details_html}}
+            {{ block.settings.details }}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Partner",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "I'm a..."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Add Text",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+       		"label": "Title",
+       		"default": "Affiliate"
+        },
+        {
+          "id": "subTitle",
+          "type": "text",
+          "label": "Sub Title",
+          "default": "Share Vessel through affiliate marketing channels."
+        },
+        {
+          "id": "details",
+          "type": "richtext",
+          "label": "Details"
+        },
+        {
+          "type": "html",
+          "id": "details_html",
+          "label": "details"
+        }
+      ]
+    },
+    {
+      "type": "Influencer",
+      "name": "Influencer form",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+       		"label": "Title",
+       		"default": "Influencer"
+        },
+        {
+          "id": "subTitle",
+          "type": "text",
+          "label": "Sub Title",
+          "default": "Apply to be part of the Vessel Collective, where influencers share their experience using Vessel products."
+        },
+        {
+          "type": "html",
+          "id": "details",
+          "label": "details"
+        }
+      ]
+    },
+    {
+      "type": "Ambassador",
+      "name": "Ambassador form",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+       		"label": "Title",
+       		"default": "Ambassador"
+        },
+        {
+          "id": "subTitle",
+          "type": "text",
+          "label": "Sub Title",
+          "default": "Become an ambassador of Vessel by sharing Vessel products with your clients, patients, and community."
+        },
+        {
+          "type": "html",
+          "id": "details",
+          "label": "details"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+{{'vessel-health.22e6642b9.min.css' | asset_url | stylesheet_tag}}
+<div class="hiring wf-section">
+    <div class="green-bg careers"></div>
+    <img src="{{section.settings.banner_image | img_url: '2048x' }}" loading="lazy" alt="" class="image-26">
+    <div class="container-23 careers w-container">
+        <div class="div-block-103 hiring-top">
+            <h1>{{section.settings.title}}</h1>
+            {{section.settings.text}}
+            <a href="#job-openings" class="dark-bt w-button">See openings</a>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+   "name": "Career header",
+    "class": "career-header-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "banner_image",
+            "label": "Banner image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+       {
+           "type": "richtext",
+           "id": "text",
+           "label": "Text"
+       }
+    ]
+}
+{% endschema %}

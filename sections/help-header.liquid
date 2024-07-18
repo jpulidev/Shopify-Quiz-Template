@@ -1,0 +1,92 @@
+{{'style.css' | asset_url | stylesheet_tag}}
+<section id="main-content" class="section-2 feedback">
+    <div class="container-26 feedback w-container">
+      <h1 class="heading help-center">Hi. How can we help?</h1>
+      <div class="home-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"></circle>
+          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"></path>
+        </svg>
+        <form role="search" class="search search-full" data-search="" data-instant="true" autocomplete="off" action="/search" accept-charset="UTF-8" method="get">
+            <input type="search" name="q" id="query" placeholder="Search for answers here" autocomplete="off" aria-label="Search for answers here">
+            <input type="hidden" name="type" value="blog" aria-hidden="true">
+        </form>
+      </div>
+      <!---->
+      <div class="text-block-34">Common Topics:
+        <a class="topic-links-link" href="https://help.vesselhealth.com/hc/en-us/articles/360063752453-How-does-a-Wellness-Card-Membership-work-">memberships</a>,
+        <a class="topic-links-link" href="https://help.vesselhealth.com/hc/en-us/articles/360056086673">talk to a nutritional coach</a>,
+        <a class="topic-links-link" href="https://help.vesselhealth.com/hc/en-us/articles/4402766887447-Taking-a-Wellness-Card-Test">taking your first test</a>
+      </div>
+      <img src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5f44414b198ba2245be5dbbe_feed_help_header.png" loading="lazy" alt="" class="image-40 mobile">
+    </div>
+</section>
+
+<style>
+.topic-links-link {
+  color: #000!important;
+  text-decoration: underline!important;
+  font-family: 'Banana Grotesk Medium';
+  font-weight: 400;
+}
+.help-menu-link-desc {
+  color: #000!important;
+}
+.promoted-articles-item a {
+  color: #000!important;
+}
+#shopify-section-template--15909469290682__article {
+  background: #fff;
+}
+#shopify-section-template--15909469290682__tip {
+  background: #fff;
+}
+body {
+  background-color: #FFFFFF!important;
+}
+.menu-links-left {
+  display:none;
+}
+
+</style>
+
+{% schema %}
+{
+    "name": "Help header",
+    "settings": [
+        {
+            "type": "header",
+            "content": "header"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "common topic",
+            "type": "topic",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "category": "help",
+        "name":"Help header"
+      }
+    ]
+}
+{% endschema %}

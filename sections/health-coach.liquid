@@ -1,0 +1,193 @@
+<section class="health-coach-group">
+  <div class="health-coach-container">
+      <div class="split-two">
+          <div class="grid-split-two">
+              <p class="split-title split-mobile coach-text" id="mobile-text-one">{{section.settings.title}}</p>
+              <p class="split-title split-mobile coach-text" id="desktop-text-one">Your Food<br> Plan</p>
+              <p class="split-description">You'll get food recommendations to help you optimize your nutrient levels and help you feel your best.</p>
+          </div>
+      </div>
+      <div class="split-health">
+          <img 
+          class="lazyloaded lazy2 blur-up" 
+          data-sizes="auto"
+          loading="lazy" 
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+          data-src="{{section.settings.imag_id | img_url: '2800x'}}" 
+          data-mobsrc="{{section.settings.imag_id | img_url: '400x'}}"
+          style="max-width:680px">            
+      </div>
+  </div>
+  <div class="health-coach-container">
+      <div class="split-health img-02">
+          <img 
+           class="lazyloaded lazy2 blur-up"
+           data-sizes="auto"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+           data-src="{{section.settings.imag_id_01 | img_url: '2800x'}}"
+           data-mobsrc="{{section.settings.imag_id_01 | img_url: '400x'}}"
+           style="max-width:540px">
+      </div>
+      <div class="split-two">
+          <div class="grid-split-two">
+              <p class="split-title split-mobile coach-text">{{section.settings.title_01}}</p>
+              <p class="split-description">Know exactly what supplements your body needs down to the milligram based on your nutrient test levels and a medical quiz.</p>
+          </div>
+      </div>
+  </div>
+  <div class="health-coach-container">
+      <div class="split-two">
+          <div class="grid-split-two split-3">
+              <p class="split-title split-mobile coach-text" id="mobile-text-three">{{section.settings.title_02}}</p>
+              <p class="split-title split-mobile coach-text" id="desktop-text-three">Your Lifestyle <br>Plan</p>
+              <p class="split-description">Vessel will personalized lifestyle recommendations to help you stay hydrated, reduce stress and build healthy habits.</p>
+          </div>
+      </div>
+      <div class="split-health img-03">
+          <img 
+           class="lazyloaded lazy2 blur-up"
+           data-sizes="auto"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+           data-src="{{section.settings.imag_id_02 | img_url: 'original'}}"
+           data-mobsrc="{{section.settings.imag_id_02 | img_url: '400x'}}"
+          style="height: 400px;">
+      </div>
+  </div>
+  <div class="health-coach-container" style="border-bottom: none;">
+      <div class="split-health">
+          <img 
+          class="lazyloaded lazy2 blur-up"
+           data-sizes="auto"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+           data-src="{{section.settings.imag_id_03 | img_url: 'original'}}"
+           data-mobsrc="{{section.settings.imag_id_03| img_url: '400x'}}">
+      </div>
+      <div class="split-two">
+          <div class="grid-split-two split-4">
+              <p class="split-title split-mobile coach-text">{{section.settings.title_03}}</p>
+              <p class="split-description">{{section.settings.description_03}}</p>
+          </div>
+      </div>
+  </div>
+</section>
+<style>
+@media screen and (min-width:1000px) {
+  #mobile-text-one {
+    display:none;
+  }
+  #mobile-text-three {
+    display:none;
+  }
+}
+@media screen and (max-width:999px) {
+  #desktop-text-one {
+    display:none;
+  }
+  #desktop-text-three {
+    display:none;
+  }
+  .split-mobile {
+    font-size: 29px!important;
+ } 
+ 
+}
+</style>
+
+{% schema %}
+{
+"name": "Health Coach",
+"class": "food-health-supplements",
+"tag": "section",
+"settings": [
+{
+  "type": "text",
+  "id": "title",
+  "placeholder": "title section",
+  "default": "Your Food Plan",
+  "label": "title",
+  "info": "Title Info"
+},
+{
+  "type": "text",
+  "id": "description",
+  "placeholder": "description",
+  "default": "You'll get food recommendations to help you optimize your nutrient levels and help you feel your best.",
+  "label": "description",
+  "info": "Description Info"
+},
+{
+  "type": "image_picker",
+  "label": "image-split",
+  "id": "imag_id"
+},
+{
+  "type": "text",
+  "id": "title_01",
+  "placeholder": "title section",
+  "default": "Your Supplement Plan",
+  "label": "title",
+  "info": "Title Info"
+},
+{
+  "type": "text",
+  "id": "description_01",
+  "placeholder": "description",
+  "default": "Know exactly what supplements your body needs down to the milligram based on your nutrient test levels and a medical quiz.",
+  "label": "description",
+  "info": "Description Info"
+},
+{
+  "type": "image_picker",
+  "label": "image-split",
+  "id": "imag_id_01"
+},
+{
+  "type": "text",
+  "id": "title_02",
+  "placeholder": "title section",
+  "default": "Your Lifestyle Plan",
+  "label": "title",
+  "info": "Title Info"
+},
+{
+  "type": "text",
+  "id": "description_02",
+  "placeholder": "description",
+  "default": "Vessel will personalized lifestyle recommendations to help you stay hydrated, reduce stress and build healthy habits.",
+  "label": "description",
+  "info": "Description Info"
+},
+{
+  "type": "image_picker",
+  "label": "image-split",
+  "id": "imag_id_02"
+},
+{
+  "type": "text",
+  "id": "title_03",
+  "placeholder": "title section",
+  "default": "A health coach by your side",
+  "label": "title",
+  "info": "Title Info"
+},
+{
+  "type": "text",
+  "id": "description_03",
+  "placeholder": "description",
+  "default": "As a member, you’ll have access to a dedicated health coach who is a certified nutritionist and available to answer health questions and help give customized recommendations.",
+  "label": "description",
+  "info": "Description Info"
+},
+{
+  "type": "image_picker",
+  "label": "image-split",
+  "id": "imag_id_03"
+}
+],
+"presets": [
+  {
+    "name": "Health Coach"
+  }
+]
+}
+{% endschema %}

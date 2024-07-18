@@ -1,0 +1,76 @@
+<section>
+    <div class="take-section">
+        {{section.settings.title}}
+    </div>
+    <div class="take-container">
+        {%- for block in section.blocks -%}
+    <div class="take-container-group">
+       <div class="take-column">
+        <div class="icon">
+        {{block.settings.svg_id}}
+      </div>
+       </div>  
+         <p class="take-title">{{ block.settings.title}}</p>
+         <p class="take-description">{{ block.settings.text}}</p>
+    </div> 
+         {%-endfor-%}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Take the guess",
+  "class": "spaced-section spaced-section--full-width take_the_guess",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "default": "Take the guesswork out of your health",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Icons Section",
+      "settings": [
+        {
+        "type": "html",
+        "id": "svg_id",
+        "label": "SVG Content",
+        "default": "<div>Icon Content</div>"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Easy, at-home test",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Simply pee on the wellness card,  wait 3 ½ minutes, then scan to see  your results in the app.</p>",
+          "label": "Text Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Take the guesswork",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

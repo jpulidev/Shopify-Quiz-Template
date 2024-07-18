@@ -1,0 +1,211 @@
+{{ 'mh-test-kit.css' | asset_url | stylesheet_tag }}
+
+<div class="test-kit-container{% if section.settings.floating_section %} test-kit-float{% endif %}">
+    <div class="test-kit-bg"></div>
+
+    <div class="page-width responsive-page-width">
+        {% if section.settings.enable_kit_header %}
+        <div class="mh-section-header test-kit-header center">
+            {% if section.settings.heading != blank %}
+            <h1 class="kit-header-title section_title">
+                {{ section.settings.heading }}
+            </h1>
+            {% endif %}
+    
+            {% if section.settings.text != blank %}
+            <div class="kit-header-content section_content">
+                {{ section.settings.text }}
+            </div>
+            {% endif %}
+    
+            {% if section.settings.enable_header_bg %}
+            <img class="wavy-arrow" src="{{ 'Arrow-wavy-2.png' | asset_url }}" alt="">
+            {% endif %}
+        </div>
+        {% endif %}
+    
+        <div class="test-kit">
+            <div class="test-kit-inner">
+                {% if section.settings.title != blank %}
+                <h2 class="test-kit-title">{{ section.settings.title }}</h2>
+                {% endif %}
+    
+                {% if section.blocks.size > 0 %}
+                <div class="kit-column-container">
+                    <div class="kit-column-left"></div>
+    
+                    {% for block in section.blocks %}
+                    <div class="kit-column">
+                        <div class="kit-column-header" style="background-color: {{ block.settings.column_header_color }};">
+                            {% if block.settings.title != blank %}
+                            <h3 class="kit-column-title">
+                                {{ block.settings.title }}
+                            </h3>
+                            {% endif %}
+    
+                            {% if block.settings.text != blank %}
+                            <div class="kit-column-content">
+                                {{ block.settings.text }}
+                            </div>
+                            {% endif %}
+                        </div>
+    
+                        {% if block.settings.kit_content_list != blank %}
+    
+                        {% assign kitList = block.settings.kit_content_list | split: ',' %}
+    
+                        <ul class="kit-column-list">
+                            {% for listItem in kitList %}
+                            <li class="kit-list-item">{{ listItem }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+    
+                    <div class="kit-column-right"></div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #shopify-section-{{ section.id }} .test-kit-bg {
+        background-color: {{ section.settings.section_bg_color }};
+    }
+
+    #shopify-section-{{ section.id }} .kit-column-left {
+        border-right-color: {{ section.settings.kit_left_color }};
+    }
+
+    #shopify-section-{{ section.id }} .kit-column-right {
+        border-left-color: {{ section.settings.kit_right_color }};
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Test kit",
+    "class": "test-kit-section",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "floating_section",
+            "label": "Float section top",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "The wellness continuum"
+        },
+        {
+            "type": "header",
+            "content": "Color"
+        },
+        {
+            "type": "color",
+            "id": "section_bg_color",
+            "label": "Section Background",
+            "default": "#fbf3eb"
+        },
+        {
+            "type": "color",
+            "id": "kit_left_color",
+            "label": "Kit left arrow",
+            "default": "#e7c4b1"
+        },
+        {
+            "type": "color",
+            "id": "kit_right_color",
+            "label": "Kit right arrow",
+            "default": "#c1deba"
+        },
+        {
+            "type": "header",
+            "content": "Test kit header"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_kit_header",
+            "label": "Show kit header",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Find your better"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Most of our healthcare system is focused on poor health and disease states. But what about proactive measures to feel better? That's what Vessel is all about.</p>"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_header_bg",
+            "label": "Show wavy arrow",
+            "default": true
+        }
+    ],
+    "blocks": [
+        {
+            "type": "kit_column",
+            "name": "Kit column",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Kit column"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Text",
+                    "default": "<p>Content for text kit column.</p>"
+                },
+                {
+                    "type": "color",
+                    "id": "column_header_color",
+                    "label": "Column header background",
+                    "default": "#c1deba"
+                },
+                {
+                    "type": "textarea",
+                    "id": "kit_content_list",
+                    "label": "Kit content list",
+                    "default": "List item one,List item two,List item three",
+                    "info": "Content list is separated by (,)."
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Text",
+            "name": "Test kit by RG",
+            "blocks": [
+                {
+                    "type": "kit_column"
+                },
+                {
+                    "type": "kit_column"
+                },
+                {
+                    "type": "kit_column"
+                },
+                {
+                    "type": "kit_column"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

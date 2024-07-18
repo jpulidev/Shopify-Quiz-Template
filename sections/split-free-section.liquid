@@ -1,0 +1,68 @@
+<section class="take-free-trial">
+  <div class="take-free-trial-container">
+      <div class="split-one">
+          <img 
+           class="lazyloaded lazy2 blur-up"
+           data-sizes="auto"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+           data-src="{{section.settings.imag_id | img_url: 'original'}}"
+           data-mobsrc="{{section.settings.imag_id | img_url: '400x'}}">
+      </div>
+      <div class="split-two">
+          <div class="grid-split-two">
+              <p class="split-title" style="text-align:left;">Start living <br> better today</p>
+              <p class="split-description" style="max-width: 340px;">{{section.settings.description}}</p>
+              <a class="button mobile-button" href="{{section.settings.cta_url}}">{{section.settings.button_title}}</a>
+          </div>
+      </div>
+  </div>
+</section>
+
+{% schema %}
+{
+"name": "Section Free Trial",
+"class": "split Free trial",
+"tag": "section",
+"settings": [
+{
+  "type": "text",
+  "id": "title",
+  "placeholder": "title section",
+  "default": "Start your free trial today",
+  "label": "title",
+  "info": "Title Info"
+},
+{
+  "type": "text",
+  "id": "description",
+  "placeholder": "description",
+  "default": "Get a 14 day trial of the Vessel app and a free test card, just pay $5.95 for shipping.",
+  "label": "description",
+  "info": "Description Info"
+},
+{
+  "type": "text",
+  "id": "button_title",
+  "placeholder": "button title",
+  "default": "Try it for free",
+  "label": "button",
+  "info": "Button description"
+},
+{
+  "type": "url",
+  "id": "cta_url",
+  "label": "Url Label"
+},
+{
+  "type": "image_picker",
+  "label": "image-split",
+  "id": "imag_id"
+}
+],
+"presets": [
+  {
+    "name": "Start Free Trial"
+  }
+]
+}
+{% endschema %}

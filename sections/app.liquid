@@ -1,0 +1,57 @@
+{{'vessel-health.22e6642b9.min.css' | asset_url | stylesheet_tag}}
+<div class="accessbility app wf-section">
+    <img src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/60bfbf7e54208d24088b87d6_Image%402x.png" alt="" class="image-21 app">
+    <div class="container-15 app w-container">
+        <h1>Welcome to Vessel</h1>
+        <div class="div-block-85">
+            {{section.settings.top_text}}
+            <div class="div-block-86 app welcome">
+                <a href="{{section.settings.iphone_app}}" target="_blank" class="link-block w-inline-block">
+                    <img src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5ecfe31ea803363387845244_app_iphone.png" alt="" class="image-22">
+                </a>
+            </div>
+            <p class="paragraph app welcome hide-android-link">To download the free Vessel Android app for Wellness <a href="https://play.google.com/store/apps/details?id=com.vessel.app&amp;hl=en_US&amp;gl=US" target="_blank">visit the play store</a>.<br><a href="#" class="link-18 hide">‍</a></p>
+            <div class="div-block-86 app welcome hide-android-link">
+                <a href="{{section.settings.adroid}}" target="_blank" class="link-block w-inline-block"><img src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5ecfe2f2d019434c59bdea10_app_android.png" alt="" class="image-22 hide-android-link"></a>
+            </div>
+            {{section.settings.bottom_text}}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "app",
+    "settings": [
+        {
+            "type": "html",
+            "id": "top_text",
+            "label": "Top text"
+        },
+        {
+            "type": "url",
+            "id": "iphone_app",
+            "label": "Iphone app"
+        },
+        {
+            "type": "url",
+            "id": "adroid",
+            "label": "Android app"
+        },
+        {
+            "type": "html",
+            "id": "bottom_text",
+            "label": "Bottom text"
+        }
+    ],
+    "blocks": [
+    
+    ],
+    "presets": [
+        {
+            "category": "app",
+            "name":"App"
+        }
+    ]
+}
+{% endschema %}

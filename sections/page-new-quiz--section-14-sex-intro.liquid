@@ -1,0 +1,246 @@
+{% assign progress_percent       = section.settings.progress_percent %}
+{% assign progress_percent_mob   = section.settings.progress_percent_mob %}
+{% assign first_progress_circle   = section.settings.first_progress_circle %}
+{% assign second_progress_circle = section.settings.second_progress_circle %}
+{% assign third_progress_circle  = section.settings.third_progress_circle %}
+{% assign cards                  = section.blocks | where: 'type', 'cards' %}
+{% assign contents               = section.blocks | where: 'type', 'contents' %}
+{% assign blocks                 = section.blocks %}
+
+<style>
+	.slide__content--section14 .step-header .progress-bar--section14 .progress-bar__line {
+		width: {{ progress_percent_mob }}% !important;
+	}
+
+	@media (min-width: 600px) {
+		.slide__content--section14 .step-header .progress-bar--section14 .progress-bar__line {
+			width: {{ progress_percent }}% !important;
+		}
+	}
+
+	{% for block in cards %}
+		{% assign header_bg_img        = block.settings.header_bg_img %}
+		{% assign header_bg_img_mob    = block.settings.header_bg_img_mob %}
+
+		{% if header_bg_img != blank and header_bg_img_mob != blank %}
+			.slide__content .step-header.step-header--{{ block.id }} {
+				background-image: url("{{ header_bg_img_mob |  img_url: 'master' }}");
+			}
+
+			@media (min-width: 460px) {
+				.slide__content .step-header.step-header--{{ block.id }} {
+					background-image: url("{{ header_bg_img | img_url: 'master' }}");
+				}
+			}
+		{% endif %}
+	{% endfor %}
+
+	 {%- for block in cards -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		 #quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide__content--section14[data-type="{{ header_title_lower }}"] {
+			 display: block !important;
+		 }
+	{%- endfor -%}
+
+	{%- for block in contents -%}
+		{% assign data_sex  = block.settings.data_sex %}
+		{% assign data_type = block.settings.data_type %}
+
+		#quiz-slider[data-main-type="{{ data_type | downcase | handleize }}"][data-sex="{{ data_sex | downcase | handleize }}"] .slide__content.slide__content--section14 .step14-sex-intro-content[data-type="{{ data_type | downcase | handleize }}"][data-sex="{{ data_sex | downcase | handleize }}"] {
+			display: block !important;
+		}
+	{%- endfor -%}
+</style>
+
+{% for block in cards %}
+	{% assign header_title  = block.settings.header_title %}
+	{% assign title         = block.settings.title %}
+	{% assign text          = block.settings.text %}
+	{% assign checkbox_list = block.settings.checkbox_list | split: '||' %}
+	{% assign btn_text      = block.settings.btn_text %}
+
+	<div class="slide__content slide__content--section14" data-type="{{ header_title | downcase }}">
+		<header class="step-header step-header--{{ block.id }}">
+			<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			<span class="step-header__title">{{ header_title }}</span>
+			<div class="progress-bar progress-bar--section14">
+				<div class="progress-bar__line"></div>
+				<span class="progress-bar__circle {% if first_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if second_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if third_progress_circle %}active{% endif %}"></span>
+			</div>
+		</header>
+		{% for block in contents %}
+			{% assign title     = block.settings.title %}
+			{% assign data_sex  = block.settings.data_sex %}
+			{% assign data_type = block.settings.data_type %}
+			{% assign text      = block.settings.text %}
+			{% assign img       = block.settings.img %}
+			{% assign img_mob   = block.settings.img_mob %}
+			{% assign message   = block.settings.message %}
+			{% assign caption   = block.settings.caption %}
+
+			<div class="step-content step14-sex-intro-content" data-type="{{ data_type | downcase | handleize }}" data-sex="{{ data_sex | downcase | handleize }}">
+				{% if title != blank %}
+					<h3 class="step14-sex-intro-content__title">{{ title }}</h3>
+				{% endif %}
+				<div class="step14-sex-intro__main-content">
+					{% if img != blank and img_mob != blank %}
+						<picture>
+							<source srcset="{{ img | img_url: 'master' }}" media="(min-width: 600px)">
+							<source srcset="{{ img_mob | img_url: 'master' }}" media="(max-width: 600px)">
+							<img class="step14-sex-intro__img" src="{{ img | img_url: 'master' }}" alt="{{ img.alt | escape }}">
+						</picture>
+					{% endif %}
+					<div class="step14-sex-intro__img-info">
+						{% if message != blank %}
+							<p class="img-info__message">{{ message }}</p>
+						{% endif %}
+						{% if caption != blank %}
+							<p class="img-info__caption">{{ caption }}</p>
+						{% endif %}
+					</div>
+				</div>
+				{% if text != blank %}
+					<p class="step14-sex-intro-content__text">{{ text }}</p>
+				{% endif %}
+			</div>
+		{% endfor %}
+		<div class="step-btn step-btn--cust">
+			<button data-next-page class="step-button step-button-next popup-trigger">{{ btn_text }}</button>
+		</div>
+	</div>
+{% endfor %}
+{% schema %}
+{
+	"name": "Step 14 (Sex intro)",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "header",
+			"content": "PROGRESS BAR"
+		},
+		{
+			"type": "range",
+			"id": "progress_percent",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent",
+			"default": 62
+		},
+		{
+			"type": "range",
+			"id": "progress_percent_mob",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent (mobile)",
+			"default": 61
+		},
+		{
+			"type": "checkbox",
+			"id": "first_progress_circle",
+			"label": "The first progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "second_progress_circle",
+			"label": "The second progress circle active?",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "third_progress_circle",
+			"label": "The third progress circle active?",
+			"default": false
+		}
+	],
+	"blocks": [
+		{
+			"type": "cards",
+			"name": "Intro card",
+			"settings": [
+				{
+					"type": "header",
+					"content": "HEADER"
+				},
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Header title"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img",
+					"label": "Header background image"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img_mob",
+					"label": "Header background image (mobile)"
+				},
+				{
+					"type": "text",
+					"id": "btn_text",
+					"label": "Button text",
+					"default": "Got it!"
+				}
+			]
+		},
+		{
+			"type": "contents",
+			"name": "Intro content",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "data_sex",
+					"label": "Sex",
+					"info": "Choose between male or female"
+				},
+				{
+					"type": "text",
+					"id": "data_type",
+					"label": "Main goal",
+					"info": "For example sleep or body or mood... "
+				},
+				{
+					"type": "image_picker",
+					"id": "img",
+					"label": "Reviewer's photo"
+				},
+				{
+					"type": "image_picker",
+					"id": "img_mob",
+					"label": "Reviewer's photo (mobile)"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text"
+				},
+				{
+					"type": "textarea",
+					"id": "message",
+					"label": "Message"
+				},
+				{
+					"type": "text",
+					"id": "caption",
+					"label": "Caption"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

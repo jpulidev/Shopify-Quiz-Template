@@ -1,0 +1,93 @@
+{% assign image     = section.settings.image %}
+{% assign image_mob = section.settings.image_mob %}
+{% if page.handle == 'new-quiz-membership' %}
+{% assign title     = section.settings.title_V2 %}
+{% assign text      = section.settings.text_V2 %}
+{% assign btn_text  = section.settings.btn_text_V2 %}
+{% else %} 
+{% assign title     = section.settings.title %}
+{% assign text      = section.settings.text %}
+{% assign btn_text  = section.settings.btn_text %}
+{% endif %} 
+
+
+
+<div class="slide__content">
+	<header class="step-header">
+		<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+		{% comment %}<span class="step-header__title">Sleep</span>{% endcomment %}
+	</header>
+	<div class="step-content step2-intro-content">
+		{% if image != blank and image_mob != blank %}
+			<picture>
+				<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+				<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+				<img class="step1-intro-content__img" src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+			</picture>
+		{% endif %}
+		{% if title != blank %}
+			<h3 class="step1-intro-content__title">{{ title }}</h3>
+		{% endif %}
+		{% if text != blank %}
+			<p class="step1-intro-content__text">{{ text }}</p>
+		{% endif %}
+	</div>
+	<div class="step-btn step-btn--cust">
+{% if page.handle == 'new-quiz-membership' %}
+   <button class="step-button step-button-next" onclick="window.quiz.store.swiper.slideTo(2);">Get started</button>
+{% else %} 
+		<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+{% endif %} 
+	</div>
+</div>
+{% schema %}
+{
+	"name": "Step 2",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mob",
+			"label": "Mobile image"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Got it!"
+		},
+		{
+			"type": "text",
+			"id": "title_V2",
+			"label": "Title V2"
+		},
+		{
+			"type": "textarea",
+			"id": "text_V2",
+			"label": "Text V2"
+		},
+		{
+			"type": "text",
+			"id": "btn_text_V2",
+			"label": "Button text V2",
+			"default": "Get started"
+		}
+    ]
+}
+{% endschema %}

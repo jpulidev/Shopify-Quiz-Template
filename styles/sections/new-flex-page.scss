@@ -1,0 +1,209 @@
+#shopify-section-new_flex_page {
+    margin-top: 8%;
+    padding-bottom: 120px;
+}
+.new-flex-page-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 100px;
+    padding-bottom: 47px;
+}
+
+.flex-page-new-vessel-one {
+    font-size: 53px;
+    line-height: 67px;
+    font-weight: 500;
+    font-family: 'Banana Grotesk Regular';
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+.flex-page-description {
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    font-family: 'Noe Text Regular';
+}
+.flex-icon-one {
+    display: grid;
+    grid-template-columns: 81px 1fr;
+    justify-content: center;
+    align-items: start;
+    margin-bottom: 37px;
+}
+.icon-title {
+    font-size: 22px;
+    line-height: 22px;
+    font-family: 'Banana Grotesk Regular';
+}
+.icon-title>p{
+    margin: 0px;
+    padding: 0px;
+}
+.icon-description>p{
+    font-size: 13px;
+    line-height: 20px;
+    font-family: 'Noe Text Regular';
+}
+.icon-description>p>a{
+    color:#161514!important;
+}
+.flex-page-block {
+    background: #fff;
+    max-width: 452px;
+    padding: 40px 28px;
+}
+.flex-page-title-one {
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: 500;
+    font-family: 'Banana Grotesk Regular';
+    margin: 0;
+}
+.flex-membership-months {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0;
+}
+.page-flex-price {
+    border-top: 1px solid #E1E1E1;
+    margin-top: 6px;
+    padding-top: 40px;
+    padding-left: 11px;
+    max-height: 196px;
+}
+.flex-page-btn {
+    width: 100%;
+}
+
+.add-to-cart-flex-page {
+    height: 50px;
+    margin-bottom: 20px;
+    background: #000!important;
+    font-size: 14px!important;
+}
+.add-to-cart-flex-page-disabled {
+    height: 50px;
+    margin-bottom: 20px;
+    background: #00000085!important;
+    font-size: 14px!important;
+}
+
+.month-text {
+    font-size: 16px!important;
+    line-height: 18px;
+    color: #161514!important;
+    position: relative;
+    left: -18px;
+}
+.most-popular-ribbon-flex {
+    width: 97px;
+    background: #ffa3a3;
+    border-radius: 15px;
+    font-size: 16px;
+    padding: 1px 17px 2px;
+    position: absolute;
+    margin-top: -60px;
+    margin-left: 253px;
+    font-family: NoeText,serif;
+}
+.message-flex>p {
+    font-size: 16px;
+    line-height: 30px;
+    color: #161514;
+    margin: 2px;
+}
+.price-flex-container-flex {
+    font-family: var(--font-banana-grotesk-normal-family);
+    font-size: 100px;
+    line-height: 100px;
+    color: #161514;
+}
+.add-to-cart-flex-page:hover {
+    background: #c8c6c6!important;
+    border: 1px solid;
+}
+
+@media screen and (max-width:1000px) {
+    .new-flex-page-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 271px;
+    }
+    .most-popular-ribbon-flex {
+        margin-left: 6px;
+        padding: 6px 20px;
+        margin-top: -70px;
+        font-size: 11px;
+        width: 86px;
+        height: 28px;
+    }
+    .flex-page-new-vessel-one {
+    font-size: 24px;
+    line-height: 34px;
+    margin: 0;
+    }
+    .flex-page-description {
+        font-size: 13px;
+        line-height: 26px;
+    }
+    .flex-page-block {
+        max-width: 320px;
+        margin: 0 auto;
+        height: 278px;
+    }
+    .flex-container-block {
+        gap: 20px;
+    }
+    .block-two {
+        border: 1px solid;
+    }
+    .flex-page-title-one,.flex-membership-months {
+      display:none;
+    }
+    .mobile-flex-title {
+        display:block!important;
+        font-size: 18px;
+        line-height: 16px;
+        font-family: var(--font-banana-grotesk-normal-family);
+    }
+    .page-flex-price {
+        border-top: none;
+        margin-top: 6px;
+        padding-top: 4px;
+        padding-left: 0px; 
+        top: 0;
+        left: 0;
+    }
+    .price-flex-container-flex {
+        font-size: 35px;
+        line-height: 34px;
+    }
+    .message-flex>p {
+        font-size: 11px;
+        line-height: 20px;
+        color: #5C5C5B;
+        margin: 2px; 
+    }
+    .flex-page-btn {
+        margin: 0!important;
+    }
+    .icon-description>p {
+    margin: 0;
+    padding-top: 7px;
+    }
+    .flex-icon-one {
+        margin-bottom: 28px;
+    }
+    .page-flex-tab2 {
+        margin-bottom: 51px;
+    }
+    .month-text {
+        left: -6px;
+    }
+
+}

@@ -1,0 +1,81 @@
+.food-health-supplements {
+    background: #cddfc3;
+    margin-top: -53px;
+    padding-top: 100px;
+    margin-bottom: -54px;
+}
+.health-coach-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 60px;
+}
+.split-health {
+    text-align: center;
+}
+.health-coach-group {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.split-3 {
+    max-width: 461px!important;
+}
+.split-4 {
+    max-width: 410px!important;
+    .split-description {
+        padding-right: 0px!important;
+    }
+}
+
+.multicolumn-card {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .image-block {
+        display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+}
+
+.multicolumn-card__info {
+    background-repeat: no-repeat!important;
+    background-size: contain!important;
+}
+
+@media screen and (max-width:1000px) {
+    .health-coach-container {
+        grid-template-columns: 1fr;
+        margin-right: 6%;
+        margin-left: 6%;
+        margin-bottom:0px;
+        border-bottom: 1px solid #a3a599;
+        padding-bottom: 30px;
+    }
+    .health-coach-container>.split-two>.grid-split-two {
+        padding: 8px;
+    }
+    .health-coach-container>.split-two>.grid-split-two>.split-description {
+        padding-right: 0px;
+    }
+    .split-health {
+        display: grid;
+        grid-row: 2;
+        justify-content: center;
+        align-items: center;
+    }
+    .split-health>img {
+        height: 280px!important;
+    }
+    .img-02 {
+        margin-bottom: 15px!important;
+    }
+    .food-health-supplements {
+        padding-top: 0px;
+        margin-top:0px;
+    }
+
+}

@@ -1,0 +1,542 @@
+{% assign title               = section.settings.title %}
+{% assign subtitle            = section.settings.subtitle %}
+
+{% assign reserved_title      = section.settings.reserved_title %}
+{% assign reserved_title_mob  = section.settings.reserved_title_mob %}
+{% assign reserved_subtitle   = section.settings.reserved_subtitle %}
+{% assign reserved_label      = section.settings.reserved_label %}
+
+{% assign graph_section_title = section.settings.graph_section_title %}
+{% assign graph_title         = section.settings.graph_title %}
+{% assign graph_image         = section.settings.graph_image %}
+{% assign graph_image_mob     = section.settings.graph_image_mob %}
+{% assign graph_text          = section.settings.graph_text %}
+
+{% assign product_img         = section.settings.product_img %}
+{% assign product_title       = section.settings.product_title %}
+{% assign product_subtitle    = section.settings.product_subtitle %}
+{% assign product_price       = section.settings.product_price %}
+{% assign shipping_title      = section.settings.shipping_title %}
+{% assign shipping_subtitle   = section.settings.shipping_subtitle %}
+{% assign shipping_price      = section.settings.shipping_price %}
+{% assign product_message     = section.settings.product_message %}
+{% assign product_subscr_type = section.settings.product_subscr_type %}
+
+{% assign slider_title        = section.settings.slider_title %}
+{% assign slider_bg_img_mob   = section.settings.slider_bg_img_mob %}
+
+{% assign reviews             = section.blocks | where: 'type', 'reviews' %}
+{% assign contents            = section.blocks | where: 'type', 'contents' %}
+{% assign btn_text            = section.settings.btn_text %}
+
+<style>
+	{%- for block in contents -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-membership-section__content .step-membership-content .step-membership-content__inner .step-membership-content__first-list[data-type="{{ header_title_lower }}"] {
+			display: flex !important;
+		}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-membership-section__content .step-membership-content .step-membership-content__inner .step-membership-content__second-list .second-list__inner .step-membership-content__second-list__list[data-type="{{ header_title_lower }}"] {
+			display: block !important;
+		}
+	{%- endfor -%}
+
+	@media (max-width: 500px) {
+		{% if slider_bg_img_mob != blank %}
+			.slide-membership-section__content .step-membership-content .slide-membership-section__content-slider {
+				background-image: url("{{ slider_bg_img_mob | img_url: 'master' }}");
+			}
+		{% endif %}
+	}
+</style>
+
+<div class="slide__content slide-membership-section__content">
+	<div class="slide-membership-section__content-hero">
+		<div class="slide-membership-section__content-hero-inner">
+			<header class="step-header">
+				<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			</header>
+			{% if title != blank or subtitle != blank %}
+				<div class="content-hero__info">
+					<h3 class="content-hero__info-title">{{ title }}</h3>
+					<p class="content-hero__info-subtitle">{{ subtitle }}</p>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="step-content step-membership-content">
+		<div class="step-membership-content__inner">
+			{% for block in contents %}
+				{% assign header_title = block.settings.header_title %}
+				{% assign image        = block.settings.image %}
+				{% assign first_list    = block.settings.first_list | split: '||' %}
+
+				<div class="step-membership-content__first-list" data-type="{{ header_title | downcase }}">
+					{% if image != blank %}
+						<img class="step-membership-content__first-list__img" src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+					{% endif %}
+					<ul class="step-membership-content__first-list__list">
+						{% for item in first_list %}
+							<li class="list-item">{{ item }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
+
+			<div class="step-membership-content__reserved-block">
+				{% if reserved_title != blank %}
+					<div class="reserved-block__title reserved-block__title-desk">{{ reserved_title }}</div>
+				{% endif %}
+				{% if reserved_title_mob != blank %}
+					<div class="reserved-block__title reserved-block__title-mob">{{ reserved_title_mob }}</div>
+				{% endif %}
+				{% if reserved_subtitle != blank %}
+					<div class="reserved-block__subtitle">{{ reserved_subtitle }}</div>
+				{% endif %}
+				<div class="reserved-block__timer">
+					{% if reserved_label != blank %}
+						<div class="label">{{ reserved_label }}</div>
+					{% endif %}
+					<div class="timer" data-timer>
+						15:00
+					</div>
+				</div>
+			</div>
+
+			<div class="step-membership-content__second-list">
+				{% if graph_section_title != blank %}
+					<div class="second-list__title-desk">{{ graph_section_title }}</div>
+				{% endif %}
+				<div class="second-list__inner">
+					{% for block in contents %}
+						{% assign header_title = block.settings.header_title %}
+						{% assign second_list  = block.settings.second_list | split: '||' %}
+
+						<ul class="step-membership-content__second-list__list" data-type="{{ header_title | downcase }}">
+							{% if graph_section_title != blank %}
+								<p class="second-list__list-title">{{ graph_section_title }}</p>
+							{% endif %}
+							<li class="list-item" data-saved-answer></li>
+
+							{% for item in second_list %}
+								<li class="list-item">{{ item }}</li>
+							{% endfor %}
+						</ul>
+					{% endfor %}
+
+					<div class="step-membership-content__graph">
+						{% if graph_title != blank %}
+							<p class="step-membership-content__graph-title">{{ graph_title }}</p>
+						{% endif %}
+						{% if graph_image != blank and graph_image_mob != blank %}
+							<div class="step-membership-content__graph-img">
+								<picture>
+									<source srcset="{{ graph_image | img_url: 'master' }}" media="(min-width: 600px)">
+									<source srcset="{{ graph_image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+									<img src="{{ graph_image | img_url: 'master' }}" alt="{{ graph_image.alt | escape }}">
+								</picture>
+
+								{% if graph_text != blank %}
+									<p class="step-membership-content__graph-text">{{ graph_text }}</p>
+								{% endif %}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="step-membership-content__product-block">
+				<div class="product-block__main">
+					{% if product_img != blank %}
+						<div class="product-img">
+							<img src="{{ product_img | img_url: 'master' }}" alt="{{ product_img.alt | escape }}">
+						</div>
+					{% endif %}
+
+					<div class="product-info">
+						{% if page.handle == 'new-quiz-membership'%}
+						<div class="product-block__subscr-price" style="border-bottom: 0px;">
+							<div class="row__inner">
+								{% if product_subscr_type != blank %}
+									   {%if page.handle == 'new-quiz-membership' %}
+											 <div class="title">Monthly Membership</div>
+									   {%else%}
+											 <div class="title">{{ product_subscr_type }}</div>
+									   {%endif%}
+								{% endif %}
+								<div class="subtext" data-frequency-dst></div>
+							</div>
+							<div class="row__price" data-variant-price style="font-size: 20px;
+							line-height: 32px;
+							color: #161514;">$50</div>
+						</div>
+						{%else%}
+						{%endif%}
+						{%if page.handle == 'new-quiz-membership'%}
+						{%else%}
+						<div class="row">
+							<div class="row__inner">
+								{% if product_title != blank %}
+									<div class="title">{{ product_title }}</div>
+								{% endif %}
+								{% if product_subtitle != blank %}
+									<div class="subtext">{{ product_subtitle }}</div>
+								{% endif %}
+							</div>
+							{% if product_price != blank %}
+								<div class="row__price">{{ product_price }}</div>
+							{% endif %}
+						</div>
+						{%endif%}
+						<div class="row">
+							<div class="row__inner">
+								{% if shipping_title != blank %}
+									<div class="title">{{ shipping_title }}</div>
+								{% endif %}
+								{% if shipping_subtitle != blank %}
+									<div class="subtext">{{ shipping_subtitle }}</div>
+								{% endif %}
+							</div>
+							{% if shipping_price != blank %}
+								<div class="row__price">{{ shipping_price }}</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				{% if product_message != blank %}
+				{%if page.handle == 'new-quiz-membership' %}
+				{%else%}
+					<div class="product-block__message">{{ product_message }}</div>
+					{%endif%}
+				{% endif %}
+				{%if page.handle == 'new-quiz-membership' %}
+				{%else%}
+				<div class="product-block__subscr-price">
+					<div class="row__inner">
+						{% if product_subscr_type != blank %}
+                               {%if page.handle == 'new-quiz-membership' %}
+                                     <div class="title">{{ product_subscr_typeTwo }}</div>
+                               {%else%}
+							         <div class="title">{{ product_subscr_type }}</div>
+                               {%endif%}
+						{% endif %}
+						<div class="subtext" data-frequency-dst></div>
+					</div>
+					<div class="row__price" data-variant-price>$50</div>
+				</div>
+				{%endif%}
+				{%if page.handle == 'new-quiz-membership' %}
+				{%else%}
+				       <div class="product-block__date">Billed monthly starting on <span data-billed-on>2/23/22</span> unless you cancel before the trial ends</div>
+				{%endif%}
+				{%if page.handle == 'new-quiz-membership' %}
+				<div class="step-btn">
+					<a href="/checkout" class="step-button step-button-next">{{ btn_text }}</a>
+				</div>
+				{%else%}
+				<div class="step-btn">
+					<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+				</div>
+				{%endif%}
+				
+			</div>
+		</div>
+
+		<div class="slide-membership-section__content-slider">
+			{% if slider_title != blank %}
+				<div class="slide-membership-section__content-slider-title">{{ slider_title }}</div>
+			{% endif %}
+			<div class="slide-membership-section-slider-grid">
+				{% for block in reviews %}
+					{% assign reviewer_photo   = block.settings.reviewer_photo %}
+
+					<div class="slider-grid__item">
+						<img src="{{ reviewer_photo | img_url: 'master' }}" alt="{{ reviewer_photo.alt | escape }}">
+					</div>
+				{% endfor %}
+			</div>
+			<div class="swiper slide-membership-section-slider">
+				<div class="swiper-wrapper slide-membership-section-slider__wrapper">
+					{% for block in reviews %}
+						{% assign reviewer_photo   = block.settings.reviewer_photo %}
+						{% assign quote_icon       = block.settings.quote_icon %}
+						{% assign reviewer_message = block.settings.reviewer_message %}
+
+						<div class="swiper-slide slide-membership-section-slide">
+							<div class="slide-membership-section-slide__inner">
+								<div class="message-block">
+									<img class="quote-icon" src="{{ quote_icon | img_url: 'master' }}" alt="">
+									<p class="message">{{ reviewer_message }}</p>
+								</div>
+								<div class="reviewer-block">
+									<img class="reviewer-block__img" src="{{ reviewer_photo | img_url: 'master' }}" alt="{{ reviewer_photo.alt | escape }}">
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="swiper-pagination slide-membership-section-slider__pagination"></div>
+			</div>
+			<div class="step-btn">
+				<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const stepMembershipSlider = new Swiper(".slide-membership-section-slider", {
+			slidesPerView: 1,
+			spaceBetween: 20,
+			pagination: {
+				el: ".slide-membership-section-slider__pagination",
+				clickable: true
+			},
+			breakpoints: {
+				540: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				780: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1050: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				}
+			}
+		});
+
+		let maxHeight = 0;
+
+		setTimeout(() => {
+			$('.slide-membership-section-slide__inner .message-block').each(function(){
+				let thisH = $(this).height();
+				if (thisH > maxHeight) { maxHeight = thisH; }
+			});
+
+			$('.slide-membership-section-slide__inner .message-block').height(maxHeight);
+		}, 1000)
+	})
+</script>
+
+{% schema %}
+{
+	"name": "Step Membership",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "subtitle",
+			"label": "Subtitle"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Continue"
+		},
+		{
+			"type": "header",
+			"content": "RESERVED BLOCK"
+		},
+		{
+			"type": "text",
+			"id": "reserved_title",
+			"label": "Title",
+			"default": "Personalized Plan Reserved"
+		},
+		{
+			"type": "text",
+			"id": "reserved_title_mob",
+			"label": "Title (mobile)",
+			"default": "Plan reserved"
+		},
+		{
+			"type": "textarea",
+			"id": "reserved_subtitle",
+			"label": "Subtitle"
+		},
+		{
+			"type": "text",
+			"id": "reserved_label",
+			"label": "Label",
+			"default": "EXPIRES IN"
+		},
+		{
+			"type": "header",
+			"content": "GRAPH BLOCK"
+		},
+		{
+			"type": "text",
+			"id": "graph_section_title",
+			"label": "Graph section title",
+			"default": "Highlights of your Vessel membership trial"
+		},
+		{
+			"type": "text",
+			"id": "graph_title",
+			"label": "Graph title",
+			"default": "3 weeks"
+		},
+		{
+			"type": "image_picker",
+			"id": "graph_image",
+			"label": "Graph image"
+		},
+		{
+			"type": "image_picker",
+			"id": "graph_image_mob",
+			"label": "Graph image (mobile)"
+		},
+		{
+			"type": "textarea",
+			"id": "graph_text",
+			"label": "Graph text",
+			"default": "You get to your <br> goal in week 3"
+		},
+		{
+			"type": "header",
+			"content": "PRODUCT BLOCK"
+		},
+		{
+			"type": "image_picker",
+			"id": "product_img",
+			"label": "Product image"
+		},
+		{
+			"type": "text",
+			"id": "product_title",
+			"label": "Product title",
+			"default": "14 day trial"
+		},
+		{
+			"type": "text",
+			"id": "product_subtitle",
+			"label": "Product subtitle",
+			"default": "Includes 1 test card"
+		},
+		{
+			"type": "text",
+			"id": "product_price",
+			"label": "Product price",
+			"default": "FREE"
+		},
+		{
+			"type": "text",
+			"id": "shipping_title",
+			"label": "Shipping title",
+			"default": "Shipping"
+		},
+		{
+			"type": "text",
+			"id": "shipping_subtitle",
+			"label": "Shipping subtitle",
+			"default": "4-7 days"
+		},
+		{
+			"type": "text",
+			"id": "shipping_price",
+			"label": "Shipping price",
+			"default": "$5.95"
+		},
+		{
+			"type": "textarea",
+			"id": "product_message",
+			"label": "Message",
+			"default": "You’ll have 14 days to see how Vessel uses at-home testing and personalized programs"
+		},
+		{
+			"type": "textarea",
+			"id": "product_subscr_type",
+			"label": "Subscription type title",
+			"default": "Monthly membership fee after trial"
+		},
+		{
+			"type": "header",
+			"content": "SLIDER BLOCK"
+		},
+		{
+			"type": "text",
+			"id": "slider_title",
+			"label": "Slider title",
+			"default": "As seen in"
+		},
+		{
+			"type": "image_picker",
+			"id": "slider_bg_img_mob",
+			"label": "Slider BG image (mobile)"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "contents",
+			"name": "goal content",
+			"settings": [
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Main goal",
+					"info": "For example sleep or body or calm..."
+				},
+				{
+					"type": "header",
+					"content": "THE FIRST LIST BLOCK"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "textarea",
+					"id": "first_list",
+					"label": "The first list",
+					"info": "Elemets of list are devided by '||'"
+				},
+				{
+					"type": "header",
+					"content": "THE SECOND LIST BLOCK"
+				},
+				{
+					"type": "textarea",
+					"id": "second_list",
+					"label": "The second list",
+					"info": "Elemets of list are devided by '||'"
+				}
+			]
+		},
+		{
+			"type": "reviews",
+			"name": "review",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "reviewer_photo",
+					"label": "Reviewer's icon"
+				},
+				{
+					"type": "image_picker",
+					"id": "quote_icon",
+					"label": "Quote icon"
+				},
+				{
+					"type": "textarea",
+					"id": "reviewer_message",
+					"label": "Reviewer's message"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

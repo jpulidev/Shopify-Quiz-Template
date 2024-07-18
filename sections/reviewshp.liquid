@@ -1,0 +1,77 @@
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<section>
+    <div class="reviews-text-title">
+        {{section.settings.title}}
+    </div>
+    <div class="slider-container">
+        <div class="slider-reviews-hp"></div>
+        <div class="multiple-items">
+        {%- for block in section.blocks -%}
+    <div class="img-slider-container">
+        <img 
+        class="lazyloaded lazy2 blur-up" 
+                    data-sizes="auto"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    data-src="{{block.settings.feedback_image | img_url: '1000x'}}"
+                    data-mobsrc="{{block.settings.feedback_image | img_url: '400x'}}">
+    </div>
+         {%-endfor-%}
+        </div>  
+        </div>
+    </div>
+   <div class="instagram-link-feed">{{section.settings.link_instagram}}</div> 
+</section>
+
+<script>
+    $('.multiple-items').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 3
+});
+</script>
+
+{% schema %}
+{
+  "name": "reviews hp",
+  "class": "reviews_homepage",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "placeholder": "title",
+      "default": "What members are saying",
+      "label":"title",
+      "info": "Title Info"
+    },
+    {
+      "type": "richtext",
+      "id": "link_instagram",
+      "label":"url-link",
+      "default": "<p><a href=\"https://www.instagram.com/vesselhealth/channel/\">Follow along @vesselhealth</a></p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label":"image feedback",
+          "id": "feedback_image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+  {
+    "name": "Reviews Slider",
+    "category": "Reviews"
+  }
+]
+}
+{% endschema %}

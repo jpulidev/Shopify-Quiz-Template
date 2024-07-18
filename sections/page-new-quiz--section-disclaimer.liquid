@@ -1,0 +1,75 @@
+{% assign image        = section.settings.image %}
+{% assign image_mob    = section.settings.image_mob %}
+{% assign title        = section.settings.title %}
+{% assign text         = section.settings.text %}
+{% assign main_content = section.settings.main_content %}
+{% assign btn_text     = section.settings.btn_text %}
+
+<div class="slide__content slide-disclaimer-section__content">
+	<header class="step-header">
+		<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+	</header>
+	<div class="step-content step-disclaimer-content">
+		{% if image != blank and image_mob != blank %}
+			<picture>
+				<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+				<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+				<img class="step-disclaimer-content__img" src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+			</picture>
+		{% endif %}
+		{% if title != blank %}
+			<h3 class="step-disclaimer-content__title">{{ title }}</h3>
+		{% endif %}
+		{% if text != blank %}
+			<p class="step-disclaimer-content__subtitle">{{ text }}</p>
+		{% endif %}
+		{% if main_content != blank %}
+			<div class="step-disclaimer-content__text">{{ main_content }}</div>
+		{% endif %}
+	</div>
+	<div class="step-btn">
+		<a href="/checkout/?step=contact_information" data-next-page class="step-button step-button-next">{{ btn_text }}</a>
+	</div>
+</div>
+
+
+{% schema %}
+{
+	"name": "Step Disclaimer",
+	"tag": "div",
+	"class": "swiper-slide slider__slide slider__slide-disclaimer",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mob",
+			"label": "Image (mobile)"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Subtitle"
+		},
+		{
+			"type": "textarea",
+			"id": "main_content",
+			"label": "Main content"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "I’m in!"
+		}
+    ]
+}
+{% endschema %}

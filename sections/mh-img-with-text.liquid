@@ -1,0 +1,379 @@
+{{ 'mh-img-with-text.css' | asset_url | stylesheet_tag }}
+
+<div class="mh-img-text space-top-{{ section.settings.section_space_top }} space-bottom-{{ section.settings.section_space_bottom }}">
+    {% if section.settings.title != blank or section.settings.text_left != blank or section.settings.text_right != blank %}
+    <div class="img-text-header mh-section-header space-bottom-{{ section.settings.section_space_heading }} ">
+        <div class="page-width responsive-page-width">
+            {% if section.settings.title != blank %}
+            <h1 class="section_title">{{ section.settings.title }}</h1>
+            {% endif %}
+    
+            {% if section.settings.text_left != blank or section.settings.text_right != blank %}
+            <div class="grid-flex grid-flex-grow medium-up--2-col">
+                {% if section.settings.text_left != blank %}
+                <div class="grid_item header_content_left">
+                    <div class="section_content">{{ section.settings.text_left }}</div>
+                </div>
+                {% endif %}
+    
+                {% if section.settings.text_right != blank %}
+                <div class="grid_item header_content_right">
+                    <div class="section_content">{{ section.settings.text_right }}</div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="mh-img-text-container">
+        {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'simple_image_text' %}
+
+                {% capture img_layout %}
+                <div class="grid_item img-layout-{{ block.settings.img_text_layout }}">
+                    {% if block.settings.img_bg != blank %}
+                    <div class="img-background" style="background-color: {{ block.settings.img_bg }};"></div>
+                    {% endif %}
+                    
+                    <div class="img-wrapper">
+                        {% if block.settings.image != blank %}
+                        <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | escape }}">
+                        {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                    </div>
+
+                    {% if block.settings.float_image %}
+                    <div class="img_float_content">
+                        {% if block.settings.image_title != blank %}
+                        <h2 class="img_title h2-title">{{ block.settings.image_title }}</h2>
+                        {% endif %}
+
+                        {% if block.settings.image_text != blank %}
+                        <div class="img_content mh-paragraph">
+                            {{ block.settings.image_text | newline_to_br }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endcapture %}
+
+                <div class="simple_image_text">
+                    <div class="page-width responsive-page-width">
+                        <div class="grid-flex medium-up--2-col{% if block.settings.img_text_layout == 'content_first' %} small-column-reverse{% endif %}{% if block.settings.float_image %} img-float{% endif %}">
+                            {% if block.settings.img_text_layout == 'image_first' %}
+                                {{ img_layout }}
+                            {% endif %}
+        
+                            <div class="grid_item text_container content-layout-{{ block.settings.img_text_layout }}">
+                                <div class="mh-section-header">
+                                    {% if block.settings.title != blank %}
+                                    <h1 class="section_title">{{ block.settings.title }}</h1>
+                                    {% endif %}
+        
+                                    {% if block.settings.text != blank %}
+                                    <div class="section_content">
+                                        {{ block.settings.text }}
+                                    </div>
+                                    {% endif %}
+                                    <div class="button_group">
+                                        {% if block.settings.button_title != blank %}
+                                        <a class="button button--primary" href="{{block.settings.button_link}}">{{block.settings.button_title}}</a>
+                                        {% endif %}
+                                        <a href="{{block.settings.bottom_link}}">{{block.settings.bottom_title}}</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+        
+                            {% if block.settings.img_text_layout == 'content_first' %}
+                                {{ img_layout }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            {% when 'multi_image_text' %}
+                {% capture imgLayout %}
+                <div class="grid_item multi-img-container">
+                    <div class="multi-img-wrap">
+                        {% if block.settings.image != blank %}
+                        <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | escape }}">
+                        {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endcapture %}
+
+                <div class="multi_image_text">
+                    <div class="page-width responsive-page-width">
+                        <div class="grid-flex{% if block.settings.img_text_layout == 'content_first' %} small-column-reverse{% endif %}">
+                            {% if block.settings.img_text_layout == 'image_first' %}
+                                {{ imgLayout }}
+                            {% endif %}
+
+                            <div class="grid_item multi_text_container multi-layout-{{ block.settings.img_text_layout }}">
+                                <div class="multi_text_wrap">
+                                    <p class="multi_counter">{% if forloop.index <= 9 %}0{% endif %}{{ forloop.index }}</p>
+                                    <div class="multi_text_inner">
+                                        {% if block.settings.title != blank %}
+                                        <h3 class="multi_text_title h2-title"><span>{{ block.settings.title }}</span></h3>
+                                        {% endif %}
+    
+                                        {% if block.settings.text != blank %}
+                                        <div class="multi_text_content mh-paragraph">
+                                            {{ block.settings.text }}
+                                        </div>
+                                        {% endif %}
+                                        {% if block.settings.button_title != blank %}
+                                        <a class="button button--primary" href="{{block.settings.button_link}}">{{block.settings.button_title}}</a>
+                                        {% endif %}
+                                        
+                                        <a href="{{block.settings.bottom_link}}">{{block.settings.button_title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if block.settings.img_text_layout == 'content_first' %}
+                                {{ imgLayout }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            
+        {% endcase %}
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    {% if section.settings.extra_spacing %}
+    @media screen and (min-width: 480px) {
+        #shopify-section-{{ section.id }} {
+            padding-top: 100px
+            padding-bottom: 40px;
+        }
+    }
+    {% endif %}
+
+    #shopify-section-{{ section.id }} .mh-img-text {
+        background-color: {{ section.settings.bg_color }};
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Image with text block",
+    "tag": "section",
+    "class": "mh-img-text-section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "heading"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Image with text block"
+        },
+        {
+            "type": "richtext",
+            "id": "text_left",
+            "label": "Text left",
+            "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        },
+        {
+            "type": "richtext",
+            "id": "text_right",
+            "label": "Text right",
+            "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background"
+        },
+        {
+            "type": "checkbox",
+            "id": "extra_spacing",
+            "label": "Extra outer spacing",
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "Section spacing"
+        },
+        {
+            "type": "select",
+            "id": "section_space_top",
+            "label": "Top",
+            "default": "large",
+            "options": [
+                {"value": "large", "label": "Large"},
+                {"value": "mobile-medium", "label": "Mobile medium"},
+                {"value": "small", "label": "Small"},
+                {"value": "none", "label": "None"}
+            ]
+        },
+        {
+            "type": "select",
+            "id": "section_space_bottom",
+            "label": "Bottom",
+            "default": "large",
+            "options": [
+                {"value": "large", "label": "Large"},
+                {"value": "mobile-medium", "label": "Mobile medium"},
+                {"value": "small", "label": "Small"},
+                {"value": "none", "label": "None"}
+            ]
+        },
+        {
+            "type": "select",
+            "id": "section_space_heading",
+            "label": "Heading",
+            "default": "large",
+            "options": [
+                {"value": "large", "label": "Large"},
+                {"value": "mobile-medium", "label": "Mobile medium"},
+                {"value": "small", "label": "Small"},
+                {"value": "none", "label": "None"}
+            ]
+        }
+    ],
+    "blocks": [
+        {
+            "type": "simple_image_text",
+            "name": "Simple image text",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "color",
+                    "id": "img_bg",
+                    "label": "Image background",
+                    "info": "Keep this field blakn to make background color transparent"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "float_image",
+                    "label": "Float image",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "image_title",
+                    "label": "Image title",
+                    "default": "Image title",
+                    "info": "Only visiable when float image is enabled."
+                },
+                {
+                    "type": "textarea",
+                    "id": "image_text",
+                    "label": "image_text",
+                    "default": "Image content",
+                    "info": "Only visiable when float image is enabled."
+                },
+                {
+                    "type": "header",
+                    "content": "Main content"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Image with text"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Text",
+                    "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+                },
+                {
+                    "type": "select",
+                    "id": "img_text_layout",
+                    "label": "Align layout",
+                    "default": "content_first",
+                    "options": [
+                        {"value": "image_first", "label": "Image first"},
+                        {"value": "content_first", "label": "Content first"}
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "button_title",
+                    "label": "Button title"
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button link"
+                },
+                {
+                    "type": "text",
+                    "id": "bottom_title",
+                    "label": "Bottom title"
+                },
+                {
+                    "type": "url",
+                    "id": "bottom_link",
+                    "label": "Bottom link"
+                }
+            ]
+        },
+        {
+            "type": "multi_image_text",
+            "name": "Multi image text",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Multi image text"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Text",
+                    "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+                },
+                {
+                    "type": "select",
+                    "id": "img_text_layout",
+                    "label": "Align layout",
+                    "default": "content_first",
+                    "options": [
+                        {"value": "image_first", "label": "Image first"},
+                        {"value": "content_first", "label": "Content first"}
+                    ]
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Image with text block by RG",
+            "blocks": [
+                {
+                    "type": "simple_image_text"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

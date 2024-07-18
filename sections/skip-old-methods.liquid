@@ -1,0 +1,185 @@
+{{ 'section-skip-old-methods.css' | asset_url | stylesheet_tag }}
+<div class="rg-skip-old-methods-wrap position-relative">
+
+  <div class="multicolumn-blank-bg color-scheme-{{ section.settings.color_scheme }} color-{{ section.settings.color_scheme }} gradient {% if section.settings.title == blank %} no-heading{% endif %}"></div>
+
+  <div class="page-width position-relative">
+
+    <div class="center">
+      {%- if section.settings.title != blank -%}
+        <h2 class="h1">{{ section.settings.title | newline_to_br }}</h2>
+      {%- endif -%}
+    </div>
+
+  </div>
+<style>
+  #timeline > .vs-grid{
+    opacity:0.2; transition:all 0.5s
+  }
+  #timeline > .vs-grid.lined, #timeline > .vs-grid.lined .divider-line > div{
+    opacity:1 !important
+  }
+  #timeline > .vs-grid.lined .divider-line > .divider{
+    min-width: 15px;
+    min-height: 15px;
+    background: rgb(251, 243, 235);
+  }
+</style>
+  <div class="page-width position-relative" id="timeline">
+    <div class="line-vertical" style="will-change: width"></div>
+    <div class="line-vertical-s shadow"></div>
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'heading' -%}
+          <div class="heading-line vs-grid">
+            <div class="div-block-1">
+              <h2 class="h2">{{ block.settings.title1 }}</h2>
+            </div>
+            <div class="vs divider-line">
+              <h2>VS.</h2>
+            </div>
+            <div class="div-block-2">
+              <h2 class="h2">{{ block.settings.title2 }}</h2>
+            </div>
+          </div>
+        {%- when 'content' -%}
+          <div class="vs-grid">
+            <div class="div-block-1">
+              <h4>{{ block.settings.title1 }}</h4>
+              <h3>{{ block.settings.subtitle1 }}</h3>
+              <div class="paragraph-1">{{ block.settings.text1 }}</div>
+            </div>
+            <div class="divider-line">
+              <div class="divider{% if forloop.index  == 2  %} first{%  endif  %}"></div>
+            </div>
+            <div class="div-block-2">
+              <h4>{{ block.settings.title2 }}</h4>
+              <h3>{{ block.settings.subtitle2 }}</h3>
+              <div class="paragraph-2">{{ block.settings.text2 }}</div>
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+
+</div>
+
+
+
+
+
+{% schema %}
+{
+  "name": "RG Skip old methods",
+  "class": "spaced-section spaced-section--full-width shopify-section--traditional-method",
+  "tag": "section",
+      "settings": [
+    {
+    "type": "select",
+    "id": "color_scheme",
+    "options": [
+      {
+        "value": "background-1",
+        "label": "t:sections.image-with-text.settings.color_scheme.options__1.label"
+      },
+      {
+        "value": "background-2",
+        "label": "t:sections.image-with-text.settings.color_scheme.options__2.label"
+      },
+      {
+        "value": "inverse",
+        "label": "t:sections.image-with-text.settings.color_scheme.options__3.label"
+      },
+      {
+        "value": "accent-1",
+        "label": "t:sections.image-with-text.settings.color_scheme.options__4.label"
+      },
+      {
+        "value": "accent-2",
+        "label": "t:sections.image-with-text.settings.color_scheme.options__5.label"
+      }
+    ],
+    "default": "background-2",
+    "label": "t:sections.image-with-text.settings.color_scheme.label"
+    },
+    {
+      "id": "title",
+      "type": "textarea",
+      "label": "Heading",
+      "default": "Skip the old methods, not the accuracy."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Add heading",
+      "settings": [
+        {
+          "id": "title1",
+          "type": "text",
+       		"label": "Heading 1",
+       		"default": "Traditional methods"
+        },
+        {
+          "id": "title2",
+          "type": "text",
+       		"label": "Heading 2",
+       		"default": "Vessel"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Add item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content 1"
+        },
+        {
+          "id": "title1",
+          "type": "text",
+       		"label": "Title",
+       		"default": "Pricing"
+        },
+        {
+          "id": "subtitle1",
+          "type": "text",
+       		"label": "Sub title"
+        },
+        {
+          "id": "text1",
+          "type": "richtext",
+       		"label": "Text"
+        },
+        {
+          "type": "header",
+       		"content": "Content 2"
+        },
+        {
+          "id": "title2",
+          "type": "text",
+       		"label": "Title",
+       		"default": "Pricing"
+        },
+        {
+          "id": "subtitle2",
+          "type": "text",
+       		"label": "Sub title"
+        },
+        {
+          "id": "text2",
+          "type": "richtext",
+       		"label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG Skip old methods",
+      "category": "RG"
+    }
+  ]
+}
+{% endschema %}

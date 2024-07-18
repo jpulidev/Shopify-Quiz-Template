@@ -1,0 +1,208 @@
+{{ 'section-wellness.css' | asset_url | stylesheet_tag }}
+{{ 'section-doctors.css' | asset_url | stylesheet_tag }}
+<div class="rg-welless-wrap rg-doctors position-relative">
+
+  <div class="multicolumn-blank-bg color-scheme-{{ section.settings.color_scheme }} color-{{ section.settings.color_scheme }} gradient {% if section.settings.title == blank %} no-heading{% endif %}" style="background: #fdf6ed;"></div>
+
+  <div class="page-width position-relative">
+    <div class="rg-wellness-header grid grid--1-col grid--2-col-tablet">
+      <div class="grid__item">
+        {%- if section.settings.title != blank -%}
+          <h2 class="h1 doctor-title-one" style="margin-top: 0px;">{{ section.settings.title | newline_to_br }}</h2>
+          <h2 class="h1 doctor-title-mobile">{{ section.settings.title_mobile | newline_to_br }}</h2>
+        {%- endif -%}
+      </div>
+      <div class="grid__item doctor-desktop-margin">
+        {%- if section.settings.text != blank -%}
+          <div class="rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="rg-doctors-slider-content grid grid--1-col grid--2-col-tablet">
+
+      <div class="grid__item doctors-multi-slider-item">
+        <div class="doctors-multi-slider">
+          <div class="div-block-26 slider-a" id="first-slide">
+            {% for block in section.blocks %}
+              {%- if block.settings.image1 != blank -%}
+                <div class="first-{{ block.id }}">
+                  <img 
+                    class="lazyloaded lazy2 blur-up" 
+                    data-sizes="auto"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    data-src="{{ block.settings.image1 | img_url: 'large' }}"
+                    data-mobsrc="{{ block.settings.image1 | img_url: '400x' }}"
+                   alt="">
+                </div>
+              {%- endif -%}
+            {% endfor %}
+          </div>
+          <div class="div-block-26 slider-b" id="second-slide">
+            {% for block in section.blocks %}
+              {%- if block.settings.image2 != blank -%}
+                <div class="first-{{ block.id }}">
+                  <div class="overlay-a"></div>
+                  <img 
+                  class="lazyloaded lazy2 blur-up" 
+                    data-sizes="auto"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    data-src="{{ block.settings.image2 | img_url: 'large' }}"
+                    data-mobsrc="{{ block.settings.image2 | img_url: '400x' }}"
+                   alt="">
+                </div>
+              {%- endif -%}
+            {% endfor %}
+          </div>
+          <div class="div-block-26 slider-c" id="third-slide">
+            {% for block in section.blocks %}
+              {%- if block.settings.image3 != blank -%}
+                <div class="first-{{ block.id }}">
+                  <div class="overlay"></div>
+                  <img 
+                    class="lazyloaded lazy2 blur-up" 
+                    data-sizes="auto"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                    data-src="{{ block.settings.image3 | img_url: 'large' }}"
+                    data-mobsrc="{{ block.settings.image3 | img_url: '400x' }}"
+                    alt="">
+                </div>
+              {%- endif -%}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__item position-relative">
+        <div class="doctor-slider-text div-block-25" id="forth-slide">
+          {% for block in section.blocks %}
+            <div class="">
+              {%- if block.settings.title != blank -%}
+                <div class="doctor-forth-title">
+                  <h3>{{ block.settings.title }}</h3>
+                </div>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="doctor-forth-text">
+                  <p>{{ block.settings.text }}</p>
+                </div>
+              {%- endif -%}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="doctors-slick-arrow">
+          <div id="prev" class="rg-arrow-left"></div>
+          <div id="next" class="rg-arrow-right"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (min-width:1000px) {
+    .doctor-desktop-margin {
+      margin-top: 5px;
+      margin-left: -50px;
+      padding: 0px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RG doctors",
+  "class": "spaced-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "accent-1",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__5.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.image-with-text.settings.color_scheme.label"
+    },
+    {
+      "id": "title",
+      "type": "textarea",
+      "label": "Heading",
+      "default": "Wellness coaching included"
+    },
+    {
+      "id": "title_mobile",
+      "type": "textarea",
+      "label": "Heading",
+      "default": "Backed by doctors & scientists"
+    },
+    {
+      "id": "text",
+      "type": "richtext",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "doctors",
+        "settings": [
+          {
+            "id": "image1",
+            "type": "image_picker",
+            "label": "Doctor image 1"
+          },
+          {
+            "id": "image2",
+            "type": "image_picker",
+            "label": "Doctor image 2"
+          },
+          {
+            "id": "image3",
+            "type": "image_picker",
+            "label": "Doctor image 3"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title",
+            "default": "David Larson, MD"
+         },
+          {
+            "id": "text",
+            "type": "textarea",
+            "label": "Text",
+            "default": "Chief medical officer and integrative medicine physician, double board-certified in family medicine and psychiatry."
+         }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG doctors",
+      "category": "RG"
+    }
+  ]
+}
+{% endschema %}

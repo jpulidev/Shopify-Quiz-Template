@@ -1,0 +1,101 @@
+{{ 'section-wellness.css' | asset_url | stylesheet_tag }}
+<div class="rg-welless-wrap position-relative">
+
+  <div class="multicolumn-blank-bg color-scheme-{{ section.settings.color_scheme }} color-{{ section.settings.color_scheme }} gradient {% if section.settings.title == blank %} no-heading{% endif %}"></div>
+
+  <div class="page-width position-relative">
+    <div class="rg-wellness-header grid grid--1-col grid--2-col-tablet">
+      <div class="grid__item">
+        {%- if section.settings.title != blank -%}
+          <h2 class="h1">{{ section.settings.title | newline_to_br }}</h2>
+        {%- endif -%}
+      </div>
+      <div class="grid__item">
+        {%- if section.settings.text != blank -%}
+          <div class="rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="rg-wellness-content grid grid--1-col grid--2-col-tablet">
+      {%- if section.settings.image != blank -%}
+      <div class="grid__item">
+        <div class="hide-small">
+          <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt }}">
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- if section.settings.html != blank -%}
+        <div class="grid__item">
+        {{ section.settings.html }}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "RG Wellness",
+  "class": "spaced-section spaced-section--full-width",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "accent-1",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.image-with-text.settings.color_scheme.options__5.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.image-with-text.settings.color_scheme.label"
+    },
+    {
+      "id": "title",
+      "type": "textarea",
+      "label": "Heading",
+      "default": "Wellness coaching included"
+    },
+    {
+      "id": "text",
+      "type": "richtext",
+      "label": "Text"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "html",
+      "type": "html",
+      "label": "HTML"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG Wellness",
+      "category": "RG"
+    }
+  ]
+}
+{% endschema %}

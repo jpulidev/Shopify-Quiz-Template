@@ -1,0 +1,112 @@
+<div class="help-better-section">
+  <div class="container-better">
+      <div class="group-1">
+          Providing better health worldwide
+      </div> 
+      <div class="group-2">
+          {{section.settings.description_better}}
+      </div>  
+      <div class="group-3">
+          <p class="count-text">{{section.settings.help_better}}</p>
+          <p class="count-help"> {{section.settings.count_helped}}</p>
+      </div>  
+      <div class="group-4">
+         <a class="group_5_btn mobile-button" href="{{section.settings.btn_better}}">{{section.settings.btn_better_text}}</a> 
+      </div> 
+      <div class="group-5">
+      <img 
+      class="desktop-img-better lazyloaded lazy2 blur-up" 
+      data-sizes="auto"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+      data-src="{{section.settings.image_better_health | img_url: 'original'}}"
+      data-mobsrc="{{section.settings.image_better_health | img_url: 'original'}}" style="height:126px;"></img>
+      <img 
+      class=" mobile-img-better lazyloaded lazy2 blur-up" 
+      data-sizes="auto"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+      data-src="{{section.settings.image_better_health_two | img_url: 'original'}}"
+      data-mobsrc="{{section.settings.image_better_health_two | img_url: '400x'}}" style="display:none;">  
+      </div> 
+  
+  <style>
+      @media screen and (max-width:1000px) {
+           .mobile-img-better {
+               display:block!important;
+           }
+           .desktop-img-better {
+             display:none;
+           }
+      }
+  </style>
+  
+  </div>  
+  </div>
+  {% schema %}
+  {
+      "name": "Better Health",
+      "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_better_health",
+        "label": "image health"
+      },
+      {
+          "type": "image_picker",
+          "id": "image_better_health_two",
+          "label": "image health mobile"
+        },
+      {
+        "type": "text",
+        "id": "better_text",
+        "placeholder": "Providing better health worldwide",
+        "default": "Providing better health worldwide",
+        "info": "Text Info 1",
+        "label": "health title"
+      },
+      {
+        "type": "textarea",
+        "id": "description_better",
+        "placeholder": "Text Description",
+        "default": "We’ve partnered with Vitamin Angels to donate life-changing vitamin A to a child in need, with  every wellness card purchased.",
+        "info": "Text Description",
+        "label": "health description"
+      },
+      {
+        "type": "url",
+        "id": "btn_better",
+        "label": "btn_better",
+        "label": "Link Url"
+      },
+      {
+          "type": "text",
+          "id": "btn_better_text",
+          "placeholder": "Learn More",
+          "default": "Learn More",
+          "info": "Btn Text",
+          "label": "CTA Text"
+        },
+      {
+        "type": "text",
+        "id": "help_better",
+        "placeholder": "Children help text",
+        "default": "Children helped",
+        "info": "Children Helped",
+        "label": "Text Helped"
+      },
+      {
+        "type": "text",
+        "id": "count_helped",
+        "placeholder": "count Helped",
+        "default": "23,567",
+        "info": "Count Help children",
+        "label": "Count help"
+      }
+      ],
+      "presets": [
+          {
+              "category": "app",
+              "name":"Better Health"
+          }
+      ]
+  }
+  {% endschema %}

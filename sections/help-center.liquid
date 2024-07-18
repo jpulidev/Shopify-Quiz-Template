@@ -1,0 +1,89 @@
+<div class="section-7 help-center">
+    <div class="container-33 w-container">
+      <a href="https://help.vesselhealth.com/hc/en-us/categories/360005611473-Getting-Started" class="help-menu-links">
+        <div class="cat-zoom">
+          <img src="https://uploads-ssl.webflow.com/5e66a7d548da8021e9b9ce56/5f45f79fa8f4a85a3b5b69c6_logo_ph.png" width="55" loading="lazy" alt="">
+          <h4 class="help-menu-link-title">Getting started</h4>
+          <div class="help-menu-link-desc">Everything you need to know to get started and get to work in Vessel</div>
+        </div>
+      </a>
+      <a href="https://help.vesselhealth.com/hc/en-us/categories/360005611513-Using-Vessel" class="help-menu-links second">
+        <div class="cat-zoom">
+          <img src="https://uploads-ssl.webflow.com/5e66a7d548da8021e9b9ce56/5f45f79fa8f4a85a3b5b69c6_logo_ph.png" width="55" loading="lazy" alt="">
+          <h4 class="help-menu-link-title">Using Vessel</h4>
+          <div class="help-menu-link-desc">Learn how Vessel works from top to bottom</div>
+        </div>
+      </a>
+      <a href="https://help.vesselhealth.com/hc/en-us/categories/360005611533-Your-Vessel-Account" class="help-menu-links">
+        <div class="cat-zoom">
+          <img src="https://uploads-ssl.webflow.com/5e66a7d548da8021e9b9ce56/5f45f79fa8f4a85a3b5b69c6_logo_ph.png" width="55" loading="lazy" alt="">
+          <h4 class="help-menu-link-title">Your Vessel Account</h4>
+          <div class="help-menu-link-desc">Manage your account to make Vessel work just for you</div>
+        </div>
+      </a>
+    </div>
+    <div class="container-34 w-container">
+      <a href="https://help.vesselhealth.com/hc/en-us/categories/360005611553-Supplements" class="help-menu-links">
+        <div class="cat-zoom">
+          <img src="https://uploads-ssl.webflow.com/5e66a7d548da8021e9b9ce56/5f45f79fa8f4a85a3b5b69c6_logo_ph.png" width="55" loading="lazy" alt="">
+          <h4 class="help-menu-link-title">Supplements</h4>
+          <div class="help-menu-link-desc">Ingredients, supplement options and Vessel Fuel</div>
+        </div>
+      </a>
+      <a href="https://help.vesselhealth.com/hc/en-us/categories/360004566594-Nutritional-Coaching" class="help-menu-links second">
+        <div class="cat-zoom">
+          <img src="https://uploads-ssl.webflow.com/5e66a7d548da8021e9b9ce56/5f45f79fa8f4a85a3b5b69c6_logo_ph.png" width="55" loading="lazy" alt="">
+          <h4 class="help-menu-link-title">Nutritional Coaching</h4>
+          <div class="help-menu-link-desc">Meet our Vessel nutritonal coaches, find recipes, and learn how to book an appointment</div>
+        </div>
+      </a>
+      <a href="https://help.vesselhealth.com/hc/en-us/categories/360005611573-Tips-Tricks-More" class="help-menu-links">
+        <div class="cat-zoom">
+          <img src="https://uploads-ssl.webflow.com/5e66a7d548da8021e9b9ce56/5f45f79fa8f4a85a3b5b69c6_logo_ph.png" width="55" loading="lazy" alt="">
+          <h4 class="help-menu-link-title">Tips, tricks &amp; more</h4>
+          <div class="help-menu-link-desc">Optimize your use of Vessel for beginners and experts alike</div>
+        </div>
+      </a>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Help center",
+    "settings": [
+        {
+            "type": "header",
+            "content": "header"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "common topic",
+            "type": "topic",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "category": "help",
+        "name":"Help center"
+      }
+    ]
+}
+{% endschema %}

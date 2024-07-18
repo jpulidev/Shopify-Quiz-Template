@@ -1,0 +1,110 @@
+{% assign btn_text  = section.settings.btn_text %}
+{% assign blocks    = section.blocks %}
+
+<style>
+	{%- for block in blocks -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-ready-section__content .step-ready-content[data-type="{{ header_title_lower }}"] {
+			display: block !important;
+		}
+	{%- endfor -%}
+</style>
+
+<div class="slide__content slide-ready-section__content">
+	<header class="step-header">
+		<button onclick="prevSlideTo()" data-next-page-preparing class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+	</header>
+	{% for block in blocks %}
+		{% assign header_title = block.settings.header_title %}
+		{% assign image        = block.settings.image %}
+		{% assign image_mob    = block.settings.image_mob %}
+		{% assign title        = block.settings.title %}
+		{% assign text         = block.settings.text %}
+		{% assign text_mob     = block.settings.text_mob %}
+
+		<div class="step-content step-ready-content" data-type="{{ header_title | downcase }}">
+			{% if image != blank and image_mob != blank %}
+				<picture>
+					<source srcset="{{ image | img_url: 'master' }}" media="(min-width: 600px)">
+					<source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+					<img class="step-ready-content__img" src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+				</picture>
+			{% endif %}
+			{% if title != blank %}
+				<h3 class="step-ready-content__title">{{ title }}</h3>
+			{% endif %}
+			{% if text != blank %}
+				<p class="step-ready-content__text step-ready-content__text-desk">{{ text }}</p>
+			{% endif %}
+			{% if text_mob != blank %}
+				<p class="step-ready-content__text step-ready-content__text-mob">{{ text_mob }}</p>
+			{% endif %}
+		</div>
+	{% endfor %}
+	<div class="step-btn">
+		<button data-next-page class="step-button step-button-next">{{ btn_text }}</button>
+	</div>
+</div>
+
+<script>
+function prevSlideTo(){
+		window.quiz.store.swiper.slideTo(23)
+	}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+{% schema %}
+{
+	"name": "Step Ready",
+	"tag": "div",
+	"class": "swiper-slide slider__slide slider__slide-ready",
+	"settings": [
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Let's go!"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "goal content",
+			"settings": [
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Main goal",
+					"info": "For example sleep or body or calm..."
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_mob",
+					"label": "Mobile image"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text"
+				},
+				{
+					"type": "textarea",
+					"id": "text_mob",
+					"label": "Text (mobile)"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

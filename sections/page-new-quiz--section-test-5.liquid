@@ -1,0 +1,188 @@
+{% assign progress_percent       = section.settings.progress_percent %}
+{% assign progress_percent_mob   = section.settings.progress_percent_mob %}
+{% assign first_progress_circle   = section.settings.first_progress_circle %}
+{% assign second_progress_circle = section.settings.second_progress_circle %}
+{% assign third_progress_circle  = section.settings.third_progress_circle %}
+{% assign blocks                 = section.blocks %}
+
+<style>
+	.slide__content--section-test-5 .step-header .progress-bar--section-test-5 .progress-bar__line {
+		width: {{ progress_percent_mob }}% !important;
+	}
+
+	@media (min-width: 600px) {
+		.slide__content--section-test-5 .step-header .progress-bar--section-test-5 .progress-bar__line {
+			width: {{ progress_percent }}% !important;
+		}
+	}
+
+	{% for block in blocks %}
+		{% assign header_bg_img     = block.settings.header_bg_img %}
+		{% assign header_bg_img_mob = block.settings.header_bg_img_mob %}
+		{% assign img               = block.settings.img %}
+
+		{% if header_bg_img != blank and header_bg_img_mob != blank %}
+			.slide__content .step-header.step-header--{{ block.id }} {
+				background-image: url("{{ header_bg_img_mob |  img_url: 'master' }}");
+			}
+
+			@media (min-width: 460px) {
+				.slide__content .step-header.step-header--{{ block.id }} {
+					background-image: url("{{ header_bg_img | img_url: 'master' }}");
+				}
+			}
+		{% endif %}
+
+		{% if img != blank %}
+			.slide__content--section-test-5 .step-content-test--{{ block.id }} {
+				background-image: url("{{ img | img_url: 'master' }}");
+			}
+		{% endif %}
+	{% endfor %}
+
+	 {%- for block in blocks -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+		 #quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide__content--section-test-5[data-type="{{ header_title_lower }}"] {
+			 display: flex !important;
+		 }
+	{%- endfor -%}
+</style>
+
+{% for block in blocks %}
+	{% assign last_slide    = block.settings.last_slide %}
+	{% assign header_title  = block.settings.header_title %}
+	{% assign title         = block.settings.title %}
+	{% assign text          = block.settings.text %}
+	{% assign checkbox_list = block.settings.checkbox_list | split: '||' %}
+	{% assign img           = block.settings.img %}
+	{% assign btn_text      = block.settings.btn_text %}
+
+	<div class="slide__content slide__content--section-test-5" data-type="{{ header_title | downcase }}" {% if last_slide %}data-last-of-type="true"{% else %}data-last-of-type="false"{% endif %}>
+		<header class="step-header step-header--{{ block.id }}">
+			<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			<span class="step-header__title">{{ header_title }}</span>
+			<div class="progress-bar progress-bar--section-test-5">
+				<div class="progress-bar__line"></div>
+				<span class="progress-bar__circle {% if first_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if second_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if third_progress_circle %}active{% endif %}"></span>
+			</div>
+		</header>
+		<div class="step-content step-content-test step-content-test--{{ block.id }}">
+			{% if title != blank %}
+				<h3 class="step-content-test__title" data-question>{{ title }}</h3>
+			{% endif %}
+			{% if text != blank %}
+				<div class="step-content-test__text" data-question>{{ text }}</div>
+			{% endif %}
+		</div>
+		<div class="step-btn">
+			<button data-next-page class="step-button step-button-next popup-trigger">{{ btn_text }}</button>
+		</div>
+	</div>
+{% endfor %}
+{% schema %}
+{
+	"name": "Step Test 5",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "header",
+			"content": "PROGRESS BAR"
+		},
+		{
+			"type": "range",
+			"id": "progress_percent",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent",
+			"default": 75
+		},
+		{
+			"type": "range",
+			"id": "progress_percent_mob",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent (mobile)",
+			"default": 78
+		},
+		{
+			"type": "checkbox",
+			"id": "first_progress_circle",
+			"label": "The first progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "second_progress_circle",
+			"label": "The second progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "third_progress_circle",
+			"label": "The third progress circle active?",
+			"default": false
+		}
+	],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "goal card",
+			"settings": [
+				{
+					"type": "checkbox",
+					"id": "last_slide",
+					"label": "Is it last of slide for this goal?",
+					"default": false
+				},
+				{
+					"type": "header",
+					"content": "HEADER"
+				},
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Header title"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img",
+					"label": "Header background image"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img_mob",
+					"label": "Header background image (mobile)"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text"
+				},
+				{
+					"type": "image_picker",
+					"id": "img",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "btn_text",
+					"label": "Button text",
+					"default": "Next"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

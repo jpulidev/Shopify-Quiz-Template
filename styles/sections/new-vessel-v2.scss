@@ -1,0 +1,119 @@
+#shopify-section-new_vessel_page {
+    background: #c5dabb;
+
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+.block-new-vessel {
+    background: #fff;
+    text-align: center;
+    padding: 27px;
+    min-height: 338px;
+    grid-template-rows: 144px auto 1fr;
+    justify-content: center;
+    align-items: self-start;
+
+    display: grid;
+}
+.new-vessel-v2-title {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 40px;
+    text-align: center;
+    font-family: var(--font-banana-grotesk-normal-family);
+    padding-top: 30px;
+    margin: 0;
+
+}
+
+.block-new-vessel>.block-image{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.new-vessel-v2-description {
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: NoeText,serif;
+     margin: 0;
+    padding-top: 6px;
+}
+
+.new-vessel-v2Section {
+    display: grid;
+    gap: 37px;
+    max-width: 1089px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 338px);
+}
+.new-vessel-first-section {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.title-new-vessel-one {
+    font-family: 'Banana Grotesk Medium';
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 58px;
+    margin-bottom: 30px;
+    span {
+        color: #fff; 
+    }
+}
+.description-first-section {
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    padding-bottom: 60px;
+    max-width: 500px;
+    margin: 0 auto;
+
+}
+.new-vessel-v2-description >a{
+    color: #000;
+}
+
+
+.block-image>.Cup {
+    position: relative;
+    top: 25px;
+    left: -35px;
+}
+.block-image>.Coach {
+    height: 130px;
+    position: relative;
+    top: 10px;
+}
+.block-image>.Carte {
+    width: 149px;
+    position: relative;
+    top: 13px;
+    left: -9px;
+}
+
+
+@media screen and (max-width:1000px) {
+    .new-vessel-v2Section {
+        grid-template-columns: 1fr;
+        padding: 5%;
+    }
+    .new-vessel-first-section {
+        padding: 5%;
+    }
+    #shopify-section-new_vessel_page {
+        padding-bottom: 46%;
+    }
+}
+@media (min-width:1001px) and (max-width:1200px) {
+    .new-vessel-v2Section {
+        grid-template-columns: 1fr 1fr;
+        padding: 5%;
+    }
+    .new-vessel-first-section {
+        padding: 5%;
+    }
+}

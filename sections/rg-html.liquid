@@ -1,0 +1,53 @@
+{{ 'rg-take-the-tour.css' | asset_url | stylesheet_tag }}
+
+
+{% render 'take-the-tour'%}
+
+{% schema %}
+{
+  "name": "RG HTML",
+  "tag": "section",
+  "class": "spaced-section spaced-section--full-width take-our-tour shopify-section--take-our-tour",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.rich-text.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.rich-text.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.rich-text.settings.color_scheme.options__5.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.rich-text.settings.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.full_width.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG HTML"
+    }
+  ]
+}
+{% endschema %}

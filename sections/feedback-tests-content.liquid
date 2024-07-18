@@ -1,0 +1,61 @@
+<div class="section-7 wf-section">
+    <div class="w-container">
+        <div class="html-embed-8 w-embed">
+            <ul class="feed-tabs">
+                <li class="tab-1 active"><a class="feedback_link " href="/pages/feedback-test">Tests</a></li>
+                <li class="tab-2"><a class="feedback_link" href="/pages/feedback-features">Features</a></li>
+                <li class="tab-3"><a class="feedback_link" href="/pages/feedback-bugs">Bugs</a></li>
+            <hr style="margin-left: 0;">
+        </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section-6 wf-section">
+    <div class="container-32 w-container">
+        <div class="page-width" data-canny="">
+            <script>!function(w,d,i,s){function l(){if(!d.getElementById(i)){var f=d.getElementsByTagName(s)[0],e=d.createElement(s);e.type="text/javascript",e.async=!0,e.src="https://canny.io/sdk.js",f.parentNode.insertBefore(e,f)}}if("function"!=typeof w.Canny){var c=function(){c.q.push(arguments)};c.q=[],w.Canny=c,"complete"===d.readyState?l():w.attachEvent?w.attachEvent("onload",l):w.addEventListener("load",l,!1)}}(window,document,"canny-jssdk","script");</script>
+            <script>
+              Canny('render', {
+                boardToken: '58e43a47-6a7e-6983-d83f-3039b3274d6d',
+                basePath: null, // See step 2
+                ssoToken: null, // See step 3
+              });
+            </script></div>
+    </div>
+</div>
+                
+    
+
+{% schema %}
+{
+    "name": "Feedback Content",
+    "settings": [
+        
+    ],
+    "blocks": [
+        {
+            "name": "tab",
+            "type": "tab",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Feedback",
+            "name":"Feedback Content"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,268 @@
+{% assign progress_percent       = section.settings.progress_percent %}
+{% assign progress_percent_mob   = section.settings.progress_percent_mob %}
+{% assign first_progress_circle   = section.settings.first_progress_circle %}
+{% assign second_progress_circle = section.settings.second_progress_circle %}
+{% assign third_progress_circle  = section.settings.third_progress_circle %}
+{% assign title                  = section.settings.title %}
+{% assign email_placeholder      = section.settings.email_placeholder %}
+{% assign email_label            = section.settings.email_label %}
+{% assign text                   = section.settings.text %}
+{% assign btn_text               = section.settings.btn_text %}
+{% assign popup_image            = section.settings.popup_image %}
+{% assign popup_image_mob        = section.settings.popup_image_mob %}
+{% assign popup_title            = section.settings.popup_title %}
+{% assign popup_subtitle         = section.settings.popup_subtitle %}
+{% assign popup_text             = section.settings.popup_text %}
+{% assign popup_btn_text         = section.settings.popup_btn_text %}
+{% assign blocks                 = section.blocks %}
+
+<style>
+	.slide-account-section__content .step-header .progress-bar--account-section .progress-bar__line {
+		width: {{ progress_percent_mob }}% !important;
+	}
+
+	@media (min-width: 600px) {
+		.slide-account-section__content .step-header .progress-bar--account-section .progress-bar__line {
+			width: {{ progress_percent }}% !important;
+		}
+	}
+
+	{% for block in blocks %}
+		{% assign header_bg_img        = block.settings.header_bg_img %}
+		{% assign header_bg_img_mob    = block.settings.header_bg_img_mob %}
+
+		{% if header_bg_img != blank and header_bg_img_mob != blank %}
+			.slide__content .step-header.step-header--{{ block.id }} {
+				background-image: url("{{ header_bg_img_mob |  img_url: 'master' }}");
+			}
+
+			@media (min-width: 460px) {
+				.slide__content .step-header.step-header--{{ block.id }} {
+					background-image: url("{{ header_bg_img | img_url: 'master' }}");
+				}
+			}
+		{% endif %}
+	{% endfor %}
+
+	{%- for block in blocks -%}
+		{% assign header_title_lower  = block.settings.header_title | downcase %}
+
+		#quiz-slider[data-main-type="{{ header_title_lower }}"] .slide__content.slide-account-section__content .step-header__account-section[data-type="{{ header_title_lower }}"] {
+			display: flex !important;
+		}
+	{%- endfor -%}
+</style>
+
+<div class="slide__content slide-account-section__content">
+	{% for block in blocks %}
+		{% assign header_title = block.settings.header_title %}
+
+		<header class="step-header step-header__account-section step-header--{{ block.id }}" data-type="{{ header_title | downcase }}">
+			<button data-prev-page class="quiz-btn-back">{% include 'quiz-arrow-back' %}</button>
+			<span class="step-header__title">{{ header_title }}</span>
+			<div class="progress-bar progress-bar--account-section">
+				<div class="progress-bar__line"></div>
+				<span class="progress-bar__circle {% if first_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if second_progress_circle %}active{% endif %}"></span>
+				<span class="progress-bar__circle {% if third_progress_circle %}active{% endif %}"></span>
+			</div>
+		</header>
+	{% endfor %}
+	<div class="step-content step-account-content">
+		{% if title != blank %}
+			<h3 class="step-account-content__title">{{ title }}</h3>
+		{% endif %}
+
+		<div class="step-account-content_email-block">
+			<input type="email" class="quiz-mail" id="account_email" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+			required placeholder="{{ email_placeholder }}" style="display:none;">
+			{% if email_label != blank %}
+				<label for="account_email">{{ email_label }}</label>
+			{% endif %}
+		</div>
+
+		{% if text != blank %}
+			<p class="step-account-content__text">{{ text }}</p>
+		{% endif %}
+	</div>
+	<div class="step-btn">
+		<button data-next-page class="mail-btn" id="mail-enable" onclick="nextSlideTo()">{{ btn_text }}</button>
+	</div>
+</div>
+
+<div class="account-alert-popup">
+	<div class="account-alert-popup__content">
+		{% if popup_image != blank and popup_image_mob != blank %}
+			<div class="popup-img">
+				<picture>
+					<source srcset="{{ popup_image | img_url: 'master' }}" media="(min-width: 600px)">
+					<source srcset="{{ popup_image_mob | img_url: 'master' }}" media="(max-width: 600px)">
+					<img src="{{ popup_image | img_url: 'master' }}" alt="{{ popup_image.alt | escape }}">
+				</picture>
+			</div>
+		{% endif %}
+		{% if popup_title != blank %}
+			<div class="popup-title">{{ popup_title }}</div>
+		{% endif %}
+		{% if popup_subtitle != blank %}
+			<div class="popup-subtitle">{{ popup_subtitle }}</div>
+		{% endif %}
+		{% if popup_text != blank %}
+			<div class="popup-text">{{ popup_text }}</div>
+		{% endif %}
+		<div class="popup-btn">
+			<button class="account-popup-button">{{ popup_btn_text }}</button>
+		</div>
+	</div>
+</div>
+<script>
+
+function nextSlideTo(){
+	window.quiz.store.swiper.slideTo(25)
+}
+
+</script>
+
+{% render 'quiz_store_results' %}
+{% schema %}
+{
+	"name": "Step Account",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "header",
+			"content": "PROGRESS BAR"
+		},
+		{
+			"type": "range",
+			"id": "progress_percent",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent",
+			"default": 91
+		},
+		{
+			"type": "range",
+			"id": "progress_percent_mob",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Progress percent (mobile)",
+			"default": 90
+		},
+		{
+			"type": "checkbox",
+			"id": "first_progress_circle",
+			"label": "The first progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "second_progress_circle",
+			"label": "The second progress circle active?",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "third_progress_circle",
+			"label": "The third progress circle active?",
+			"default": false
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "email_placeholder",
+			"label": "Email placeholder",
+			"default": "Email"
+		},
+		{
+			"type": "text",
+			"id": "email_label",
+			"label": "Email label",
+			"default": "*Vessel does not share any personal information."
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "See my results!"
+		},
+		{
+			"type": "header",
+			"content": "ALERT POP UP"
+		},
+		{
+			"type": "image_picker",
+			"id": "popup_image",
+			"label": "Popup image"
+		},
+		{
+			"type": "image_picker",
+			"id": "popup_image_mob",
+			"label": "Popup image (mobile)"
+		},
+		{
+			"type": "text",
+			"id": "popup_title",
+			"label": "Popup title",
+			"default": "Welcome back!"
+		},
+		{
+			"type": "textarea",
+			"id": "popup_subtitle",
+			"label": "Popup subtitle"
+		},
+		{
+			"type": "textarea",
+			"id": "popup_text",
+			"label": "Popup text"
+		},
+		{
+			"type": "text",
+			"id": "popup_btn_text",
+			"label": "Popup button text",
+			"default": "Got It"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "cards",
+			"name": "Header type",
+			"settings": [
+				{
+					"type": "header",
+					"content": "HEADER"
+				},
+				{
+					"type": "text",
+					"id": "header_title",
+					"label": "Header title"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img",
+					"label": "Header background image"
+				},
+				{
+					"type": "image_picker",
+					"id": "header_bg_img_mob",
+					"label": "Header background image (mobile)"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,412 @@
+<div class="ah-vessel-wrapper vessel-bg">
+
+
+	{%- liquid
+		assign product12 = all_products['12-month-subscription-prepaid']
+		for variant in product12.variants
+			for	allocation in variant.selling_plan_allocations
+				assign selling_id_12 = allocation.selling_plan.id
+			endfor
+		endfor
+
+		assign product6 = all_products['6-month-subscription-prepaid-4-cards-mo']
+		for variant in product6.variants
+			for	allocation in variant.selling_plan_allocations
+				assign selling_id_6 = allocation.selling_plan.id
+			endfor
+		endfor
+
+
+
+	-%}
+
+
+	<div class="ah-container">
+		<div class="ah-vessel-logo-section">
+			<div class="ah-vessel-logo-1">
+				<img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/logo_horizontal-1.png?v=1650267821" alt="">
+			</div>
+		</div>
+		<div class="ah-vessel-heading-section text-center">
+			<h2> Exclusive offer for A360 members </h2>
+		</div>
+		<div class="ah-vessel-paragraph-section text-center">
+			<p>Get started with Vessel, the in-home wellness test that instantly and accurately uncovers what your body really needs.</p>
+		</div>
+		<div class="ah-vessel-offer-box-section">
+			<div class="ah-vessel-offer-box-wrapper-1">
+				<div class="ah-vessel-offer-box text-center">
+					<img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_9_Copy_7.png?v=1650266721" alt="">
+					<p>6 month membership</p>
+					<div class="ah-vessel-offer-inner">
+						<h3>$</h3> <h2>140</h2> <h4> <del>$240</del></h4>
+					</div>
+					<div class="ah-vessel-button-section">
+
+						<button class="rg-claim-offer" data-product-id="{{ product6.selected_or_first_available_variant.id }}" data-selling-plan="{{ selling_id_6 }}" data-checkout="/60331229370/checkouts/bba3d1c4950a49a3820ba3c1a7295959?_ga=2.129251660.1793627818.1650385273-1187498315.1650105164&discount=6MOA360">Claim offer</button>
+					</div>
+					<h5> <span>Use code</span>6MoA360</h5>
+				</div>
+			</div>
+			<div class="ah-vessel-offer-box-wrapper-2">
+				<div class="ah-vessel-offer-box text-center">
+					<img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Group_9_Copy_7.png?v=1650266721" alt="">
+					<p>12 month membership</p>
+					<div class="ah-vessel-offer-inner">
+						<h3>$</h3> <h2>220</h2> <h4> <del>$420</del></h4>
+					</div>
+					<div class="ah-vessel-button-section">
+						<button class="rg-claim-offer" data-product-id="{{ product12.selected_or_first_available_variant.id }}" data-selling-plan="{{ selling_id_12 }}"  data-checkout="/60331229370/checkouts/9eef0bfc61badc90192718c8e89646da?_ga=2.129251660.1793627818.1650385273-1187498315.1650105164&discount=12MoA360">Claim offer</button>
+					</div>
+					<h5> <span>Use code</span>12MoA360</h5>
+				</div>
+			</div>
+		</div>
+		<div class="ah-vessel-button-section text-center">
+			<a href="#">Learn more about Vessel</a>
+		</div>
+	</div>
+
+
+
+	<div class="ah-vessel-footer-section black-bg text-center">
+		<img src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/logo-footer.png?v=1650266721" alt="">
+		<div class="ah-vessel-footer-paragraph text-center">
+			<p>Not intended for use in diagnosing diseases or other conditions, determining the state of health, or curing, mitigating, treating, or preventing illness or disease.</p>
+			<p>© 2022, Vessel All rights Reserved. <a href="#">Privacy Policy </a> <a href="#">Terms of Service</a> </p>
+		</div>
+	</div>
+</div>
+
+<script>
+	( function () {
+		// add to cart
+		$('.rg-claim-offer').click(function(e){
+			e.preventDefault();
+
+			let variantId = $( this ).data("product-id")
+			let selling_plan_ID = $( this ).data("selling-plan")
+
+			variantId = parseInt(variantId);
+
+			if(variantId) {
+				clearCartItems((isClear)=>{
+					let checkout = $( this ).data("checkout")
+					if(isClear) {
+						addItemToCart(variantId, 1, selling_plan_ID,checkout);
+					}
+				})
+			}
+		});
+
+		function clearCartItems(cb){
+			jQuery.ajax({
+				type: 'POST',
+				url: '/cart/clear.js',
+				data: '',
+				dataType: 'json',
+				success: function() {
+					if(cb) cb(true);
+				}
+			});
+		};
+		// Data passing
+
+		function addItemToCart(variant_id, qty, selling_plan,checkout) {
+			if (selling_plan != undefined ) {
+				data = {
+					"id": variant_id,
+					"quantity": qty,
+					"selling_plan": selling_plan
+				}
+			} else {
+				data = {
+					"id": variant_id,
+					"quantity": qty
+				}
+			}
+
+			jQuery.ajax({
+				type: 'POST',
+				url: '/cart/add.js',
+				data: data,
+				dataType: 'json',
+				success: function(e) {
+					console.log(checkout);
+
+					window.location = checkout;
+				}
+			});
+			//window.location = '/checkout';
+		}
+
+	})();
+</script>
+
+{% schema %}
+  {
+    "name": "Exclusive offer",
+    "tag": "section",
+    "class": "spaced-section",
+    "settings": [
+	],
+  "presets": [
+    {
+      "name": "Exclusive offer"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+<style> 
+.ah-container {
+	width: 650px;
+	margin: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.text-center {
+	text-align: center;
+}
+.vessel-bg {
+    background: #C5DBBB;
+}
+.black-bg {
+	background: #171515;
+}
+.ah-vessel-logo-section {
+	display: flex;
+	width: 390px;
+	margin: auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.ah-vessel-logo-1 {
+	width: 100%;
+}
+.ah-vessel-logo-1 img{
+	width: 100%;
+}
+.ah-vessel-icon {
+	width: 10%;
+	margin-top: 15px;
+}
+.ah-vessel-icon a{
+    color: #333;
+	font-size: 22px;
+}
+.ah-vessel-logo-2 {
+	width: 45%;
+}
+.ah-vessel-logo-2 img{
+	width: 100%;
+}
+.ah-vessel-heading-section {
+	width: 390px;
+	margin: auto;
+	padding-bottom: 10px;
+}
+.ah-vessel-heading-section h2{
+    font-size: 42px;
+	color: #171515;
+	font-weight: 600;
+	font-family: Banana Grotesk;
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+}
+.ah-vessel-paragraph-section {
+	width: 490px;
+	margin: auto;
+	padding-bottom: 40px;
+}
+.ah-vessel-paragraph-section p{
+	color: #4D4F45;
+	font-size: 15px;
+	line-height: 1.4;
+	font-weight: 400;
+}
+.ah-vessel-offer-box-section {
+	width: 630px;
+	display: flex;
+    margin: auto;
+}
+.ah-vessel-offer-box-wrapper-1 {
+	margin-right: 30px;
+}
+.ah-vessel-offer-box {
+	width: 300px;
+	border: 2px solid #C5DBBB;
+    border-radius: 20px;
+    background: #DDEAD7;
+}
+.ah-vessel-offer-box:hover {
+	border: 2px solid #bfadad;
+}
+.ah-vessel-offer-box p{
+	font-size: 15px;
+    color: #171515;
+    font-weight: 600;
+    font-family: Banana Grotesk;
+    padding: 0;
+    margin-top: 5px;
+    line-height: 2;
+}
+.ah-vessel-offer-box img{
+	width: 30%;
+	margin-top: 50px;
+}
+.ah-vessel-offer-inner {
+	width: 200px;
+	height: 70px;
+	margin: auto;
+	position: relative;
+	margin-top: 0px;
+    margin-bottom: 10px;
+}
+.ah-vessel-offer-inner h3{
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 27px;
+	font-size: 22px;
+	font-weight: 600;
+	color: #171515;
+	font-family: Banana Grotesk;
+}
+.ah-vessel-offer-inner h2{
+	display: inline-block;
+	font-size: 65px;
+	font-weight: 600;
+	color: #171515;
+	font-family: Banana Grotesk;
+	position: absolute;
+    top: -45px;
+    left: 45px;
+}
+.ah-vessel-offer-inner h4{
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 400;
+	color: #171515;
+	font-family: Banana Grotesk;
+	position: absolute;
+	bottom: -30px;
+    right: 0px;
+}
+.ah-vessel-offer-box h5{
+	font-size: 15px;
+	font-weight: 600;
+	color: #171515;
+	margin-bottom: 35px;
+}
+.ah-vessel-offer-box span {
+	opacity: .5;
+	margin-right: 5px;
+}
+.ah-vessel-button-section {
+	margin-top: 50px;
+	padding-bottom: 0
+}
+.ah-vessel-button-section button {
+	padding: 20px 40px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #ffffff;
+	background: #4D4F45;
+	border-radius: 15px;
+	outline: 0;
+	cursor: pointer;
+}
+.ah-vessel-button-section button:hover {
+	border: 3px solid #ffffff;
+}
+.ah-vessel-button-section a{
+	font-size: 15px;
+	font-weight: 400;
+	color: #4D4F45;
+	display: block;
+	margin-top: 25px;
+}
+.ah-vessel-footer-section img {
+	width: 8%;
+	padding-top: 50px;
+	padding-bottom: 40px;
+}
+.ah-vessel-footer-paragraph {
+	width: 450px;
+	margin: auto;
+	padding-bottom: 30px;
+}
+.ah-vessel-footer-paragraph p {
+    font-size: 11px;
+	color: #8A8A89;
+	font-weight: 300;
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+.ah-vessel-footer-paragraph a {
+    font-size: 11px;
+	color: #8A8A89;
+	font-weight: 300;
+	line-height: 1.5;
+	margin-right: 5px;
+}
+@media (min-width: 650px) and (max-width: 991px){
+    .ah-vessel-offer-box-section {
+        width: 300px;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+    }
+    .ah-vessel-offer-box-wrapper-1 {
+	margin-bottom: 30px;
+    }
+}  
+@media (min-width: 0px) and (max-width: 650px){
+    .ah-vessel-logo-section {
+    width: 280px;
+    padding-top: 40px;
+    padding-bottom: 30px;  
+    }
+    .ah-vessel-heading-section {
+    width: 310px;
+    }
+    .ah-vessel-heading-section h2 {
+    font-size: 32px;
+    }
+    .ah-vessel-paragraph-section {
+    width: 300px;
+    padding-bottom: 20px;
+    }
+    .ah-vessel-paragraph-section p {
+    font-size: 12px;
+    }
+    .ah-vessel-offer-box-section {
+        width: 300px;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+    }
+    .ah-vessel-button-section {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    }
+    .ah-vessel-offer-box-wrapper-1 {
+	margin-bottom: 30px;
+    }
+   .ah-vessel-footer-section img {
+	width: 20%;
+	padding-top: 40px;
+	padding-bottom: 20px;
+    }
+    .ah-vessel-footer-paragraph {
+    width: 295px;
+    padding-bottom: 20px;
+    }
+}  
+  
+</style>
+{% endstylesheet %}
+

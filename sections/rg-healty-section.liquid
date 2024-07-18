@@ -1,0 +1,67 @@
+{{ 'section-healty.css' | asset_url | stylesheet_tag }}
+<div class="healty position-relative">
+  <img src="{{ section.settings.image | img_url: 'master' }}" alt="" class="image-9">
+  <div class="cream-bg doctor home"></div>
+  <div class="page-width">
+    <div class="div-block-31 position-relative">
+      <h2 class="heading doctor va h1">{{ section.settings.title }}</h2>
+      <div class="div-block-143">
+        <p class="paragraph">{{ section.settings.text }}</p>
+      </div>
+      <div class="div-block-54 w-clearfix">
+        <a href="{{ section.settings.btn_url }}" class="dark-bt vit-ang w-button button">{{ section.settings.btn_label }}</a>
+        
+        {% if section.settings.image2 != blank %}
+        <img src="{{ section.settings.image2 | img_url: 'large' }}" height="" width="176.5" alt="" class="image-10">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "RG healthy",
+  "settings": [
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Everyone deserves a healthy life "
+    },
+    {
+      "id": "text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "Every test card you purchase donates vitamin A and deworming to a child in need for a month, reducing mortality rates by 25%"
+    },
+    {
+      "id": "btn_label",
+      "type": "text",
+      "label": "Button Label",
+      "default": "Learn more"
+    },
+    {
+      "id": "btn_url",
+      "type": "url",
+      "label": "Button URL"
+    },
+    {
+      "id": "image2",
+      "type": "image_picker",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG healthy",
+      "category": "RG"
+    }
+  ]
+}
+{% endschema %}

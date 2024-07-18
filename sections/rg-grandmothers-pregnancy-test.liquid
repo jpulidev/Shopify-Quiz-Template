@@ -1,0 +1,157 @@
+{{ 'rg-grandmothers-pregnancy-test.css' | asset_url | stylesheet_tag }}
+
+<div class="tesla wf-section">
+    <div class="white-bg scient grampreg"></div>
+    <div class="div-block-190">
+        <div class="w-container">
+            <div class="pregnancy-test">
+                <h2 class="heading-79">This isn't your grandmother's pregnancy test<br /></h2>
+                <p class="paragraph-42">
+                    But we gotta give some love to the OG pregnancy test. It was a game changer in allowing women to tell if they were pregnant from the comfort of home. Fun fact: the first at-home pregnancy test was made available in the
+                    US in 1977.
+                </p>
+            </div>
+            <div class="tesla_cards">
+                <img
+                        src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Image_13.png?v=1654531077"
+                        loading="lazy"
+                        sizes="(max-width: 767px) 100vw, 500px"
+                        alt=""
+                        class="image-51"
+                />
+                <div class="greay-fidutials">
+                    <h4>Grey fiducials<br /></h4>
+                    <p class="paragraph-36">Help us determine color changes due to lighting conditions.<br /></p>
+                    <div class="div-block-193 grey">
+                        <div class="div-block-194 grey">
+                            <div class="div-block-195"></div>
+                            <div class="div-block-195-copy _6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="creaturine-copy">
+                    <h4>Fluidics<br /></h4>
+                    <p class="paragraph-36">This helps make sure the urine is dispersed along the tests evenly.<br /></p>
+                    <div class="div-block-193 creatur">
+                        <div class="div-block-194 creature">
+                            <div class="div-block-195"></div>
+                            <div class="div-block-195-copy _6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="creaturine-bottom">
+                    <h4>Creatinine<br /></h4>
+                    <p class="paragraph-36">Creatinine ratio can detect interferences like drinking a bunch of water before testing.<br /></p>
+                    <div class="div-block-193 creatur-bottom">
+                        <div class="div-block-194 creature-bottom">
+                            <div class="div-block-195"></div>
+                            <div class="div-block-195-copy _6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qr-code">
+                    <h4>QR code<br /></h4>
+                    <p class="paragraph-36">This helps the reader identify the calibration data for that specific batch of test cards.<br /></p>
+                    <div class="div-block-193-copy">
+                        <div class="div-block-194-copy">
+                            <div class="div-block-195"></div>
+                            <div class="div-block-195-copy _6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer">
+                    <h4>Timer<br /></h4>
+                    <p class="paragraph-36">This improves accuracy by getting to the specifics of how long it’s been since you peed on the test card (coming soon).<br /></p>
+                    <div class="div-block-193-copy-copy">
+                        <div class="div-block-194-copy">
+                            <div class="div-block-195"></div>
+                            <div class="div-block-195-copy _6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tesla-mobile">
+                    <img src="https://assets-global.website-files.com/5e66a7d548da8021e9b9ce56/5fb43a9f07c1e731b767066b_Scheme2x.png" loading="lazy" alt="" class="image-60" />
+                    <div>
+                        <div class="div-block-223">
+                            <h4 class="heading-87">1</h4>
+                            <div class="div-block-222">
+                                <h4>Grey Fiducials</h4>
+                                <p>Help us determine color changes due to lighting conditions.</p>
+                            </div>
+                        </div>
+                        <div class="div-block-223">
+                            <h4 class="heading-87">2</h4>
+                            <div class="div-block-222">
+                                <h4>Fluidics</h4>
+                                <p>Helps us determine the color change of the climatic assays.</p>
+                            </div>
+                        </div>
+                        <div class="div-block-223">
+                            <h4 class="heading-87">3</h4>
+                            <div class="div-block-222">
+                                <h4>Creatinine</h4>
+                                <p>Creatinine ratio can detect interferences like drinking a bunch of water before testing.</p>
+                            </div>
+                        </div>
+                        <div class="div-block-223">
+                            <h4 class="heading-87">4</h4>
+                            <div class="div-block-222">
+                                <h4>QR Code</h4>
+                                <p>This helps the reader identify the calibration data for that specific batch of test cards.</p>
+                            </div>
+                        </div>
+                        <div class="div-block-223">
+                            <h4 class="heading-87">5</h4>
+                            <div class="div-block-222">
+                                <h4>Timer</h4>
+                                <p>This improves accuracy by getting to the specifics of how long it’s been since you peed on the test card (coming soon).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "RG grandmothers pregnancy",
+  "class": "spaced-section--full-width",
+  "tag": "section",
+  "settings": [
+    {
+      "id": "title",
+      "type": "textarea",
+      "label": "Heading",
+      "default": "This isn't your grandmother's pregnancy test"
+    },
+    {
+      "id": "text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "But we gotta give some love to the OG pregnancy test. It was a game changer in allowing women to tell if they were pregnant from the comfort of home. Fun fact: the first at-home pregnancy test was made available in the US in 1977."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "evaluates",
+      "name": "Add Evaluate",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+       		"label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RG grandmothers pregnancy",
+      "category": "RG"
+    }
+  ]
+}
+{% endschema %}

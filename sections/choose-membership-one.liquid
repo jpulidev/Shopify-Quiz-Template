@@ -1,0 +1,1018 @@
+<style>
+  .fuel-quiz-container {
+    max-width: 460px;
+    margin: -37px auto 0;
+  }
+  .body-fuel-content {
+    margin-top: 44px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media(max-width:1000px) {
+    .step-one-body {
+      padding-top: 10px !important;
+    }
+  }
+  .header-fuel-quiz {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: grid;
+    grid-template-columns: 43% 1fr;
+  }
+
+  .fuel-quiz-title {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 43px;
+    margin: 0;
+  }
+  .fuel-quiz-copy {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #555553;
+  }
+
+  .button-quiz-fuel {
+    background: #161514;
+    border-radius: 22px;
+    height: 60px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    max-width: 100%;
+    margin: 0 auto;
+    font-family: var(--font-heading-family);
+    font-size: 16px;
+  }
+  .button-quiz-fuel:hover {
+    background-color: #161514e6;
+  }
+
+  .link-to-page-quiz {
+    text-decoration: none;
+  }
+
+  .timeline-fuel {
+    margin-top: 31px;
+    text-align: center;
+  }
+
+  @media(min-width:1000px) {
+    .timeline-fuel > svg {
+      width: 450px !important;
+      height: 55px;
+    }
+  }
+
+  .log-vessel-quiz {
+    text-align: left;
+  }
+  .logo-fuel-quiz {
+    text-align: left;
+  }
+
+  .fuel-quiz-step-title {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+    top: 3px;
+    left: 5px;
+    position: relative;
+  }
+  @media(min-width:1000px) {
+    .fuel-quiz-step-title {
+      left: 7px;
+    }
+    .fuel-quiz-step-subtitle {
+      left: 7px;
+    }
+  }
+  .checkbox-label-step-fuel {
+    position: relative;
+    width: inherit;
+    padding: 18px 10px 18px 40px;
+    margin: 0 0 0 20px;
+    display: flex;
+    align-items: center;
+    font-family: 'Banana Grotesk Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;
+    color: #161514;
+    background-color: #FFFFFFB2;
+    border-radius: 22px;
+    transition: background-color 0.2s linear;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: auto 75px;
+    background-position: right bottom;
+    z-index: -1;
+  }
+
+
+  .step1-fuel-quiz {
+
+    margin-top: 30px;
+    margin-left: -6px;
+    position: relative;
+    top: 4px;
+
+
+    input[type=checkbox] {
+      display: grid;
+      width: 100%;
+      height: 40px;
+      text-align: center;
+      cursor: pointer;
+      border: 0;
+      -moz-appearance: none;
+      appearance: none;
+      -webkit-appearance: none;
+      position: relative;
+      z-index: 9998;
+      margin-bottom: -27px;
+    }
+
+    input[type=checkbox]::before,
+    input[type=checkbox]::after {
+      grid-area: 1 / 1;
+      border-radius: 40px;
+      mix-blend-mode: hard-light;
+      pointer-events: none;
+    }
+
+    input[type=checkbox]::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 18px;
+      background-color: #000;
+      border: 4px solid #C1DEBA;
+      background-image: url('//cdn.shopify.com/s/files/1/0603/3122/9370/t/68/assets/checkbox-arrow.svg?v=1653953…');
+      background-position: center;
+      background-size: 18px 14px;
+      background-repeat: no-repeat;
+      transition: background-color 0.2s linear;
+    }
+
+    input[type=checkbox]::after {
+      background: #000;
+      font-size: 50px;
+      content: '';
+      width: 40px;
+      height: 40px;
+      border-radius: 18px;
+      background-color: #e3e3e3;
+
+      background-image: url('//cdn.shopify.com/s/files/1/0603/3122/9370/t/68/assets/checkbox-arrow.svg?v=1653953%E2%80%A6');
+      background-position: 50%;
+      background-size: 18px 14px;
+      background-repeat: no-repeat;
+    }
+
+    input[type=checkbox]:checked::after {
+      mix-blend-mode: unset;
+      color: transparent;
+    }
+
+    main {
+      display: grid;
+      grid: repeat(4, 100px) / 150px 1fr;
+      align-items: center;
+      width: max-content;
+    }
+
+    label {
+      top: -23px;
+      left: -1px;
+    }
+
+  }
+
+  .secon-text {
+    font-size: 11px;
+    padding-right: 19px;
+    line-height: 20px;
+    color: #555553;
+    font-weight: 400;
+  }
+  .image-top-fuel {
+    max-width: 113px;
+    margin-left: -32px;
+    margin-top: 2px;
+  }
+
+  @media screen and (max-width:1000px) {
+    .select_goals_options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+  }
+
+  @media(min-width:1001px) and (max-width:4000px) {
+    .step-goals-1 {
+      height: 60px !important;
+      width: 100% !important;
+    }
+    .select_goals_options {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+
+      .step1-fuel-quiz-checkbox {
+        background-size: contain;
+      }
+    }
+    #step-1-goals-body {
+      max-width: 460px;
+      text-align: center;
+    }
+  }
+
+  .loading-content {
+    text-align: center;
+    max-width: 120px;
+    margin: 0 auto;
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+  .fuel-quiz-step-subtitle {
+    position: relative;
+    top: -25px;
+  }
+  .fuel-choose-your-membership {
+    max-width: 996px;
+    margin: 5% auto 232px;
+  }
+  .choose-first-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+  .icon-choose-one {
+    text-align: right;
+  }
+  .icon-choose-one > h3 {
+    margin: 0;
+  }
+  .price-container {
+    background: #fff;
+    padding: 4% 8% 28px;
+  }
+  .choose-second-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 55px;
+    margin-bottom: 100px;
+    margin-top: 35px;
+  }
+  .price-title {
+    display: grid;
+    font-size: 28px;
+    line-height: 40px;
+    margin-bottom: -13px;
+    margin-top: 18px;
+  }
+  .price-title > span {
+    font-size: 16px;
+    line-height: 30px;
+  }
+  .price-section-one {
+    border-bottom: 2px solid #E1E1E1;
+    margin-bottom: 17px;
+  }
+  .fuel-price {
+    font-size: 100px;
+    line-height: 100px;
+    font-family: var(--font-banana-grotesk-light-family);
+    margin-left: 17px;
+  }
+  .fuel-price > span {
+    font-size: 16px;
+    line-height: 18px;
+    margin-left: -19px;
+  }
+  .price-section-one {
+    position: relative;
+    top: 11px;
+  }
+  .dolar-tag {
+    position: absolute;
+  }
+  .price-tag {
+    display: grid;
+    height: 225px;
+    border-bottom: 2px solid #e1e1e1;
+  }
+  .save-day {
+    margin-top: 1px;
+    color: #F42626;
+  }
+  .commitment-price > p {
+    margin-top: 4px;
+    margin-bottom: 23px;
+  }
+  .price-day {
+    margin-bottom: 0;
+    padding: 0;
+    line-height: 1;
+  }
+
+
+  .cta-fuel-btn {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 236px;
+    margin: 0 auto;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+  }
+
+  .cta-fuel-btn:hover {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .price-day {
+    color: #5C5C5B;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .price-day {
+    margin-top: -8px;
+  }
+  .popular-tag-fuel {
+    position: absolute;
+    margin-top: -29px;
+    background: #F2A7A5;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 22px;
+    font-size: 20px;
+    padding: 1.3px 22px;
+    width: 169px;
+    height: 38px;
+    font-family: 'Banana Grotesk Medium';
+    margin-left: 38px;
+  }
+
+  @media(min-width:1001px) {
+    #mobile-onle {
+      display: none !important
+    }
+  }
+  @media screen and (max-width:1000px) {
+
+    #desktop-only {
+      display: none !important
+    }
+    .choose-second-section {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .choose-first-section {
+      grid-template-columns: 1fr;
+    }
+    .price-title {
+      font-size: 16px;
+      font-family: 'Banana Grotesk Bold';
+      letter-spacing: 0;
+      line-height: 17px;
+    }
+    .price-section-one > p {
+      font-size: 12px;
+    }
+    .price-section-one {
+      border-bottom: none;
+    }
+    .dolar-tag {
+      font-size: 40px;
+      font-family: 'Banana Grotesk Bold';
+      margin-top: -57px;
+      position: absolute;
+      right: 112px;
+    }
+    .fuel-price {
+      font-size: 40px;
+      font-family: 'Banana Grotesk Bold';
+      margin-top: -71px;
+      position: absolute;
+      right: 11px;
+    }
+    .price-day {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .mobile-day {
+      position: relative;
+      top: -9px;
+    }
+    .choose-title {
+      display: none;
+    }
+    .mobile-version {
+      display: grid!important;
+      margin: 0 auto;
+      padding-left: 22px;
+      padding-right: 23px;
+      font-size: 31px;
+      width: 360px;
+      position: relative;
+      top: -7px;
+      grid-template-columns: 1fr 72px;
+    }
+
+    .fuel-price > span {
+      position: relative;
+      top: 21px;
+      left: -46px;
+      font-family: 'Noe Text';
+      color: #5C5C5B;
+    }
+    .price-tag {
+      display: grid;
+      height: 110px;
+      border-bottom: 2px solid #e1e1e1;
+    }
+    .price-day {
+      margin-bottom: 0;
+    }
+    .save-day {
+      font-size: 12px;
+    }
+    .price-tag {
+      height: 97px;
+    }
+    .commitment-price > p {
+      margin-top: 4px;
+      margin-bottom: 23px;
+      position: relative;
+      top: 9px;
+      font-size: 12px;
+      font-family: 'Noe text';
+      color: #333231;
+    }
+    #shopify-section-choose-membership-one {
+      margin: 0 15px;
+    }
+
+    .mobile-section-choose {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: left;
+      text-align: left;
+    }
+    .fuel-choose-your-membership {
+      margin: 20px 0 63px;
+    }
+    .header-fuel-membership {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: baseline;
+    }
+    .price-container-mobile {
+      background: #fff;
+      border-radius: 22px;
+      width: 360px;
+
+    }
+    .choose-second-mobile-section {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 35px;
+      margin-top: 20px;
+      margin-bottom: 70px;
+    }
+    .fuel-price-mobile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      align-items: center;
+    }
+    .price-mobile-fuel {
+      font-weight: 700;
+      font-size: 35px;
+      line-height: 43px;
+      font-family: var(--font-banana-grotesk-bold);
+      margin: 0;
+    }
+    .price-mobile-fuel > span {
+      font-size: 16px;
+    }
+    .mobile-commitment {
+      font-size: 14px;
+      line-height: 20px;
+      font-family: var(--font-banana-grotesk-light-family);
+      color: #555553;
+      margin: 0;
+      position: relative;
+      top: 4px;
+      left: 10px;
+    }
+    .price-day-mobile {
+      font-size: 14px;
+      line-height: 20px;
+      font-family: var(--font-banana-grotesk-light-family);
+      color: #555553;
+    }
+    .mobile-commitment-sale {
+      font-size: 14px;
+      line-height: 20px;
+      font-family: var(--font-banana-grotesk-light-family);
+      color: #F42626;
+      margin: 0;
+      position: relative;
+      top: 4px;
+      left: 10px;
+    }
+    .fuel-two-mobile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      text-align: left;
+      grid-gap: 21px;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+
+    }
+    .fuel-two-mobile > p {
+      font-size: 14px;
+      line-height: 20px;
+      font-family: var(--font-banana-grotesk-light-family);
+      color: #555553;
+      margin: 0;
+    }
+    .price-title-mobile {
+      margin-bottom: 4px;
+    }
+    .cta-fuel-btn {
+      width: 100%;
+      background: none;
+      height: 213px;
+      color: #000;
+    }
+    .popular-tag-fuel {
+      font-size: 12px;
+      padding: 1.3px 15px;
+      width: 108px;
+      height: 29px;
+      margin-left: -3px;
+      margin-top: -24px;
+    }
+    .commitment-price-mobile {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .popular-tag-fuel-mobile {
+      position: absolute;
+      right: 47px;
+      margin-top: -34px;
+      background: #FDF6ED;
+      padding: 6px 21px;
+      border-radius: 22px;
+    }
+    .best-value-mobile {
+
+      margin-top: -32px;
+      width: 151px;
+      background: #F2A7A5;
+      border-radius: 22px;
+      height: 22px;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      font-weight: 100;
+      font-size: 17px;
+      z-index: 1;
+    }
+    .first-container {
+      background: #FBF3EB;
+      position: relative;
+      margin-top: -20px;
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+      padding-top: 19px;
+      height: 87px;
+    }
+    .membership-description {
+      font-size: 20px;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+    .membership-cards {
+      font-size: 17px;
+      margin-top: -14px;
+      font-family: 'Banana Grotesk Light';
+    }
+    .second-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      text-align: left;
+      padding-left: 27px;
+      padding-right: 20px;
+      padding-bottom: 17px;
+      padding-top: 11px;
+    }
+    .billed-info {
+      font-size: 17px;
+      font-family: 'Noe Text';
+      padding-top: 0px;
+      font-weight: 100;
+      padding-left: 8px;
+      margin-top: 27px;
+      margin-left: 10px;
+    }
+    .save-info-mobile {
+      font-size: 16px;
+    font-family: 'Noe Text';
+    font-weight: 100;
+    color: red;
+    margin-top: -31px;
+    padding-left: 8px;
+    position: relative;
+    top: 17px;
+    left: 11px;
+    }
+    .pricing-info-mobile {
+      padding-top: 12px;
+      font-size: 50px;
+      font-family: 'Banana Grotesk Medium';
+      position: relative;
+      left: 7px;
+      top: -11px;
+    }
+    .dollar {
+      font-size: 19px;
+      font-family: 'Noe Text Regular';
+      position: relative;
+      top: -22px;
+      left: 5px;
+    }
+    .per-month {
+      font-size: 14px;
+      font-family: 'Banana Grotesk light';
+      position: relative;
+      left: 14px;
+      top: -10px;
+    }
+    .cta-fuel-btn:hover {
+      background: none !important;
+      color: none !important;
+      border: none !important;
+    }
+    .save-container {
+      text-align: center;
+      display: grid;
+      justify-content: center;
+    }
+  }
+  @media (min-width:700px) and (max-width:1000px) {
+    .mobile-version {
+      margin-top: 10%;
+    }
+  }
+  @media (max-width:420px) {
+    .price-container-mobile {
+      width: 90vw;
+    }
+    .mobile-version {    
+      width: 92vw;    
+      padding-left: 16px;
+      padding-right: 23px;
+    }
+    .choose-second-section {
+      margin-left: -7px;
+    }
+  }
+</style>
+
+<section class="fuel-choose-your-membership">
+  <div class="fuel-choose-container">
+    <div class="choose-first-section">
+      <h1 class="choose-title">Choose Your Membership</h1>
+      <h1 class="choose-title mobile-version" style="display:none;">
+        <span style="max-width: 200px;">Choose Your Membership</span>
+        <span>
+          <svg
+            width="72"
+            height="72"
+            viewBox="0 0 72 72"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="position: relative;top: 2px;
+            height: 90px;
+            width: 90px;
+            position: relative;
+            left: -7px;
+                                                                                                             left: 1px;
+                                                                                                            top: -3px;">
+            <circle
+              cx="36"
+              cy="36"
+              r="36"
+              fill="#FBF3EB" />
+            <path d="M37.4147 27.202V26.3H32.4647V34H33.5097V30.81H36.9637V29.897H33.5097V27.202H37.4147ZM43.9967 31.976C43.8317 31.206 43.4687 30.722 42.8527 30.469C43.7547 30.161 44.2937 29.446 44.2937 28.467C44.2937 27.147 43.3257 26.3 41.8077 26.3H38.7167V34H39.7617V30.788H41.2687C42.2587 30.788 42.7757 31.195 42.9957 32.174L43.3917 34H44.4367L43.9967 31.976ZM39.7617 29.897V27.202H41.7857C42.6767 27.202 43.2597 27.741 43.2597 28.555C43.2597 29.358 42.6767 29.897 41.7747 29.897H39.7617ZM46.873 33.087V30.513H50.547V29.611H46.873V27.202H50.943V26.3H45.828V34H50.998V33.087H46.873ZM53.3935 33.087V30.513H57.0675V29.611H53.3935V27.202H57.4635V26.3H52.3485V34H57.5185V33.087H53.3935ZM17.0962 48.11C18.8782 48.11 20.0772 47.241 20.0772 45.822C20.0772 42.687 15.4902 44.436 15.4902 42.302C15.4902 41.587 16.1282 41.048 17.1182 41.048C18.0092 41.048 18.6582 41.543 18.9332 42.324L19.8572 42.049C19.5162 40.905 18.5702 40.168 17.1842 40.168C15.5892 40.168 14.5112 41.07 14.5112 42.39C14.5112 45.514 19.0652 43.754 19.0652 45.943C19.0652 46.713 18.3062 47.23 17.1622 47.23C16.0842 47.23 15.3582 46.669 15.0942 45.668L14.1922 45.943C14.4892 47.274 15.5342 48.11 17.0962 48.11ZM24.1293 42.346C23.3043 42.346 22.6553 42.731 22.2593 43.479V40.3H21.2693V48H22.2593V45.382C22.2593 43.93 22.9853 43.182 23.8873 43.182C24.6793 43.182 25.1633 43.732 25.1633 44.634V48H26.1533V44.513C26.1533 43.215 25.3723 42.346 24.1293 42.346ZM27.5412 41.345H28.5972V40.256H27.5412V41.345ZM27.5742 48H28.5642V42.478H27.5742V48ZM32.9374 42.346C32.0904 42.346 31.4524 42.72 31.0564 43.369V42.478H30.0664V50.2H31.0564V47.109C31.4524 47.747 32.0904 48.11 32.9374 48.11C34.4444 48.11 35.4674 46.944 35.4674 45.217C35.4674 43.523 34.4334 42.346 32.9374 42.346ZM32.7724 47.274C31.7384 47.274 31.0564 46.438 31.0564 45.228C31.0564 44.018 31.7384 43.182 32.7724 43.182C33.8064 43.182 34.4884 44.018 34.4884 45.228C34.4884 46.438 33.8064 47.274 32.7724 47.274ZM39.5331 42.346C38.6861 42.346 38.0481 42.72 37.6521 43.369V42.478H36.6621V50.2H37.6521V47.109C38.0481 47.747 38.6861 48.11 39.5331 48.11C41.0401 48.11 42.0631 46.944 42.0631 45.217C42.0631 43.523 41.0291 42.346 39.5331 42.346ZM39.3681 47.274C38.3341 47.274 37.6521 46.438 37.6521 45.228C37.6521 44.018 38.3341 43.182 39.3681 43.182C40.4021 43.182 41.0841 44.018 41.0841 45.228C41.0841 46.438 40.4021 47.274 39.3681 47.274ZM43.2248 41.345H44.2808V40.256H43.2248V41.345ZM43.2578 48H44.2478V42.478H43.2578V48ZM48.599 42.346C47.774 42.346 47.136 42.731 46.74 43.468V42.478H45.75V48H46.74V45.382C46.74 43.919 47.466 43.182 48.368 43.182C49.16 43.182 49.644 43.732 49.644 44.634V48H50.634V44.513C50.634 43.171 49.82 42.346 48.599 42.346ZM56.2466 42.478V43.27C55.8396 42.687 55.2016 42.346 54.4096 42.346C52.9026 42.346 51.7696 43.523 51.7696 45.151C51.7696 46.757 52.8916 47.923 54.3876 47.923C55.2016 47.923 55.8396 47.582 56.2466 47.01V47.461C56.2466 48.726 55.5646 49.463 54.4206 49.463C53.4306 49.463 52.7816 48.99 52.4626 48.121L51.6706 48.418C52.0336 49.606 53.0236 50.31 54.3876 50.31C56.1366 50.31 57.2366 49.155 57.2366 47.329V42.478H56.2466ZM54.5086 47.087C53.4856 47.087 52.7706 46.273 52.7706 45.14C52.7706 43.996 53.4856 43.182 54.5086 43.182C55.5206 43.182 56.2466 43.996 56.2466 45.14C56.2466 46.273 55.5206 47.087 54.5086 47.087Z" fill="black" />
+            <g clip-path="url(#clip0_102_118)">
+              <path d="M18.4896 31.1541C18.8304 31.1541 19.1608 31.2682 19.4243 31.4771C19.6878 31.686 19.8681 31.9767 19.9346 32.2996C20.0011 32.6225 19.9496 32.9577 19.7888 33.2481C19.6281 33.5384 19.3681 33.766 19.0532 33.8919C18.7382 34.0179 18.3878 34.0345 18.0616 33.9389C17.7354 33.8432 17.4536 33.6413 17.2643 33.3675C17.0749 33.0937 16.9898 32.765 17.0232 32.4374C17.0567 32.1097 17.2068 31.8034 17.4479 31.5706C17.5846 31.4384 17.7469 31.3335 17.9257 31.262C18.1045 31.1905 18.2961 31.1538 18.4896 31.1541ZM19.1996 31.8909C19.0353 31.7322 18.819 31.6334 18.5877 31.6114C18.3563 31.5893 18.1243 31.6455 17.931 31.7702C17.7377 31.8949 17.5952 32.0805 17.5278 32.2954C17.4603 32.5102 17.4721 32.741 17.561 32.9484C17.65 33.1558 17.8107 33.327 18.0157 33.4328C18.2207 33.5386 18.4574 33.5725 18.6853 33.5287C18.9133 33.4848 19.1185 33.366 19.2659 33.1924C19.4133 33.0188 19.4939 32.8012 19.4938 32.5767C19.494 32.4493 19.4681 32.3231 19.4176 32.2055C19.3671 32.0878 19.293 31.9809 19.1996 31.8909Z" fill="black" />
+              <path d="M15.2344 26.0015H25.0972C25.1594 26.0015 25.219 26.0253 25.263 26.0678C25.3069 26.1102 25.3316 26.1678 25.3316 26.2278V32.5768C25.3316 32.6369 25.3069 32.6944 25.263 32.7369C25.219 32.7793 25.1594 32.8032 25.0972 32.8032H19.7282C19.666 32.8032 19.6064 32.7793 19.5625 32.7369C19.5185 32.6944 19.4938 32.6369 19.4938 32.5768C19.4885 32.3229 19.3804 32.0811 19.1926 31.9034C19.0048 31.7256 18.7523 31.626 18.4894 31.626C18.2264 31.626 17.974 31.7256 17.7862 31.9034C17.5984 32.0811 17.4902 32.3229 17.4849 32.5768C17.4849 32.6369 17.4603 32.6944 17.4163 32.7369C17.3723 32.7793 17.3127 32.8032 17.2506 32.8032H15.2344C15.1722 32.8032 15.1126 32.7793 15.0686 32.7369C15.0247 32.6944 15 32.6369 15 32.5768V26.2263C15.0004 26.1665 15.0253 26.1093 15.0692 26.0672C15.1131 26.0251 15.1725 26.0015 15.2344 26.0015ZM24.8629 26.4542H15.4688V32.3505H17.0369C17.0926 32.0165 17.2696 31.7126 17.5361 31.4933C17.8027 31.274 18.1414 31.1535 18.4916 31.1535C18.8418 31.1535 19.1805 31.274 19.4471 31.4933C19.7137 31.7126 19.8906 32.0165 19.9463 32.3505H24.8629V26.4542Z" fill="black" />
+              <path d="M25.0973 27.5645H26.5992C27.5006 27.5669 28.3644 27.9139 29.0018 28.5296C29.6392 29.1453 29.9984 29.9797 30.0009 30.8504V32.5768C30.0009 32.6369 29.9762 32.6944 29.9322 32.7369C29.8883 32.7794 29.8286 32.8032 29.7665 32.8032H28.6703C28.6081 32.8032 28.5485 32.7794 28.5046 32.7369C28.4606 32.6944 28.4359 32.6369 28.4359 32.5768C28.4306 32.3229 28.3225 32.0811 28.1347 31.9034C27.9469 31.7256 27.6944 31.626 27.4315 31.626C27.1685 31.626 26.9161 31.7256 26.7283 31.9034C26.5405 32.0811 26.4323 32.3229 26.427 32.5768C26.427 32.6369 26.4024 32.6944 26.3584 32.7369C26.3144 32.7794 26.2548 32.8032 26.1927 32.8032H25.0973C25.0351 32.8032 24.9755 32.7794 24.9316 32.7369C24.8876 32.6944 24.8629 32.6369 24.8629 32.5768V27.7912C24.8629 27.7615 24.8689 27.732 24.8806 27.7045C24.8924 27.677 24.9096 27.652 24.9314 27.6309C24.9532 27.6098 24.979 27.5931 25.0075 27.5817C25.036 27.5703 25.0665 27.5645 25.0973 27.5645ZM26.5992 28.0172H25.3317V32.3505H25.977C26.0329 32.0168 26.21 31.7132 26.4765 31.4941C26.743 31.275 27.0815 31.1547 27.4315 31.1547C27.7814 31.1547 28.12 31.275 28.3865 31.4941C28.653 31.7132 28.83 32.0168 28.8859 32.3505H29.5313V30.8504C29.5289 30.0999 29.2193 29.3807 28.67 28.8499C28.1206 28.3191 27.3762 28.0198 26.5992 28.0172Z" fill="black" />
+              <path d="M27.4317 31.1541C27.7726 31.1541 28.1029 31.2682 28.3664 31.4771C28.6299 31.686 28.8103 31.9767 28.8767 32.2996C28.9432 32.6225 28.8917 32.9577 28.731 33.2481C28.5703 33.5384 28.3103 33.766 27.9953 33.8919C27.6804 34.0179 27.3299 34.0345 27.0037 33.9389C26.6775 33.8432 26.3958 33.6413 26.2064 33.3675C26.0171 33.0937 25.9319 32.765 25.9654 32.4374C25.9989 32.1097 26.1489 31.8034 26.39 31.5706C26.5267 31.4384 26.6891 31.3335 26.8679 31.262C27.0466 31.1906 27.2382 31.1539 27.4317 31.1541ZM28.1417 31.8909C27.9774 31.7322 27.7611 31.6334 27.5298 31.6114C27.2985 31.5893 27.0664 31.6455 26.8731 31.7702C26.6799 31.8949 26.5374 32.0805 26.4699 32.2954C26.4024 32.5102 26.4142 32.741 26.5032 32.9484C26.5921 33.1558 26.7528 33.327 26.9578 33.4328C27.1628 33.5386 27.3995 33.5725 27.6275 33.5287C27.8554 33.4848 28.0606 33.366 28.208 33.1924C28.3555 33.0188 28.436 32.8012 28.4359 32.5767C28.4361 32.4493 28.4102 32.3232 28.3597 32.2055C28.3092 32.0878 28.2351 31.9809 28.1417 31.8909Z" fill="black" />
+              <path d="M29.6403 30.2257C29.7024 30.2257 29.762 30.2019 29.806 30.1594C29.8499 30.117 29.8746 30.0594 29.8746 29.9994C29.8746 29.9393 29.8499 29.8818 29.806 29.8393C29.762 29.7969 29.7024 29.773 29.6403 29.773H27.421V27.8445C27.421 27.8148 27.415 27.7854 27.4032 27.7579C27.3914 27.7304 27.3741 27.7055 27.3524 27.6845C27.3306 27.6634 27.3048 27.6468 27.2763 27.6354C27.2479 27.624 27.2174 27.6182 27.1866 27.6182C27.1559 27.6182 27.1254 27.624 27.097 27.6354C27.0685 27.6468 27.0427 27.6634 27.0209 27.6845C26.9992 27.7055 26.9819 27.7304 26.9701 27.7579C26.9583 27.7854 26.9523 27.8148 26.9523 27.8445V29.9994C26.9523 30.0594 26.977 30.117 27.0209 30.1594C27.0649 30.2019 27.1245 30.2257 27.1866 30.2257H29.6403Z" fill="black" />
+            </g>
+            <defs>
+              <clipPath id="clip0_102_118">
+                <rect
+                  width="15"
+                  height="8"
+                  fill="white"
+                  transform="translate(15 26)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </span>
+      </h1>
+      <div class="icon-choose-one">{% comment %}
+        <div class="icon-svg-fuel">{% render 'award'%}</div>
+        <h3>90-day Guarantee</h3>
+        {% endcomment %}
+      </div>
+      <div class="icon-choose-one"></div>
+    </div>
+
+    {% comment %}
+    {% for product in collections['all'].products %}
+    {% if product.handle == '3-month-wellness-program' %}
+    {% for variant in product.variants %}
+    {% if variant.title contains '3mo Intro' %}
+    <div class="price-flex-container-flex">
+    <span class="money-span">$</span>
+    {{variant.price | divided_by: 100.00 | divided_by: 3 | json}}
+    <span class="month-text">/ month</span>
+    </div>
+    {% if section.settings.discount_ribbon == blank %}
+    <span class="price-discount-ribbon"></span>
+
+    {%else%}
+    <span class="price-discount-ribbon">{{section.settings.discount_ribbon}}</span>
+    {%endif%}
+    {% for allocation in variant.selling_plan_allocations %}
+    {% assign selling_id = allocation.selling_plan.id  %}
+    {% endfor %}
+    {%endif%}
+    {% endfor %}
+    {%endif%}
+    {%endfor%}
+    <button class="add-to-cart-flex-page button flex-page-btn" data-cart="{{ section.settings.variant_id }}" data-selling="{{selling_id}}">{{ section.settings.title_buy_now }}
+    <div class="loader-me"></div>
+    </button>
+    {% endcomment %}
+
+
+    <div class="choose-second-section" id="desktop-only">
+      <div class="price-container">
+        <span class="popular-tag-fuel">Best Value</span>
+        <div class="price-section-one">
+          <h3 class="price-title">12 Month</h3>
+          <p>Membership</p>
+        </div>
+        <div class="price-tag">
+          <span class="dolar-tag">$</span>
+          <div class="fuel-price">15
+            <span>/ month</span>
+          </div>
+          <span class="price-day">15 total test cards</span>
+          <span class="price-day mobile-day">Billed $180 Annually</span>
+          <span class="save-day">Save $120</span>
+        </div>
+        <div class="commitment-price">
+          <p>Free Shipping</p>
+          <button
+            class="cta-fuel-btn"
+            data-cart="41997537378490"
+            data-selling="1268285626">Choose</button>
+        </div>
+      </div>
+      <div class="price-container">
+        <span class="popular-tag-fuel">Most Popular</span>
+        <div class="price-section-one">
+          <h3 class="price-title">6 Month</h3>
+          <p>Membership</p>
+        </div>
+        <div class="price-tag">
+          <span class="dolar-tag">$</span>
+          <div class="fuel-price">20
+            <span>/ month</span>
+          </div>
+          <span class="price-day">9 total test cards</span>
+          <span class="price-day mobile-day">Billed $120 Every 6 Months</span>
+          <span class="save-day">Save $30</span>
+        </div>
+        <div class="commitment-price">
+          <p>Free Shipping</p>
+          <button
+            class="cta-fuel-btn"
+            data-cart="41997369966778"
+            data-selling="1268252858">Choose</button>
+        </div>
+      </div>
+      <div class="price-container">
+        <div class="price-section-one">
+          <h3 class="price-title">Monthly</h3>
+          <p>Membership</p>
+        </div>
+        <div class="price-tag">
+          <span class="dolar-tag">$</span>
+          <div class="fuel-price">25
+            <span>/ month</span>
+          </div>
+          <span class="price-day">6 total test cards</span>
+          <span class="price-day mobile-day">Billed Monthly</span>
+          <span class="save-day" style="color:#8A8A89;">Three month minimum</span>
+        </div>
+        <div class="commitment-price">
+          <p>Free Shipping</p>
+          <button
+            class="cta-fuel-btn"
+            data-cart="41997263634618"
+            data-selling="1268154554">Choose</button>
+        </div>
+      </div>
+    </div>
+    <div class="choose-second-section" id="mobile-onle">
+
+      <button
+        class="cta-fuel-btn"
+        data-cart="41997537378490"
+        data-selling="1268285626">
+        <div class="price-container-mobile">
+          <div class="save-container">
+            <div class="best-value-mobile">Best Value</div>
+          </div>
+          <div class="first-container">
+            <h1 class="membership-description">
+              12 Month Membership
+            </h1>
+            <p class="membership-cards">15 total test cards</p>
+          </div>
+          <div class="second-container">
+            <div class="billing-info">
+              <p class="billed-info">Billed $180 annually</p>
+              <p class="save-info-mobile">Save $120</p>
+            </div>
+            <div class="price-info">
+              <div class="pricing-info-mobile">
+                <span class="dollar">$</span>
+                <span class="dollar-ammount">15</span>
+              </div>
+              <span class="per-month">per month</span>
+            </div>
+          </div>
+        </div>
+      </button>
+      <button
+        class="cta-fuel-btn"
+        data-cart="41997369966778"
+        data-selling="1268252858">
+        <div class="price-container-mobile">
+          <div class="save-container">
+          <div class="best-value-mobile">Most Popular</div>
+          </div>
+          <div class="first-container">
+            <h1 class="membership-description">
+              6 Month Membership
+            </h1>
+            <p class="membership-cards">9 total test cards</p>
+          </div>
+          <div class="second-container">
+            <div class="billing-info">
+              <p class="billed-info">Billed $120 every 6 mo</p>
+              <p class="save-info-mobile">Save $30</p>
+            </div>
+            <div class="price-info">
+              <div class="pricing-info-mobile">
+                <span class="dollar">$</span>
+                <span class="dollar-ammount">20</span>
+              </div>
+              <span class="per-month">per month</span>
+            </div>
+          </div>
+        </div>
+      </button>
+      <button
+        class="cta-fuel-btn"
+        data-cart="41997263634618"
+        data-selling="1268154554">
+         <div class="save-container">
+        <div class="price-container-mobile">
+          <div class="save-container">
+          <div class="best-value-mobile" style="display:none;">Best Value</div>
+          </div>
+          <div class="first-container">
+            <h1 class="membership-description">
+              Monthly Membership
+            </h1>
+            <p class="membership-cards">6 total test cards</p>
+          </div>
+          <div class="second-container">
+            <div class="billing-info">
+              <p class="billed-info">Billed Monthly</p>
+              <p class="save-info-mobile">3 month minimum</p>
+            </div>
+            <div class="price-info">
+              <div class="pricing-info-mobile">
+                <span class="dollar">$</span>
+                <span class="dollar-ammount">25</span>
+              </div>
+              <span class="per-month">per month</span>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  setTimeout(function() {
+    jQuery.ajax({type: 'POST', url: '/cart/clear.js', dataType: 'json'});
+  }, 200);
+
+  $(".cta-fuel-btn").click(function() {
+
+    let variantId = $(this).data('cart');
+    let sellingPlan = $(this).data('selling');
+    let qty = 1;
+    console.log(variantId);
+    console.log(sellingPlan);
+    console.log(qty);
+
+    function addItemToCart() {
+      data = {
+        "id": variantId,
+        "quantity": qty,
+        "selling_plan": sellingPlan
+      }
+
+// window.location.href = `https://newvessel.myshopify.com/cart/clear?return_to=/cart/add?items[][id]=${variantId}%26items[][quantity]=1%26items[][selling_plan]=${sellingPlan}%26return_to=/checkout`;
+
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: data,
+        dataType: 'json',
+        success: function() {
+          window.location = '/checkout';
+        }
+      });
+
+// window.location = '/checkout';
+    }addItemToCart();
+
+  });
+
+</script>
+
+
+{% schema %}
+  {
+    "name": "fuel-membership",
+    "class": "intro-class",
+
+    "settings": [
+      {
+        "type": "text",
+        "id": "variant_id",
+        "placeholder": "Monthly",
+        "default": "41532525478074",
+        "info": "Variant ID 1",
+        "label": "Variant ID fuel"
+      }, {
+        "type": "text",
+        "id": "selling_id",
+        "placeholder": "3 Month",
+        "default": "718405818",
+        "info": "Selling ID 2",
+        "label": "Selling ID fuel"
+      }
+    ]
+  }
+{% endschema %}

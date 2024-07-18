@@ -1,0 +1,62 @@
+<div class="values wf-section">
+    <div class="cream-bg cv"></div>
+    <div class="container-24 w-container">
+        <div class="div-block-106">
+            <h2 class="heading">{{section.settings.title}}</h2>
+            <p class="paragraph">{{section.settings.subtitle}}</p>
+        </div>
+		
+        <div class="div-block-105">
+			{% for block in section.blocks %}
+				<div class="div-block-104">
+					<h4 class="heading-50 number">0{{forloop.index}}</h4>
+					<h3 class="heading-49"><strong>{{block.settings.title}}</strong></h3>
+					<p class="paragraph core">{{block.settings.text | strip_html}}</p>
+				</div>
+			{% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+	"name": "Career text columns",
+	"class": "career-text-column",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		}, 
+		{
+			"type": "text",
+			"id": "subtitle",
+			"label": "Sub title"
+		}
+	],
+	"blocks": [
+		{
+			"name": "text column",
+			"type": "text",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},				
+				{
+					"type": "richtext",
+					"id": "text",
+					"label": "Text"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"category": "Carrer",
+			"name":"Carrer text columns"
+		}
+	]
+}
+{% endschema %}

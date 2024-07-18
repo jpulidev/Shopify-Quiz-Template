@@ -1,0 +1,671 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{ 'rg-membership.css' | asset_url | stylesheet_tag }}
+{% assign product = all_products['pre-order-bloom'] %}
+{% for variant in product.variants %}
+{% for allocation in variant.selling_plan_allocations %}
+    {% assign selling_id = allocation.selling_plan.id  %}
+  {% endfor %}
+{% endfor %}
+
+{% assign product = all_products['giving-the-gift-of-wellness-gift-card'] %}
+{% for variant in product.variants %}
+{% for allocation in variant.selling_plan_allocations %}
+    {% assign gift_selling_id = allocation.selling_plan.id  %}
+  {% endfor %}
+{% endfor %}
+
+
+<div class="section membership wf-section" style="background-color: #ccdec2;">
+  <div class="container-13 page-width">
+    <div class="div-block-65">
+
+      <div class="div-block-72 membership-header">
+
+        <h1 class="heading-59 membership lg-show h1">Choose Your Membership<br></h1>
+        <h1 class="heading-59 mobile membership h1 xs-show">Choose Membership<br></h1>
+      </div>
+      {% if section.settings.gift_card %}
+      <div class="membership-option-wrap gift-membership-card">
+
+        <a data-product-id="40866803253434" data-selling-plan="{{gift_selling_id}}" data-time="month"  href="#" class="dark-bt member w-button membership-option">Gift 3-month</a>
+        <div class="div-block-70 flex-grow-1">
+          <div class="xs-show">
+            <h3 class="heading-91">Gift 3 Month Membership</h3>
+            <p class="p-mem save mem-1 mobile">‍<span class="percent mem-1"> </span><br></p>
+          </div>
+
+          <div class="xs-hide">
+            <div class="div-block-71 first">
+              <h2 class="amount">$120</h2>
+              <p class="p-mem">/ 3 month & 12 cards</p>
+            </div>
+            <p style="margin: 0;">4 card(s) per month</p>
+          </div>
+          
+
+          <div class="div-block-229 xs-show">
+            <div class="div-block-230">
+              <p style="margin: 0;">4 card(s) per month</p>
+              <p class="p-mem cards mem-1 mobile">Free Shipping<br></p>
+            </div>
+            <div class="div-block-231">
+              <div class="membersip-price-symbols money">$</div>
+              <h2 class="membership-price amount">120</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="container-13 second page-width">
+
+    <div class="membership-options-mobile xs-show">
+
+      <div class="membership-subhead mobile">
+        <div class="text-block-41 sold">Due to high demand, over <span class="numb">  </span>test cards sold, orders
+          placed today will ship by February <span>15</span>th.</div>
+      </div>
+      <div class="membership-option-wrap one-year single-membership-card">
+        <button data-cart="40619087790266" data-selling="718405818" data-time="12 month" class="membership-option dark-bt best-value w-inline-block add-to-cart-membership" style="width: 100%;">
+          <h3 class="heading-91" style="text-align:left;">Once a Month</h3>
+          <p class="p-mem save mem-1 mobile">‍<span class="percent mem-1"> </span><br></p>
+          <div class="div-block-229">
+            <div class="div-block-230">
+              <p class="p-mem cards mem-1 mobile count-and-unit">1 card(s) per month</p>
+              <p class="p-mem cards mem-1 mobile" style="text-align: left;">Free Shipping<br></p>
+            </div>
+            <div class="div-block-231">
+              {% for product in collections['Flex'].products %}
+              {% for variant in product.variants %}            
+                          {% if variant.title contains '1 card per month - refill / (Monthly Membership)'%}
+                          <div class="membersip-price-symbols money">{{variant.price | money | split: currency | first }}</div>
+                          <h2 class="membership-price amount">{{variant.price | money_without_currency | remove: '.00' | ceil }}</h2>
+                        {%endif%}    
+                        {% endfor %}                              
+             {% endfor %}
+              
+              <div class="membersip-price-symbols">per month</div>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="membership-option-wrap six-month single-membership-card">
+        <div class="best-value mobile membership-bestvalue">Best Value</div>
+        <button data-cart="40619087626426" data-selling="718405818" data-time="12 month" class="membership-option dark-bt best-value w-inline-block add-to-cart-membership" style="width: 100%;">
+           
+           <h3 class="heading-91" style="text-align:left;">Once a Week</h3>
+          <p class="p-mem save mem-1 mobile">‍<span class="percent mem-1"> </span><br></p>
+          <div class="div-block-229">
+            <div class="div-block-230">
+              <p class="p-mem cards mem-1 mobile count-and-unit">4 card(s) per month</p>
+              <p class="p-mem cards mem-1 mobile" style="text-align: left;">Free Shipping<br></p>
+            </div>
+            <div class="div-block-231">
+              {% for product in collections['Flex'].products %}
+              {% for variant in product.variants %}            
+                          {% if variant.title contains '4 cards per month / (Monthly Membership)'%}
+                          <div class="membersip-price-symbols money">{{variant.price | money | split: currency | first }}</div>
+                          <h2 class="membership-price amount">{{variant.price | money_without_currency | remove: '.00' | ceil }}</h2>
+                        {%endif%}    
+                        {% endfor %}                              
+             {% endfor %}
+              <div class="membersip-price-symbols">per month</div>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="membership-option-wrap one-week one-month single-membership-card">
+        <button data-cart="40619087986874" data-selling="718405818" data-time="12 month" class="membership-option dark-bt best-value w-inline-block add-to-cart-membership" style="width: 100%;">
+          
+           <h3 class="heading-91" style="text-align:left;">Once a Day</h3>
+          <p class="p-mem save mem-1 mobile monthly hide-save-text">Save $<span class="price">180</span> <span class="percent mem-1">
+            </span><br></p>
+          <div class="div-block-229">
+            <div class="div-block-230">
+              <p class="p-mem cards mem-1 mobile count-and-unit"><span class="card-amount">30 card(s) per month</span><br></p>
+              <p class="p-mem cards mem-1 mobile" style="text-align: left;">Free Shipping<br></p>
+            </div>
+            <div class="div-block-231">
+              {% for product in collections['Flex'].products %}
+              {% for variant in product.variants %}            
+                          {% if variant.title contains '30 cards per month / (Monthly Membership)'%}
+                          <div class="membersip-price-symbols money">{{variant.price | money | split: currency | first }}</div>
+                          <h2 class="membership-price amount">{{variant.price | money_without_currency | remove: '.00' | ceil }}</h2>
+                        {%endif%}    
+                        {% endfor %}                              
+             {% endfor %}
+              <div class="membersip-price-symbols">per month</div>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="div-block-67 membership">
+      <div class="div-block-66 satu one-week single-membership-card flex-column one-month">
+        <div class="div-block-168">
+          <h3 class="heading-32 option">Once a Month</h3>
+          <p class="paragraph option">Membership<br></p>
+        </div>
+        <div class="div-block-70 flex-grow-1">
+          <div class="div-block-71 first">
+              {% for product in collections['Flex'].products %}
+              {% for variant in product.variants %}            
+                          {% if variant.title contains '1 card per month - refill / (Monthly Membership)'%}
+                          <h4 class="heading-37">{{variant.price | money | split: currency | first }}</h4>
+                          <h2 class="heading-35 amount">
+                         {{variant.price | money_without_currency | remove: '.00' | ceil }}
+                        </h2>
+                        {%endif%}    
+                        {% endfor %}                              
+             {% endfor %}
+
+            <p class="p-mem">/ month</p>
+          </div>
+          <p class="p-mem cards mem-1"><span class="card-amount">1 card(s) per month</span><br></p>
+          <p class="p-mem save first mem-1">Saved $60 (20%)<br></p>
+        </div>
+        <div>
+          <p class="p-mem ship option">Free Shipping<br></p>
+        </div>
+        <button data-cart="40619087790266" data-selling="718405818" data-time="month"  class="dark-bt member w-button add-to-cart-membership desktop-btn">
+          <i class="fa fa-spinner fa-spin" style="display:none;"></i>Choose</button>
+      </div>
+      <div class="div-block-66 enam six-month single-membership-card flex-column">
+        <div class="best-value mobile membership-bestvalue">Best Value</div>
+        <div class="div-block-168">
+          <h3 class="heading-32 option">Once a Week<br></h3>
+          <p class="paragraph option">Membership<br></p>
+        </div>
+        <div class="div-block-70 flex-grow-1">
+          <div class="div-block-71">
+            {% for product in collections['Flex'].products %}
+            {% for variant in product.variants %}            
+                        {% if variant.title contains '4 cards per month / (Monthly Membership)'%}
+                        <h4 class="heading-37">{{variant.price | money | split: currency | first }}</h4>
+                        <h2 class="heading-35 amount">
+                        {{variant.price | money_without_currency | remove: '.00' | ceil }}
+                      </h2>
+                      {%endif%}    
+                      {% endfor %}                              
+           {% endfor %}
+            <p class="p-mem">/ month</p>
+          </div>
+          <p class="p-mem cards mem-1"><span class="card-amount">4 card(s) per month</span><br></p>
+          <p class="p-mem save mem-1 hide-save-text">Save $<span class="price">60</span> <span class="percent mem-1">
+            </span><br></p>
+        </div>
+        <div>
+          <p class="p-mem ship option">Free Shipping<br></p>
+        </div>
+        <button data-cart="40619087626426" data-selling="718405818" data-time="6 month"  class="dark-bt member w-button add-to-cart-membership desktop-btn">
+          <i class="fa fa-spinner fa-spin"  style="display:none;"></i>Choose</button>
+      </div>
+      <div class="div-block-66 duabelas one-year membership single-membership-card flex-column">
+        <div class="div-block-168">
+          <h3 id="addToCartButton" class="heading-32 option">Once a Day<br></h3>
+          <p class="paragraph option">Membership<br></p>
+        </div>
+        <div class="div-block-70 flex-grow-1">
+          <div class="div-block-71">
+            {% for product in collections['Flex'].products %}
+            {% for variant in product.variants %}            
+                        {% if variant.title contains '30 cards per month / (Monthly Membership)'%}
+                        <h4 class="heading-37">{{variant.price | money | split: currency | first }}</h4>
+                        <h2 class="heading-35 amount">
+                        {{variant.price | money_without_currency | remove: '.00' | ceil }}
+                      </h2>
+                      {%endif%}    
+                      {% endfor %}                              
+           {% endfor %}
+            <p class="p-mem">/ month</p>
+          </div>
+          <p class="p-mem cards mem-1"><span class="card-amount">30 card(s) per month</span><br></p>
+          <p class="p-mem save mem-1 hide-save-text">Save $<span class="price">180</span> <span class="percent mem-1">
+            </span><br></p>
+        </div>
+        <div>
+          <p class="p-mem ship option">Free Shipping<br></p>
+        </div>
+        <button data-cart="40619087986874" data-selling="718405818" data-time="12 month" class="dark-bt member w-button add-to-cart-membership desktop-btn">
+          <i class="fa fa-spinner fa-spin"  style="display:none;"></i>
+          Choose</button>
+      </div>
+    </div>
+{%comment%}
+    <div class="div-block-68 membership">
+      <div class="div-block-170">
+        <h3 class="heading-36 wellness">How often would you like to test?<br></h3>
+        <p class="paragraph option">You can change this at any time.<br></p>
+      </div>
+      <div class="div-block-169">
+        <div class="w-form">
+          <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form" class="form-2">
+            <select
+                    id="field" name="field" class="select-field weekopt w-select">
+              <option value="Weekly">Once a Week</option>
+              <option value="daily">Once a Day</option>
+              <option value="Monthly">Once a Month</option>
+            </select>
+            <div class="recommend">*recommended</div>
+            <div class="cards-per-mo cards">/</div>
+            <div class="cards-per-mo cards count-and-unit">4 card(s) per month</div>
+          </form>
+          <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+{%endcomment%}
+  </div>
+</div>
+<div class="membership-section-bottom wf-section">
+  <div class="container-28">
+    <div class="page-width responsive-page-width">
+      <div class="div-block-65 bottom membership">
+        <div class="div-block-115">
+          <div class="div-block-167 membership"><img
+                    src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Icon.png?v=1654550110"
+                    loading="lazy" alt="" class="image-42" width="90">
+            <div>
+              <h3 class="heading-70">Easily Pause or<br>Change</h3>
+              <p class="paragraph membership">Anytime with just a click<br></p>
+            </div>
+          </div>
+          <div class="div-block-167 membership"><img
+                    src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Icon_1.png?v=1654550136"
+                    loading="lazy" alt="" class="image-42" width="90">
+            <div>
+              <h3 class="heading-70">30-day<br>Guarantee</h3>
+              <p class="paragraph membership">Don't love it, It's on us<br></p>
+            </div>
+          </div>
+          <div class="div-block-167 membership"><img
+                    src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/Icon_2.png?v=1654550136"
+                    loading="lazy" alt="" class="image-42" width="90">
+            <div>
+              <h3 class="heading-70">Get Healthy, <br>Give Healthy</h3>
+              <p class="paragraph membership">Every card gives a child nutrition<br></p>
+            </div>
+          </div>
+        </div>
+        <div class="white-bg membership"></div>
+      </div>
+
+      <div class="customer-testimonials-wrapper">
+        <div class="grid-flex grid-flex-grow medium-up--one-half">
+          <div class="column-29 grid_item">
+            <h1 class="heading-90">Customer<br>Testimonials<br></h1>
+            <div class="testimonial-wrap paragraph"><img
+                      src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/c01728b3e56f1292a7fd6d9ee9b60fa0.png?v=1654550557"
+                      loading="lazy" alt="" class="testiquote">
+              <p>I started using Vessel last week, and I start eating some healthier foods, some fresh fruits and change
+                my workout routine. I saw my wellness score go up, I’ve been able to see my energy go up a lot within a
+                week as well and I’m really excited to keep using.</p>
+              <h3 class="testimonial-name">Nicole Stenett</h3>
+              <div>Pittsburgh, PA</div>
+            </div>
+          </div>
+          <div class="column-30 grid_item">
+            <div class="testimonial-wrap paragraph"><img
+                      src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/c01728b3e56f1292a7fd6d9ee9b60fa0.png?v=1654550557"
+                      loading="lazy" alt="" class="testiquote">
+              <p>[Since using Vessel] I've incorporated 10 minutes of meditation and yoga to help my sleep and cortisol
+                level … Vessel is what I've always dreamed of.</p>
+              <h3 class="testimonial-name">Debra Luczycki</h3>
+              <div>Norman, OK</div>
+            </div>
+            <div class="testimonial-wrap paragraph"><img
+                      src="https://cdn.shopify.com/s/files/1/0603/3122/9370/files/c01728b3e56f1292a7fd6d9ee9b60fa0.png?v=1654550557"
+                      loading="lazy" alt="" class="testiquote">
+              <p>I would rather [test with Vessel] than wait three hours in the doctor's office just to get in. And it's
+                not just the three hours, it's the commuting back and forth, and then the waiting room. And then, you
+                know, people don't go to the doctor when they're healthy, so now you're in a room full of sick people
+                and you're healthy. And you're like, well, if I wasn't going to get sick, now I am.</p>
+              <h3 class="testimonial-name">Sumit Bose</h3>
+              <div>New York, NY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-grow-1 {
+    flex-grow: 1;
+  }
+  .membership-option.dark-bt {
+    background: white;
+  }
+
+  @media screen and (max-width:1000px) {
+    .add-to-cart-membership {
+     height: 187px;
+  }
+  }
+  .fa-spinner {
+    position: absolute;
+    left: 31px;
+    top: 20px;
+  }
+  @media (min-width:1001px) {
+    .best-value {
+      padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 12px;
+    background-color: #3b4138;
+    font-family: Banana Grotesk Semibold,sans-serif;
+    color: #fff;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 600;
+    width: 100px;
+    position: absolute;
+    margin-top: -39px;
+    }
+  }
+  
+</style>
+
+<script>
+
+$(".desktop-btn").click(function(){
+  let loadingElement = $(this)[0].children[0];
+   loadingElement.style.display='block';
+})
+
+$(".add-to-cart-membership").click(function(){
+
+let variantId = $(this).data('cart'); 
+let sellingPlan = $(this).data('selling');
+
+
+let qty = 1;
+console.log(variantId);
+console.log(sellingPlan);  
+console.log(qty);     
+
+  function addItemToCart() {
+  data = {
+       "id": variantId,
+       "selling_plan": sellingPlan,
+       "quantity": qty
+     }
+   
+     jQuery.ajax({
+     type: 'POST',
+     url: '/cart/clear.js',
+     dataType: 'json'
+   });  
+
+   setTimeout(function() { 
+     jQuery.ajax({
+     type: 'POST',
+     url: '/cart/add.js',
+     data: data,
+     dataType: 'json',
+     success: function() {
+       window.location = '/checkout';
+     }
+   });
+ }, 500);
+   //window.location = '/checkout';
+ }
+ addItemToCart();
+ 
+});
+</script>
+
+{%comment%}
+<script>
+  $(document).ready(function() {
+    let wellness_cards = ENV.wellness_cards();
+    console.log(wellness_cards);
+    if( $('.select-field').val() == "daily" ){ 
+      $('.one-week h2').text(`${wellness_cards.variants.once_day_monthly.price}`);
+        // 6 month
+        $('.six-month h2').text(`${wellness_cards.variants.once_day_6month.price}`);
+        // 12 month
+        $('.one-year h2').text(`${wellness_cards.variants.once_day_12month.price}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_day_monthly.id}&pg=3`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_day_6month.id}&pg=3`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_day_12month.id}&pg=3`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('data-product-id', `${wellness_cards.variants.once_day_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('data-product-id', `${wellness_cards.variants.once_day_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('data-product-id', `${wellness_cards.variants.once_day_12month.id}`);
+
+        // select text
+        $(".count-and-unit").text("30 card(s) per month");
+    } else if ( $('.select-field').val() == "Monthly" ) { 
+        // Monthly
+        $('.one-week h2').text(`${wellness_cards.variants.once_month_monthly.price}`);
+        // 6 month
+        $('.six-month h2').text(`${wellness_cards.variants.once_month_6month.price}`);
+        // 12 month
+        $('.one-year h2').text(`${wellness_cards.variants.once_month_12month.price}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_month_monthly.id}&pg=3`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_month_6month.id}&pg=3`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_month_12month.id}&pg=3`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('data-product-id', `${wellness_cards.variants.once_month_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('data-product-id', `${wellness_cards.variants.once_month_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('data-product-id', `${wellness_cards.variants.once_month_12month.id}`);
+
+        // select text
+        $(".count-and-unit").text("1 card(s) per month");
+    } else  {
+      // Monthly
+      $('.one-week h2').text(`${wellness_cards.variants.once_week_monthly.price}`);
+        // 6 month
+        $('.six-month h2').text(`${wellness_cards.variants.once_week_6month.price}`);
+        // 12 month
+        $('.one-year h2').text(`${wellness_cards.variants.once_week_12month.price}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_week_monthly.id}&pg=3`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_week_6month.id}&pg=3`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_week_12month.id}&pg=3`);
+
+        // variant ID  one-week
+        console.log("changing product id")
+        console.log(wellness_cards.variants.once_day_monthly.id);
+        console.log($('.one-week .member,.one-week .membership-option'));
+        $('.one-week .member,.one-week .membership-option').attr('data-product-id', `${wellness_cards.variants.once_week_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('data-product-id', `${wellness_cards.variants.once_week_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('data-product-id', `${wellness_cards.variants.once_week_12month.id}`);
+
+        // select text
+        $(".count-and-unit").text("4 card(s) per month");
+    }
+
+  });
+
+  ( function () {  
+    $(".select-field").change(function(){
+      console.log("im changing here");
+      let wellness_cards = ENV.wellness_cards();
+      // daily / monthly / yearly
+      if( $(this).val() == "daily" ){
+        // daily
+        $('.one-week h2').text(`${wellness_cards.variants.once_day_monthly.price}`);
+        // 6 month
+        $('.six-month h2').text(`${wellness_cards.variants.once_day_6month.price}`);
+        // 12 month
+        $('.one-year h2').text(`${wellness_cards.variants.once_day_12month.price}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_day_monthly.id}&pg=3`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_day_6month.id}&pg=3`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_day_12month.id}&pg=3`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('data-product-id', `${wellness_cards.variants.once_day_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('data-product-id', `${wellness_cards.variants.once_day_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('data-product-id', `${wellness_cards.variants.once_day_12month.id}`);
+
+        // select text
+        $(".count-and-unit").text("30 card(s) per month");
+      } else if ( $(this).val() == "Monthly" ) {
+        // Monthly
+        $('.one-week h2').text(`${wellness_cards.variants.once_month_monthly.price}`);
+        // 6 month
+        $('.six-month h2').text(`${wellness_cards.variants.once_month_6month.price}`);
+        // 12 month
+        $('.one-year h2').text(`${wellness_cards.variants.once_month_12month.price}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_month_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_month_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_month_12month.id}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('data-product-id', `${wellness_cards.variants.once_month_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('data-product-id', `${wellness_cards.variants.once_month_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('data-product-id', `${wellness_cards.variants.once_month_12month.id}`);
+
+        // select text
+        $(".count-and-unit").text("1 card(s) per month");
+      } else {
+        // Monthly
+        $('.one-week h2').text(`${wellness_cards.variants.once_week_monthly.price}`);
+        // 6 month
+        $('.six-month h2').text(`${wellness_cards.variants.once_week_6month.price}`);
+        // 12 month
+        $('.one-year h2').text(`${wellness_cards.variants.once_week_12month.price}`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_week_monthly.id}&pg=3`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_week_6month.id}&pg=3`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('href', `/pages/recharge-checkout?product_id=${wellness_cards.product_id}&variant_id=${wellness_cards.variants.once_week_12month.id}&pg=3`);
+
+        // variant ID  one-week
+        $('.one-week .member,.one-week .membership-option').attr('data-product-id', `${wellness_cards.variants.once_week_monthly.id}`);
+        // variant ID  six month
+        $('.six-month .member,.six-month .membership-option').attr('data-product-id', `${wellness_cards.variants.once_week_6month.id}`);
+        // variant ID  12 month
+        $('.one-year .member,.one-year .membership-option').attr('data-product-id', `${wellness_cards.variants.once_week_12month.id}`);
+
+        // select text
+        $(".count-and-unit").text("4 card(s) per month");
+      }
+    });
+
+    // add to cart
+    $('.member,.membership-option').click(function(e){
+      e.preventDefault();
+
+      let variantId = $( this ).data("product-id")
+      let selling_plan_ID = $( this ).data("selling-plan")
+      variantId = parseInt(variantId);
+
+      if(variantId) {
+        clearCartItems((isClear)=>{
+          if(isClear) {
+            addItemToCart(variantId, 1, selling_plan_ID);
+          }
+        })
+      }
+    });
+
+    function clearCartItems(cb){
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/clear.js',
+        data: '',
+        dataType: 'json',
+        success: function() {
+          if(cb) cb(true);
+        }
+      });
+    };
+    // Data passing
+
+    function addItemToCart(variant_id, qty, selling_plan) {
+      if (selling_plan != undefined ) {
+        data = {
+          "id": variant_id,
+          "quantity": qty,
+          "selling_plan": selling_plan
+        }
+      } else {
+        data = {
+          "id": variant_id,
+          "quantity": qty
+        }
+      }
+
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: data,
+        dataType: 'json',
+        success: function() {
+          window.location = '/checkout';
+        }
+      });
+      //window.location = '/checkout';
+    }
+
+  })();
+</script>
+{%endcomment%}
+
+{% schema %}
+  {
+    "name": "Membership",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "gift_card",
+        "label": "Display gift card?"
+      }
+    ],
+    "presets": [
+      {
+        "category": "featured",
+        "name":"Membership"
+      }
+    ]
+  }
+{% endschema %}

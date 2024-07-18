@@ -1,0 +1,97 @@
+<section class="articles section-8">
+    <div class="w-container">
+        <h2>Featured Articles</h2>
+        <ul class="article-list promoted-articles">
+        
+            <li class="promoted-articles-item">
+                <a href="/hc/en-us/articles/360039538714-Is-the-app-free-to-use-">
+                Is the app free to use?
+
+                
+                </a>
+            </li>
+        
+            <li class="promoted-articles-item">
+                <a href="/hc/en-us/articles/360037225714-Are-your-wellness-cards-FDA-approved-">
+                Are your wellness cards FDA approved?
+
+                
+                </a>
+            </li>
+        
+            <li class="promoted-articles-item">
+                <a href="/hc/en-us/articles/360037891934-What-is-Vessel-Fuel-">
+                What is Vessel Fuel?
+
+                
+                </a>
+            </li>
+        
+            <li class="promoted-articles-item">
+                <a href="/hc/en-us/articles/4402766887447-Taking-a-Wellness-Card-Test">
+                Taking a Wellness Card Test
+
+                
+                </a>
+            </li>
+        
+            <li class="promoted-articles-item">
+                <a href="/hc/en-us/articles/1500004480622-Managing-Your-Membership">
+                Managing Your Membership
+
+                
+                </a>
+            </li>
+        
+            <li class="promoted-articles-item">
+                <a href="/hc/en-us/articles/360052294753-How-do-I-contact-support-">
+                How do I contact support?
+
+                
+                </a>
+            </li>
+        
+        </ul>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Help article",
+    "settings": [
+        {
+            "type": "header",
+            "content": "header"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "common topic",
+            "type": "topic",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "category": "Help",
+        "name":"Help article"
+      }
+    ]
+}
+{% endschema %}

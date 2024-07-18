@@ -1,0 +1,80 @@
+{{ 'mh-thank-you.css' | asset_url | stylesheet_tag }}
+
+<div class="thank-you wf-section">
+    <div class="page-width responsive-page-width">
+        <div class="grid-flex medium-up--2-col">
+            <div class="grid_item">
+                <div class="div-block-209">
+                    {% if section.settings.title != blank %}
+                    <h1 class="heading-93 h1">{{ section.settings.title }}</h1>
+                    {% endif %}
+
+                    {% if section.settings.text != blank %}
+                    <p class="paragraph-37 paragraph-normal">
+                        {{ section.settings.text | newline_to_br }}
+                    </p>
+                    {% endif %}
+
+                    {% if section.settings.btn_label != blank %}
+                    <a href="{{ section.settings.btn_link }}" class="dark-bt scient w-button">{{ section.settings.btn_label }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="grid_item">
+                {% if section.settings.image != blank %}
+                <img src="{{ section.settings.image | img_url: 'master' }}" alt="" class="image-55">
+                {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Thank you",
+    "tag": "section",
+    "class": "thank-you-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "You’re a nerd."
+        },
+        {
+           "type": "textarea",
+           "id": "text",
+           "label": "Text",
+           "default": "You made it to the bottom of this fairly dense page, and we’re impressed. Science isn't always the most riveting thing to be spending your time reading. But you obviously care, so from one nerd to another, we'd like to offer you this coupon code for 10% off: YOUDIDIT." 
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+            "type": "text",
+            "id": "btn_label",
+            "label": "Label",
+            "default": "Use your discount"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "link"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Image",
+            "name": "Thank you by RG"
+        }
+    ]
+}
+{% endschema %}

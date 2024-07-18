@@ -1,0 +1,96 @@
+<div class="new-vessel-first-section">
+    <p class="title-new-vessel-one">{{section.settings.top_text}}
+        <span>{{section.settings.top_text_span}}</span>
+    </p> 
+    <div class="description-first-section">{{section.settings.bottom_text}}</div>
+ </div>
+ 
+ 
+ <div class="new-vessel-v2Section">
+     {%- for block in section.blocks -%}
+ <div class="block-new-vessel">
+    <div class="block-image">
+     <img class="{{ block.settings.title_Ingredient }}" src="{{block.settings.image_Ingredient | img_url: 'original'}}">
+    </div>  
+      <p class="new-vessel-v2-title">{{ block.settings.title_Ingredient }}</p>
+      <p class="new-vessel-v2-description">{{ block.settings.richtext_Ingredient }}
+          <a href="{{ block.settings.btn_more }}">{{ block.settings.title_Ingredient_more }}</a>
+      </p>
+ </div> 
+      {%-endfor-%}
+ </div>
+ 
+ {% schema %}
+ {
+     "name": "New Vessel 2.0",
+     "settings": [
+         {
+             "type": "html",
+             "id": "top_text",
+             "label": "Top text",
+             "default": "New with"
+         },
+         {
+             "type": "html",
+             "id": "top_text_span",
+             "label": "Top text span",
+             "default": "Vessel V2"
+         },
+         {
+             "type": "html",
+             "id": "bottom_text",
+             "label": "Bottom text",
+             "default": "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
+         }
+     ],
+     "blocks": [
+     {
+         "type": "text",
+         "name": "Vessel V2 Block",
+         "settings": [
+           {
+             "type": "image_picker",
+             "id": "image_Ingredient",
+             "label": "image block"
+           },
+           {
+             "type": "text",
+             "id": "title_Ingredient",
+             "placeholder": "Calcium",
+             "default": "Calcium",
+             "info": "Title Info Card Vessel",
+             "label": "title block"
+           },
+           {
+             "type": "text",
+             "id": "richtext_Ingredient",
+             "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.. more",
+             "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.. more",
+             "info": "Description Card Ingredient",
+             "label": "Text block"
+           },
+           {
+             "type": "text",
+             "id": "title_Ingredient_more",
+             "placeholder": "Calcium",
+             "default": "more",
+             "info": "Url Link More",
+             "label": "Url Link More"
+           },
+           {
+             "type": "url",
+             "id": "btn_more",
+             "label": "btn_more",
+             "label": "Link Url"
+           }
+         ]
+       }
+     ],
+     "presets": [
+         {
+             "category": "app",
+             "name":"New Vessel Page"
+         }
+     ]
+ }
+ {% endschema %}

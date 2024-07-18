@@ -1,0 +1,174 @@
+{% if page.handle == 'new-quiz-membership' %}
+{% assign title           = section.settings.title_V2 %}
+{% assign text            = section.settings.text_V2 %}
+{% assign btn_text        = section.settings.btn_text_V2 %}
+{%else%}
+{% assign title           = section.settings.title %}
+{% assign text            = section.settings.text %}
+{% assign btn_text        = section.settings.btn_text %}
+{%endif%}
+
+{% assign popup_image     = section.settings.popup_image %}
+{% assign popup_title     = section.settings.popup_title %}
+{% assign popup_title_mob = section.settings.popup_title_mob %}
+{% assign popup_btn_text  = section.settings.popup_btn_text %}
+
+
+{% assign blocks          = section.blocks %}
+
+<style>
+	{% for block in blocks %}
+	{% assign image = block.settings.image %}
+
+		{% if image != blank %}
+			.step-content.step5-three-checkboxes-content .step5-three-checkboxes-content__items .step5-three-checkboxes-content__item.step5-three-checkboxes-content__item--{{ block.id }} label {
+				background-image: url("{{ image | img_url: 'master' }}");
+			}
+		{% endif %}
+	{% endfor %}
+</style>
+
+<div class="slide__content">
+	<header class="step-header">
+		<button data-prev-page class="quiz-btn-back" onclick="window.quiz.store.swiper.slideTo(0);">{% include 'quiz-arrow-back' %}</button>
+		{% comment %}<span class="step-header__title">Sleep</span>{% endcomment %}
+	</header>
+	<div class="step-content step5-three-checkboxes-content">
+		{% if title != blank %}
+			<h3 class="step5-three-checkboxes-content__title">{{ title }}</h3>
+		{% endif %}
+		{% if text != blank %}
+			<p class="step5-three-checkboxes-content__text">{{ text }}</p>
+		{% endif %}
+		<div class="step5-three-checkboxes-content__items" data-checkboxes-5>
+			{% for block in blocks %}
+				{% assign name = block.settings.name %}
+				{% assign lower_name = name | downcase %}
+
+				<div class="step5-three-checkboxes-content__item step5-three-checkboxes-content__item--{{ block.id }}">
+					<input type="checkbox" class="checkbox checkbox-input" id="{{ lower_name }}" name="{{ name }}" value="{{ lower_name }}">
+					<label class="checkbox-label" for="{{ lower_name }}">{{ name }}</label>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="step-btn">
+		<button data-next-page class="step-button step-button-next popup-trigger">{{ btn_text }}</button>
+	</div>
+</div>
+
+<div class="three-checkboxes-alert-popup">
+	<div class="three-checkboxes-alert-popup__content">
+		{% if popup_image != blank %}
+			<div class="popup-img">
+				<img src="{{ popup_image | img_url: 'master' }}" alt="{{ popup_image.alt | escape }}">
+			</div>
+		{% endif %}
+		{% if popup_title != blank %}
+			<div class="popup-title">{{ popup_title }}</div>
+		{% endif %}
+		{% if popup_title_mob != blank %}
+			<div class="popup-title-mob">{{ popup_title_mob }}</div>
+		{% endif %}
+		<div class="popup-btn">
+			<button class="popup-button">{{ popup_btn_text }}</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	{%- for block in section.blocks -%}
+		{%- assign lower_name = block.settings.name | downcase -%}
+	    #quiz-slider[data-type-1="{{ lower_name }}"] .step6-main-choice-content__item[data-type="{{ lower_name }}"], #quiz-slider[data-type-2="{{ lower_name }}"] .step6-main-choice-content__item[data-type="{{ lower_name }}"], #quiz-slider[data-type-3="{{ lower_name }}"] .step6-main-choice-content__item[data-type="{{ lower_name }}"] {
+	        display: block !important;
+	    }
+	{%- endfor -%}
+</style>
+
+{% schema %}
+{
+	"name": "Step 5 (three checkboxes)",
+	"tag": "div",
+	"class": "swiper-slide slider__slide",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "textarea",
+			"id": "text",
+			"label": "Text"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button text",
+			"default": "Next"
+		},
+		{
+			"type": "text",
+			"id": "title_V2",
+			"label": "Title_V2",
+			"default": "What are your top 3 wellness goals?"
+		},
+		{
+			"type": "textarea",
+			"id": "text_V2",
+			"label": "Text_V2",
+			"default": "We’re building a fully personalized program to help you reach your wellness goals. Answering these questions will help us customize a plan to your unique lifestyle!"
+		},
+		{
+			"type": "text",
+			"id": "btn_text_V2",
+			"label": "Button text",
+			"default": "Next"
+		},
+		{
+			"type": "header",
+			"content": "ALERT POP UP"
+		},
+		{
+			"type": "image_picker",
+			"id": "popup_image",
+			"label": "Popup image"
+		},
+		{
+			"type": "text",
+			"id": "popup_title",
+			"label": "Popup title"
+		},
+		{
+			"type": "text",
+			"id": "popup_title_mob",
+			"label": "Popup title (mobile)"
+		},
+		{
+			"type": "text",
+			"id": "popup_btn_text",
+			"label": "Popup button text V2",
+			"default": "Got It"
+		}
+		
+    ],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "checkbox",
+			"settings": [
+				{
+					"type": "text",
+					"id": "name",
+					"label": "Name"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

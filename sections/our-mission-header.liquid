@@ -1,0 +1,47 @@
+{{'vessel-health.22e6642b9.min.css' | asset_url | stylesheet_tag}}
+<div class="about wf-section">
+  <div class="green-bg careers"></div>
+  <div class="container-23 w-container">
+    <div class="div-block-103">
+      <h1>{{section.settings.title}}</h1>
+      <p class="paragraph">{{section.settings.text}}</p>
+      <a href="{{section.settings.button_link}}" class="dark-bt main-section-bt w-button">{{section.settings.button_title}}</a>
+    </div>
+  </div>
+  <img
+    src="{{section.settings.image | img_url: 'original' }}"
+    alt="" class="image-26-copy">
+</div>
+
+{% schema %}
+{
+   "name": "Our mission banner",
+  "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+    },
+    {
+        "type": "url",
+        "id": "link",
+        "label": "Button link"
+    },
+    {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button title"
+    },
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+    }
+  ]
+}
+{% endschema %}
